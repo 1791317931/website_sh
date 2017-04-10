@@ -1,0 +1,41 @@
+.mh500 {min-height: 500px;}
+.mh100 {min-height: 100px;}
+.w20 {width: 20px;}
+.w50 {width: 50px;}
+.w100 {width: 100px;}
+.w110 {width: 110px !important;}
+.w130 {width: 130px;}
+.w220 {width: 220px;}
+.w250 {width: 250px;}
+.h120 {height: 120px;}
+
+.f13 {font-size: 13px;}
+
+.container {
+	background: #fff;
+	margin-bottom: 20px !important;
+}
+
+.cg {color: #888;}
+.cr {color: red;}
+
+.bbg {border-bottom: 1px solid #ccc;}
+
+.product-list .table-row > .table-cell {
+	border-bottom: 1px solid #ccc;
+}
+
+.product_count {
+	width: 70px;
+	height: 30px;
+	text-align: center;
+}
+
+.btns {
+	background: #eee;
+    font-weight: 700;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+.f20 {font-size: 20px;}

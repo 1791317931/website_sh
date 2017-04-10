@@ -1,0 +1,106 @@
+.z-upload-rows {
+	background: #fff;
+}
+
+.z-upload-container {
+	position: relative;
+}
+.z-upload-row {
+	display: table;
+	width: 100%;
+	margin: 0 0 10px 0;
+}
+.z-upload-cell {
+	display: table-cell;
+	vertical-align: middle;
+}
+.z-buttons {width: 100px;}
+.z-buttons[multiple="true"] {width: 256px;}
+.z-upload {margin-left: 5px; display: none;}
+.z-buttons[multiple="true"] .z-upload {display: inline-block;}
+.z-upload-delete {margin: 0 0 0 5px;}
+.z-upload-rows .z-upload-row:first-child .z-upload-delete {
+	display: none;
+}
+.z-progress-bar {
+	display: table;
+	/* 表格的宽度不是跟随单元格内容多少自动计算尺寸  */
+	table-layout: fixed;
+	width: 100%;
+	font-size: 14px;
+	color: #555;
+	height: 31px;
+	border: 1px solid #ccc;
+	border-right-width: 0;
+	position: relative;
+}
+.z-progress-bar:empty:before {
+	content: attr(tip);
+	font-size: 14px;
+	display: table-cell;
+	vertical-align: middle;
+	color: #9e9e9e;
+	padding-left: 5px;
+}
+.z-progress-bar .z-upload-cell {
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	margin: 0;
+	padding: 0 0 0 5px;
+}
+.z-file-name {
+	width: 45%;
+}
+.z-upload-progress {
+	width: 30%;
+}
+.z-upload-speed {
+	width: 25%;
+}
+@keyframes upload-progress {
+	0 {
+		background-position-x: 0;
+	}
+	100% {
+		background-position-x: 15px;
+	}
+}
+@-webkit-keyframes upload-progress {
+	0 {
+		background-position-x: 0;
+	}
+	100% {
+		background-position-x: 15px;
+	}
+}
+@-moz-keyframes upload-progress {
+	0 {
+		background-position-x: 0;
+	}
+	100% {
+		background-position-x: 15px;
+	}
+}
+@-ms-keyframes upload-progress {
+	0 {
+		background-position-x: 0;
+	}
+	100% {
+		background-position-x: 15px;
+	}
+}
+.z-uploading {
+	animation: upload-progress .5s linear infinite;
+	-webkit-animation: upload-progress .5s linear infinite;
+}
+.z-upload-progress-linear {
+	position: absolute;
+    height: 100%;
+    top: 0;
+    left: 0;
+	background-image: url("data:image/svg+xml;charset=utf8,\
+					%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 33' %3E\
+						%3Cpath d='M 0 0 L 5 0, 15 16.5, 5 33, 0 33, 10 16.5 z' fill='rgba(242, 187, 70, .4)' /%3E\
+					%3C/svg%3E");
+}

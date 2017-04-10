@@ -1,0 +1,52 @@
+.nav-head {
+	height: 60px;
+	background: #00ffc4;
+}
+
+.wp100 {width: 100%;}
+
+.common-body {
+	overflow: auto;
+	min-width: 1360px;
+}
+
+.menu-container {
+	width: 198px;
+	min-height: 450px;
+	border: 1px solid #ccc;
+	float: left;
+}
+
+.menu p {
+	line-height: 26px;
+	padding-left: 15px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    color: #888;
+}
+
+.sub-menu {
+	height: 0;
+	overflow: hidden;
+}
+
+.sub-menu.active {
+	height: auto;
+}
+
+.sub-menu p {
+	border-color: #777;
+	padding-left: 30px;
+}
+
+.sub-menu p.active, .sub-menu p:hover {
+	color: #111;
+	font-weight: 600;
+}
+
+.content-container {
+	border: 1px solid #ccc;
+	min-height: 550px;
+	float: left;
+	width: 1138px;
+}

@@ -1,0 +1,38 @@
+body {
+	background: #f9f9f9;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.header {
+	height: 30px;
+	background: #ddd;
+}
+
+.w1200 {
+	width: 1200px;
+	margin: auto;
+}
+
+.mt6 {margin-top: 6px;}
+
+.head-nav {
+	height: 80px;
+    width: 1200px;
+    margin: 15px auto;
+    border: 1px solid currentColor;
+}
+
+.logo {
+	width: 160px;
+	height: 100%;
+	border: 0;
+}
+
+
+.footer {
+	height: 100px;
+	background: #ddd;
+}
