@@ -116,7 +116,7 @@ create table w_material (
 drop table if exists w_category;
 create table w_category (
 	id int primary key auto_increment,
-	name varchar(100) not null comment '分类名称',
+	name varchar(20) not null comment '分类名称',
 	type_id int not null comment '常量表中type=product的id，材料或商品',
 	is_valid char(1) default 'Y' comment '是否有效',
 	create_date datetime not null default now() comment '创建时间',
@@ -128,7 +128,7 @@ create table w_category (
 drop table if exists w_property;
 create table w_property (
 	id int primary key auto_increment,
-	name varchar(100) not null comment '属性名称',
+	name varchar(20) not null comment '属性名称',
 	type_id int not null comment '常量表中type=product的id，材料或商品',
 	is_must char(1) default 'Y' comment '是否必填',
 	is_valid char(1) default 'Y' comment '是否有效',

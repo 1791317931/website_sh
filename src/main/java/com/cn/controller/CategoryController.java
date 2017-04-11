@@ -6,11 +6,13 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
 import com.cn.service.CategoryService;
+import com.cn.vo.CategoryVO;
 import com.cn.vo.Page;
 
 @Controller
@@ -33,6 +35,15 @@ public class CategoryController extends BaseController {
 		Page page = categoryService.getPageByParam(pageSize, currentPage, name, typeId, isValid);
 		
 		return getMap(page);
+	}
+	
+	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> saveOrUpdate(CategoryVO categoryVO) {
+		int created_by = 1;
+		categoryService.saveOrUpdate(categoryVO, created_by);
+		
+		return getMap(null);
 	}
 	
 }

@@ -50,8 +50,8 @@
 				</div>
 			</div>
 			<div class="center mt15">
-				<button class="btn btn-primary save-btn">保存</button>
-				<button class="btn btn-primary ml10 cancel-btn">取消</button>
+				<button class="btn btn-primary btn-2 save-btn">保存</button>
+				<button class="btn btn-danger btn-2 ml20 cancel-btn">取消</button>
 			</div>
 		</div>
 	</div>

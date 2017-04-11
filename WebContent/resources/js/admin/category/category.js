@@ -32,6 +32,7 @@ $(function() {
 			title : '操作',
 			width : '20%',
 			render : function(row) {
+				// 点击之前需要判断该分类是否已经被引用  TODO
 				return '<span>编辑</span>';
 			}
 		}]
@@ -76,8 +77,12 @@ $(function() {
 	});
 	
 	$categoryModal.ToggleModal($.noop, function() {
+		$('#category-id').val('');
 		$('#category-name').val('');
 		$categoryOptions.val($categoryOptions.find('option').eq(0).attr('value'));
+		$propertyContainer.empty();
+		propertyIds = [];
+		$searchCategory.click();
 	});
 	
 	$addCategory.bind('click', function() {
@@ -164,9 +169,8 @@ $(function() {
 					is_must = $row.find('.is-must span').html() == 'Y';
 					html += '<div class="form-group col-4 mb10">'
 							+ '<label class="label-5">' + name + ':</label>'
-							+ '<div class="form-control' + (is_must ? ' is-must' : '') + '">'
-								+ '<div class="form-close" title="删除"></div>'
-								+ '<input type="text" data-id="' + propertyId + '" />'
+							+ '<div class="form-control right-10">'
+								+ '<input type="text" data-id="' + propertyId + '" readonly />'
 							+ '</div>'
 							+ (is_must ? '<span class="must">*</span>' : '')
 						+ '</div>';
@@ -194,5 +198,60 @@ $(function() {
 	$selectPropertyCancel.bind('click', function() {
 		$propertyModal.trigger('hide');
 	});
+	
+	$('#add-category-sure').bind('click', function() {
+		var name = $.trim($('#name').val()),
+		typeId = $categoryOptions.val(),
+		categoryId = $('#category-id').val();
+		
+		if(!name) {
+			ZUtil.error('分类名称必填');
+			return false;
+		} else if (name.length > 20) {
+			ZUtil.error('分类名称最多20个字符');
+			return false;
+		}
+		
+		var $inputs = $propertyContainer.find('input'),
+		properties = [];
+		if(!$inputs.length) {
+			ZUtil.error('请至少选择一个属性');
+			return false;
+		}
+		
+		for(var i = 0, length = $inputs.length; i < length; i++) {
+			var $input = $inputs.eq(i),
+			propertyId = $input.attr('data-id');
+			
+			properties.push(propertyId);
+		}
+		
+		var category = {
+			name : name,
+			typeId : typeId,
+			propertyIds : properties.join(',')
+		};
+		
+		if(categoryId) {
+			category.categoryId = categoryId;
+		}
+		
+		saveOrUpdate(category);
+		
+	});
+	
+	function saveOrUpdate(category) {
+		$.ajax({
+			url : base_url + 'category/saveOrUpdate',
+			type : 'post',
+			data : category,
+			success : function(result) {
+				if(result.success) {
+					ZUtil.success('数据添加成功');
+					$categoryModal.trigger('hide');
+				}
+			}
+		});
+	}
 	
 });

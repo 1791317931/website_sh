@@ -18,7 +18,7 @@ public class PropertyCategory extends IdEntity {
 	private Category category;
 
 	@ManyToOne
-	@JoinColumn(name = "product_id")
+	@JoinColumn(name = "property_id")
 	public Property getProperty() {
 		return property;
 	}

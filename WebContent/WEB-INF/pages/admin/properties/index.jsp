@@ -59,8 +59,8 @@
 						</div>
 					</div>
 					<div class="text-center mt100">
-						<button class="btn btn-primary btn-sg" type="button" id="save">保存</button>
-						<button class="btn btn-primary btn-sg ml10" type="button" id="cancel">取消</button>
+						<button class="btn btn-primary btn-2" type="button" id="save">保存</button>
+						<button class="btn btn-danger btn-2 ml20" type="button" id="cancel">取消</button>
 					</div>
 				</form>
 			</div>

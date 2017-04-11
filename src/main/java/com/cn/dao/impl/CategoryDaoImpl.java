@@ -20,7 +20,7 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 		if(typeId != null) {
 			sql += " and c.con.type_id = " + typeId;
 		}
-		if(isValid != null) {
+		if(isValid != null && isValid.length() > 0) {
 			sql += " and c.is_valid = '" + isValid + "'";
 		}
 		return getPageByQuery(sql, page);

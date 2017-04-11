@@ -1,5 +1,5 @@
 .category-modal {
-	width: 900px;
+	width: 950px;
 	height: 85%;
 	padding: 20px;
 	border-radius: 5px;
@@ -18,7 +18,7 @@
 	border-radius: 5px;
 }
 
-.form-control.is-must {
+.right-10 {
 	right: 10px !important;
 }
 
@@ -26,14 +26,4 @@
 	position: absolute;
 	right: 0;
 	color: red;
-}
-
-.form-close {
-	background: url(../../../resources/imgs/clear.png) no-repeat 0px 8px;
-    position: absolute;
-    width: 16px;
-    right: 1px;
-    cursor: pointer;
-    top: 0;
-    bottom: 0;
 }
