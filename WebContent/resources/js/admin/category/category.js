@@ -32,10 +32,74 @@ $(function() {
 			title : '操作',
 			width : '20%',
 			render : function(row) {
-				// 点击之前需要判断该分类是否已经被引用  TODO
-				return '<span>编辑</span>';
+				var html = '<span class="for-edit edit" data-id="' + row.id + '">编辑</span>'
+						+ '<span class="for-edit delete ml10" data-id="' + row.id + '">删除</span>';
+				return html;
 			}
 		}]
+	});
+	
+	$categoryList.on('click', '.edit', function() {
+		$categoryModal.trigger('show');
+		var categoryId = $(this).attr('data-id');
+		
+		$('#category-id').val(categoryId);
+		$.ajax({
+			url : base_url + 'category/property/list',
+			data : {
+				categoryId : categoryId
+			},
+			success : function(result) {
+				var list = result.data || [],
+				obj = list[0],
+				category = obj.category,
+				typeId = category.con.id,
+				html = '';
+				
+				$('#name').val(category.name);
+				$('#hide-type-id').val(typeId);
+				$('#category-id').val(category.id);
+				$categoryOptions.val(typeId);
+				
+				for(var i = 0, length = list.length; i < length; i++) {
+					var propertyCategory = list[i],
+					property = propertyCategory.property,
+					propertyId = property.id,
+					name = property.name,
+					is_must = property.is_must == 'Y';
+					propertyIds.push(propertyId + '');
+					html += '<div class="form-group col-4 mb10">'
+							+ '<label class="label-5">' + name + ':</label>'
+							+ '<div class="form-control right-10">'
+								+ '<input type="text" data-id="' + propertyId + '" readonly />'
+								+ '<label class="form-close" title="删除"></label>'
+							+ '</div>'
+							+ (is_must ? '<span class="must">*</span>' : '')
+						+ '</div>';
+				}
+				
+				$propertyContainer.html(html);
+			}
+		});
+	});
+	
+	$categoryList.on('click', '.delete', function() {
+		var id = $(this).attr('data-id');
+		$.ajax({
+			url : base_url + 'category/property/delete',
+			type : 'post',
+			data : {
+				categoryId : id
+			},
+			success : function(result) {
+				if(result.success) {
+					ZUtil.success('数据删除成功');
+					$categoryList.trigger('reload');
+				} else {
+					ZUtil.error(result.data);
+				}
+			}
+		});
 	});
 	
 	$.ajax({
@@ -78,6 +142,7 @@ $(function() {
 	
 	$categoryModal.ToggleModal($.noop, function() {
 		$('#category-id').val('');
+		$('#hide-type-id').val('');
 		$('#category-name').val('');
 		$categoryOptions.val($categoryOptions.find('option').eq(0).attr('value'));
 		$propertyContainer.empty();
@@ -135,6 +200,12 @@ $(function() {
 			}
 		});
 	}, function() {
+		$propertyList.find('.page-content-cell input[type="checkbox"]').each(function(index, checkbox) {
+			var $checkbox = $(checkbox);
+			if(!$checkbox.prop('checked')) {
+				$propertyContainer.find('input[data-id="' + $checkbox.val() + '"]').closest('.form-group').remove();
+			}
+		});
 		$propertyList.empty();
 	});
 	
@@ -171,6 +242,7 @@ $(function() {
 							+ '<label class="label-5">' + name + ':</label>'
 							+ '<div class="form-control right-10">'
 								+ '<input type="text" data-id="' + propertyId + '" readonly />'
+								+ '<label class="form-close" title="删除"></label>'
 							+ '</div>'
 							+ (is_must ? '<span class="must">*</span>' : '')
 						+ '</div>';
@@ -179,6 +251,10 @@ $(function() {
 			$propertyContainer.append(html);
 			$propertyModal.trigger('hide');
 		}
+	});
+	
+	$('#add-category-cancel').bind('click', function() {
+		$categoryModal.trigger('hide');
 	});
 	
 	$propertyContainer.on('click', '.form-close', function() {
@@ -233,7 +309,7 @@ $(function() {
 		};
 		
 		if(categoryId) {
-			category.categoryId = categoryId;
+			category.id = categoryId;
 		}
 		
 		saveOrUpdate(category);
@@ -247,8 +323,14 @@ $(function() {
 			data : category,
 			success : function(result) {
 				if(result.success) {
-					ZUtil.success('数据添加成功');
+					if(category.id) {
+						ZUtil.success('数据修改成功');
+					} else {
+						ZUtil.success('数据添加成功');
+					}
 					$categoryModal.trigger('hide');
+				} else {
+					ZUtil.error(result.data);
 				}
 			}
 		});

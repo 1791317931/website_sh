@@ -154,6 +154,7 @@ drop table if exists w_property_obj;
 create table w_property_obj (
 	id int primary key auto_increment,
 	property_id int not null comment '属性id，为空时：该属性是自定义',
+	category_id int not null comment '分类id',
 	obj_id int not null comment '实体id:当分类为商品时，obj_id指向商品；否则指向material',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',

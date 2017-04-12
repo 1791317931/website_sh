@@ -10,12 +10,3 @@
 	width: 350px;
 	margin: 50px auto 0;
 }
-
-.operation {
-	color: #aaa;
-	cursor: pointer;
-}
-
-.operation:hover {
-	color: red;
-}

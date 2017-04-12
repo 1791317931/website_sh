@@ -5,6 +5,8 @@ import com.cn.entity.PropertyObj;
 
 public interface PropertyObjDao extends BaseDao<PropertyObj> {
 
-	public int countProductByPropertyId(int propertyId);
+	public int countProduct(Integer productId, Integer propertyId, Integer categoryId);
+	
+	public void deleteByProductId(Integer productId);
 	
 }

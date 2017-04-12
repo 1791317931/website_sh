@@ -1,6 +1,7 @@
 package com.cn.service.impl;
 
 import java.util.Date;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -16,6 +17,7 @@ import com.cn.entity.Property;
 import com.cn.entity.PropertyCategory;
 import com.cn.service.CategoryService;
 import com.cn.service.PropertyCategoryService;
+import com.cn.service.PropertyObjService;
 import com.cn.vo.CategoryVO;
 import com.cn.vo.Page;
 
@@ -35,6 +37,9 @@ public class CategoryServiceImpl implements CategoryService {
 	@Resource(name = "propertyCategoryService")
 	private PropertyCategoryService propertyCategoryService;
 	
+	@Resource(name = "propertyObjService")
+	private PropertyObjService propertyObjService;
+	
 	@Override
 	public Page getPageByParam(int pageSize, int currentPage, String name,
 			Integer typeId, String isValid) {
@@ -44,9 +49,17 @@ public class CategoryServiceImpl implements CategoryService {
 	}
 	
 	@Override
-	public void saveOrUpdate(CategoryVO categoryVO, int created_by) {
+	public Map<String, Object> saveOrUpdate(Map<String, Object> map, CategoryVO categoryVO, int created_by) {
 		Category category = null;
 		Integer categoryId = categoryVO.getId();
+		
+		// 如果categoryId不为空，需要判断该分类已被使用
+		if(propertyObjService.countProperty(null, null, categoryId) > 0) {
+			map.put("success", false);
+			map.put("data", "该分类已经被使用，无法修改");
+			return map;
+		}
+		
 		Date now = new Date();
 		Const con = constDao.get(categoryVO.getTypeId());
 		String name = categoryVO.getName();
@@ -84,6 +97,13 @@ public class CategoryServiceImpl implements CategoryService {
 			propertyCategory.setUpdated_by(created_by);
 			propertyCategoryService.saveOrUpdate(propertyCategory);
 		}
+		
+		return map;
+	}
+	
+	@Override
+	public void deleteById(Integer categoryId) {
+		categoryDao.deleteById(categoryId);
 	}
 
 }

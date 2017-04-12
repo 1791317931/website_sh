@@ -54,8 +54,8 @@ public class PropertyController extends BaseController {
 	
 	@RequestMapping(value = "/count")
 	@ResponseBody
-	public Map<String, Object> countProductByPropertyId(int propertyId) {
-		int count = propertyObjService.countPropertyByPropertyId(propertyId);
+	public Map<String, Object> countProduct(Integer productId, Integer propertyId, Integer categoryId) {
+		int count = propertyObjService.countProperty(productId, propertyId, categoryId);
 		
 		return getMap(count);
 	}
@@ -64,6 +64,14 @@ public class PropertyController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> deleteById(int propertyId) {
 		propertyService.deleteById(propertyId);
+		
+		return getMap(null);
+	}
+	
+	@RequestMapping(value = "/obj/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> deleteByProductId(int propertyId) {
+		propertyObjService.deleteByProductId(propertyId);
 		
 		return getMap(null);
 	}

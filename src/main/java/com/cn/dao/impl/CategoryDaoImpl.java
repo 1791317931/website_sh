@@ -13,6 +13,12 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 	public CategoryDaoImpl() {
 		super(Category.class);
 	}
+	
+	@Override
+	public void deleteById(Integer categoryId) {
+		String sql = "delete from w_category where id = ?";
+		sqlUpdate(sql, categoryId);
+	}
 
 	@Override
 	public Page getPageByParam(Page page, String name, Integer typeId, String isValid) {

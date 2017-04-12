@@ -7,6 +7,10 @@
 
 .cr {color: red;}
 
+.property-container {
+	min-height: 150px;
+}
+
 .property-container:empty {
 	height: 100px;
 }
@@ -25,5 +29,18 @@
 .must {
 	position: absolute;
 	right: 0;
+	color: red;
+}
+
+.form-close {
+	width: 16px;
+    height: 100%;
+    background: url(../../../../resources/imgs/clear.png) no-repeat 0 8px;
+    position: absolute;
+    right: 1px;
+    cursor: pointer;
+}
+
+.edit:hover {
 	color: red;
 }

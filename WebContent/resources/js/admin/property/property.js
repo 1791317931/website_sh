@@ -27,8 +27,8 @@ $(function() {
 				var is_valid = row.is_valid == 'Y',
 				id = row.id,
 				typeId = row.con.id;
-				return '<label class="operation edit" data-name="' + row.name + '" data-must="' + row.is_must + '" data-id="' + id + '" data-typeId="' + typeId + '">编辑</label>'
-					+ '<label class="ml10 operation update-status" data-id="' + id + '">' + (is_valid && '置为无效' || '置为有效') + '</label>';
+				return '<label class="for-edit edit" data-name="' + row.name + '" data-must="' + row.is_must + '" data-id="' + id + '" data-typeId="' + typeId + '">编辑</label>'
+					+ '<label class="ml10 for-edit update-status" data-id="' + id + '">' + (is_valid && '置为无效' || '置为有效') + '</label>';
 			}
 		}]
 	});
