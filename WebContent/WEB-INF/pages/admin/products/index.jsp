@@ -21,7 +21,76 @@
 		<label class="pull-left lh36 ml20">
 			<span>商品编号:</span><input class="control-input" type="text" placeholder="请输入商品编号" />
 		</label>
-		<button class="btn btn-primary ml20">添加商品</button>
+		<button class="btn btn-primary ml20" id="add-product">添加商品</button>
 	</div>
 	<div class="product-list empty mt10" id="product-list" data-empty="暂无数据"></div>
+</div>
+<div class="z-modal hide" id="product-modal">
+	<div class="z-modal-body product-modal">
+		<div class="clearfix p10">
+			<div class="form-group col-4">
+				<label class="label-5">名称:</label>
+				<div class="form-control">
+					<input type="text" id="product-name" />
+				</div>
+			</div>
+			<div class="form-group col-4 hide">
+				<label class="label-5">编号:</label>
+				<div class="form-control">
+					<input type="text" id="product-code" readonly />
+				</div>
+			</div>
+			<div class="form-group col-4">
+				<label class="label-5">价格:</label>
+				<div class="form-control">
+					<input type="text" id="product-price" />
+				</div>
+			</div>
+			<div class="form-group col-4">
+				<label class="label-5">特价:</label>
+				<div class="form-control">
+					<input type="text" id="product-special-price" />
+				</div>
+			</div>
+			<div class="form-group col-4">
+				<label class="label-5">是否有效:</label>
+				<div class="form-control">
+					<select id="product-is-valid">
+						<option value="Y">有效</option>
+						<option value="N">无效</option>
+					</select>
+				</div>
+			</div>
+			<div class="form-group col-4">
+				<label class="label-5">库存:</label>
+				<div class="form-control right-10">
+					<input type="text" id="product-count" />
+				</div>
+			</div>
+			<div class="form-group col-4">
+				<label class="label-5">属性分类:</label>
+				<div class="form-control right-10">
+					<input type="text" id="product-category" readonly />
+				</div>
+			</div>
+			<button class="btn btn-primary" id="select-category">选择属性分类</button>
+		</div>
+		<div class="clearfix product-property-container p10" id="product-property-container"></div>
+	</div>
+</div>
+<div class="z-modal hide" id="category-modal">
+	<div class="z-modal-body category-modal">
+		<div class="clearfix category-list empty" id="category-list" data-empty="没有属性分类"></div>
+		<div class="text-center p30">
+			<button class="btn btn-primary btn-2" id="close-category-modal">关闭</button>
+		</div>
+	</div>
+</div>
+<div class="z-modal hide" id="property-modal">
+	<div class="z-modal-body property-modal">
+		<div class="clearfix property-list empty" id="property-list" data-empty="没有商品属性"></div>
+		<div class="text-center p30">
+			<button class="btn btn-primary btn-2" id="close-property-modal">关闭</button>
+		</div>
+	</div>
 </div>

@@ -90,6 +90,7 @@ create table w_product (
 	is_valid char(1) not null default 'Y' comment '是否有效',
 	status varchar(10) not null default 'N' comment '状态：N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）',
 	price double not null comment '价格',
+	count int not null default 0 comment '库存',
 	special_price double not null comment '特价',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',

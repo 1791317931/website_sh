@@ -78,4 +78,12 @@ public class CategoryController extends BaseController {
 		return getMap(list);
 	}
 	
+	@RequestMapping(value = "/list")
+	@ResponseBody
+	public Map<String, Object> getCategoryList(String type, Integer code) {
+		List<Map<String, Object>> list = categoryService.getListByTypeCode(type, code);
+		
+		return getMap(list);
+	}
+	
 }

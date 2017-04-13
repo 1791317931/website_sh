@@ -6,6 +6,6 @@ import com.cn.vo.Page;
 
 public interface ProductDao extends BaseDao<Product> {
 
-	public Page getPageByParam(String name, String code);
+	public Page getPageByParam(Page page, String name, String code);
 	
 }

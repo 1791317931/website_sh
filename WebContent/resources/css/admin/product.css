@@ -13,3 +13,38 @@
     border: 1px solid #ccc;
     margin-left: 5px;
 }
+
+.product-modal {
+	width: 80%;
+	height: 80%;
+	min-width: 900px;
+	min-height: 550px;
+	padding: 20px;
+}
+
+.product-modal .form-group > label {text-align: right;}
+
+.product-modal .form-control, .property-modal .form-control {right: 10px;}
+
+.product-property-container:before {
+	content: '商品自定义属性:';
+	display: block;
+	color: #888;
+	margin-bottom: 10px;
+}
+
+.property-modal, .category-modal {
+	width: 60%;
+	height: 60%;
+	min-width: 700px;
+	min-height: 500px;
+	padding: 20px;
+}
+
+.must {
+	position: absolute;
+	right: 0;
+	color: red;
+}
+
+.property-list {min-height: 100px;}

@@ -1,19 +1,12 @@
-package com.cn.entity;
-
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+package com.cn.vo;
 
 import com.cn.base.IdEntity;
 
-@Entity
-@Table(name = "w_product")
-public class Product extends IdEntity {
+public class ProductVO extends IdEntity {
 
-	private static final long serialVersionUID = -2285792653617753234L;
-	
-	private Category category;
+	private static final long serialVersionUID = 6146383097145661850L;
+
+	private Integer id;
 	
 	private String name;
 	
@@ -21,16 +14,19 @@ public class Product extends IdEntity {
 	
 	private String is_valid;
 	
-	// 状态：N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）
 	private String status;
 	
 	private double price;
 	
-	// 库存
-	private Integer count;
-	
-	// 特价
 	private double special_price;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -78,24 +74,6 @@ public class Product extends IdEntity {
 
 	public void setSpecial_price(double special_price) {
 		this.special_price = special_price;
-	}
-
-	@ManyToOne
-	@JoinColumn(name = "category_id")
-	public Category getCategory() {
-		return category;
-	}
-
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public Integer getCount() {
-		return count;
-	}
-
-	public void setCount(Integer count) {
-		this.count = count;
 	}
 	
 }

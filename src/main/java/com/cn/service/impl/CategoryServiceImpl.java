@@ -1,6 +1,9 @@
 package com.cn.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -104,6 +107,20 @@ public class CategoryServiceImpl implements CategoryService {
 	@Override
 	public void deleteById(Integer categoryId) {
 		categoryDao.deleteById(categoryId);
+	}
+	
+	@Override
+	public List<Map<String, Object>> getListByTypeCode(String type, Integer code) {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		List<Object[]> categorys = categoryDao.getListByTypeCode(type, code);
+		for(int i = 0, length = categorys.size(); i < length; i++) {
+			Object[] objs = categorys.get(i);
+			Map<String, Object> map = new HashMap<String, Object>();
+			map.put("id", objs[0]);
+			map.put("name", objs[1]);
+			list.add(map);
+		}
+		return list;
 	}
 
 }

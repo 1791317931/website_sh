@@ -332,7 +332,7 @@ select:hover {border: 1px solid #00BCD4;}
 	float: left;
     font-size: 16px;
     color: #888;
-    padding: 5px 5px 5px 10px;
+    padding: 5px 5px 10px 10px;
     position: relative;
     line-height: 30px;
 }

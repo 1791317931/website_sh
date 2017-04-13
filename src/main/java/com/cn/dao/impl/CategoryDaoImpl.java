@@ -1,5 +1,7 @@
 package com.cn.dao.impl;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 import com.cn.base.BaseDaoImpl;
@@ -30,6 +32,15 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 			sql += " and c.is_valid = '" + isValid + "'";
 		}
 		return getPageByQuery(sql, page);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object[]> getListByTypeCode(String type, Integer code) {
+		String sql = "select c.id, c.name from w_category c"
+					+ " left join w_const con on c.type_id = con.id"
+					+ " where con.type = '" + type + "' and con.code = '" + code + "'";
+		return getSession().createSQLQuery(sql).list();
 	}
 
 }

@@ -1,5 +1,6 @@
 package com.cn.service;
 
+import java.util.List;
 import java.util.Map;
 
 import com.cn.vo.CategoryVO;
@@ -12,5 +13,7 @@ public interface CategoryService {
 	public Map<String, Object> saveOrUpdate(Map<String, Object> map, CategoryVO categoryVO, int created_by);
 	
 	public void deleteById(Integer categoryId);
+	
+	public List<Map<String, Object>> getListByTypeCode(String type, Integer code);
 	
 }
