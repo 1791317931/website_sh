@@ -51,7 +51,6 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(CategoryVO categoryVO) {
-		int created_by = 1;
 		return categoryService.saveOrUpdate(getMap(null), categoryVO, created_by);
 	}
 	

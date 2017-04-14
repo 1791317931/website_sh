@@ -4,7 +4,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class BaseController {
-
+	
+	public int created_by = 1;
+	
 	public Map<String, Object> getMap(Object obj) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
