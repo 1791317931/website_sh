@@ -143,7 +143,7 @@ $(function() {
 	$categoryModal.ToggleModal($.noop, function() {
 		$('#category-id').val('');
 		$('#hide-type-id').val('');
-		$('#category-name').val('');
+		$('#name').val('');
 		$categoryOptions.val($categoryOptions.find('option').eq(0).attr('value'));
 		$propertyContainer.empty();
 		propertyIds = [];

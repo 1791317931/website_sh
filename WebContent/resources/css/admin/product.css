@@ -16,9 +16,9 @@
 
 .product-modal {
 	width: 80%;
-	height: 80%;
+	height: 70%;
 	min-width: 900px;
-	min-height: 550px;
+	min-height: 500px;
 	padding: 20px;
 }
 
@@ -26,11 +26,21 @@
 
 .product-modal .form-control, .property-modal .form-control {right: 10px;}
 
+.base-property-container {
+	border: 1px solid #eee;
+}
+
+.product-property-container {
+	min-height: 100px;
+	border: 1px solid #eee;
+}
+
 .product-property-container:before {
 	content: '商品自定义属性:';
 	display: block;
-	color: #888;
 	margin-bottom: 10px;
+	font-weight: 600;
+	font-size: 18px;
 }
 
 .property-modal, .category-modal {

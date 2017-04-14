@@ -26,7 +26,7 @@ public class CategoryDaoImpl extends BaseDaoImpl<Category> implements CategoryDa
 	public Page getPageByParam(Page page, String name, Integer typeId, String isValid) {
 		String sql = "from Category c where c.name like '%" + name + "%'";
 		if(typeId != null) {
-			sql += " and c.con.type_id = " + typeId;
+			sql += " and c.con.id = " + typeId;
 		}
 		if(isValid != null && isValid.length() > 0) {
 			sql += " and c.is_valid = '" + isValid + "'";

@@ -13,21 +13,29 @@
 <link rel="stylesheet" href="<%=basePath %>resources/css/admin/product.css?<%=new Date().getTime()%>">
 <script src="<%=basePath%>resources/js/admin/product/product.js?<%=new Date().getTime()%>"></script>
 
-<div class="product-container p10">
-	<div class="clearfix">
-		<label class="pull-left lh36">
-			<span>商品名称:</span><input class="control-input" type="text" placeholder="请输入商品名称" />
-		</label>
-		<label class="pull-left lh36 ml20">
-			<span>商品编号:</span><input class="control-input" type="text" placeholder="请输入商品编号" />
-		</label>
+<div class="product-container">
+	<div class="clearfix p10">
+		<div class="form-group col-3">
+			<label class="label-4">商品名称:</label>
+			<div class="form-control">
+				<input type="text" placeholder="请输入商品名称" id="search-name" />
+			</div>
+		</div>
+		<div class="form-group col-3">
+			<label class="label-4">商品编号:</label>
+			<div class="form-control">
+				<input type="text" placeholder="请输入商品编号" id="search-code" />
+			</div>
+		</div>
 		<button class="btn btn-primary ml20" id="add-product">添加商品</button>
 	</div>
 	<div class="product-list empty mt10" id="product-list" data-empty="暂无数据"></div>
 </div>
 <div class="z-modal hide" id="product-modal">
 	<div class="z-modal-body product-modal">
-		<div class="clearfix p10">
+		<div class="clearfix p10 base-property-container">
+			<div class="title">基本属性:</div>
+			<input type="hidden" id="product-id" />
 			<div class="form-group col-4">
 				<label class="label-5">名称:</label>
 				<div class="form-control">
@@ -75,7 +83,11 @@
 			</div>
 			<button class="btn btn-primary" id="select-category">选择属性分类</button>
 		</div>
-		<div class="clearfix product-property-container p10" id="product-property-container"></div>
+		<div class="clearfix product-property-container p10 mt10" id="product-property-container"></div>
+		<div class="mt10 text-center">
+			<button class="btn btn-primary btn-2" id="saveOrUpdate">保存</button>
+			<button class="btn btn-danger btn-2 ml10" id="save-cancel">取消</button>
+		</div>
 	</div>
 </div>
 <div class="z-modal hide" id="category-modal">

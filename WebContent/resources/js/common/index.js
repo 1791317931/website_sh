@@ -1990,7 +1990,7 @@
 				$body.append(html);
 				$mask = $('#' + id);
 				$cover = $mask.find('.cover');
-				$(window).bind('resize', move);
+				$(document).bind('resize', move);
 			}
 
 			$mask.data('target', $this);

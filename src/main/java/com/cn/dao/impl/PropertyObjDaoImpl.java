@@ -17,25 +17,29 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 
 	@Override
 	public int countProduct(Integer productId, Integer propertyId, Integer categoryId) {
-		String sql = "select count(*) from w_property_obj po where";
+		String sql = "select count(*) from w_property_obj po";
+		String appendSql = "";
 		boolean flag = false;
 		if(productId != null) {
-			sql += " po.product_id = " + productId;
+			appendSql += " po.product_id = " + productId;
 			flag = true;
 		}
 		if(propertyId != null) {
 			if(flag) {
-				sql += " and";
+				appendSql += " and";
 			}
-			sql += " po.property_id = " + propertyId;
+			appendSql += " po.property_id = " + propertyId;
 			flag = true;
 		}
 		if(categoryId != null) {
 			if(flag) {
-				sql += " and";
+				appendSql += " and";
 			}
-			sql += " po.category_id = " + categoryId;
+			appendSql += " po.category_id = " + categoryId;
 			flag = true;
+		}
+		if(flag) {
+			sql += " where" + appendSql;
 		}
 		return Integer.parseInt(((SQLQuery) setParameter(getSession().createSQLQuery(sql))).uniqueResult() + "");
 		

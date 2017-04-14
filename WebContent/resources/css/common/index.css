@@ -373,6 +373,9 @@ select:hover {border: 1px solid #00BCD4;}
 	width: 100%;
 	box-sizing: border-box;
 }
+input[readonly] {
+	background: #eee;
+}
 
 /* 布局 */
 .col-1 {width: 8.3% !important;}

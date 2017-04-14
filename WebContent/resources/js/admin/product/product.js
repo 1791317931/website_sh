@@ -33,12 +33,16 @@ $(function() {
 		$productModal.ToggleModal(function() {
 			
 		}, function() {
-			
+			// 关闭modal，重置
+			$('#product-id').val('');
 		});
 		
 		$categoryModal.ToggleModal(function() {
 			$categoryList.pagination({
 				url : base_url + 'category/page',
+				data : {
+					typeId : 8
+				},
 				columns : [{
 					id : 'name',
 					title : '分类名称',
@@ -115,7 +119,7 @@ $(function() {
 						is_must = property.is_must == 'Y',
 						name = property.name || '';
 						html += '<div class="form-group col-4">'
-								+ '<label class="label-5">' + name + '</label>'
+								+ '<label class="label-5">' + name + ':</label>'
 								+ '<div class="form-control">'
 									+ '<input type="text" data-is-must="' + property.is_must + '" data-id="' + property.id + '" />'
 								+ '</div>'
