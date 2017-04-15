@@ -35,6 +35,7 @@
 	<div class="z-modal-body product-modal">
 		<div class="clearfix p10 base-property-container">
 			<div class="title">基本属性:</div>
+			<!-- 隐藏product-id -->
 			<input type="hidden" id="product-id" />
 			<div class="form-group col-4">
 				<label class="label-5">名称:</label>
@@ -83,8 +84,11 @@
 			</div>
 			<button class="btn btn-primary" id="select-category">选择属性分类</button>
 		</div>
-		<div class="clearfix product-property-container p10 mt10" id="product-property-container"></div>
-		<div class="mt10 text-center">
+		<div class="title">商品自定义属性:</div>
+		<div class="product-property-container empty" data-empty="请添加商品属性" id="product-property-container"></div>
+		<div class="title">商品图片:</div>
+		<div class="img-container empty" id="img-container"></div>
+		<div class="mt20 text-center">
 			<button class="btn btn-primary btn-2" id="saveOrUpdate">保存</button>
 			<button class="btn btn-danger btn-2 ml10" id="save-cancel">取消</button>
 		</div>

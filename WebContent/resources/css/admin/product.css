@@ -16,9 +16,9 @@
 
 .product-modal {
 	width: 80%;
-	height: 70%;
+	height: 80%;
 	min-width: 900px;
-	min-height: 500px;
+	min-height: 520px;
 	padding: 20px;
 }
 
@@ -33,14 +33,7 @@
 .product-property-container {
 	min-height: 100px;
 	border: 1px solid #eee;
-}
-
-.product-property-container:before {
-	content: '商品自定义属性:';
-	display: block;
-	margin-bottom: 10px;
-	font-weight: 600;
-	font-size: 18px;
+	padding: 10px 0;
 }
 
 .property-modal, .category-modal {
@@ -58,3 +51,9 @@
 }
 
 .property-list {min-height: 100px;}
+
+.img-container {
+	min-height: 100px;
+	border: 1px solid #ccc;
+	padding: 10px 0;
+}
