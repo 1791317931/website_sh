@@ -31,10 +31,9 @@
 			interval : 1000,
 			// 距离底部50px时加载
 			offsetBottom : 50,
-			// !!!!!!!!!默认使用window作为滚动监听对象,为true时，使用自身作为滚动监听对象，此时需要设置css{min-height以及overflow-y: auto};
+			// !!!!!!!!!默认使用document作为滚动监听对象,为true时，使用自身作为滚动监听对象，此时需要设置css{min-height以及overflow-y: auto};
 			self : false,
 			url : '',
-			type : 'get',
 			data : {
 				pageSize : 10,
 				currentPage : 1
@@ -51,13 +50,8 @@
 		
 		var beforeScroll = option.beforeScroll;
 		
-		// override 是否覆盖参数
-		$this.setData = function(param, override) {
-			if(override) {
-				option.data = param;
-			} else {
-				option.data = $.extend(true, option.data, param);
-			}
+		$this.setData = function(param) {
+			option.data = $.extend(true, option.data, param);
 		};
 		
 		$this.load = function() {
@@ -65,8 +59,9 @@
 		};
 		
 		// 可以继续加载数据
-		function setState(data) {
-			if(data.totalCount > data.curPage * data.pageSize) {
+		function setState(obj) {
+			var data = obj.data;
+			if(data.totalCount > data.currentPage * data.pageSize) {
 				$this.isReady = true;
 				$this.preTime = new Date().getTime();
 				$this.find('.empty').show();
@@ -94,10 +89,10 @@
 		// body滚动条到达底部
 		function bodyIsBottom() {
 			var scrollTop = clientHeight = scrollHeight = 0;
-			if(document.documentElement && document.documentElement.scrollTop) {
-				scrollTop = document.documentElement.scollTop;
-			} else if(document.body) {
+			if(document.body) {
 				scrollTop = document.body.scrollTop;
+			} else if(document.documentElement && document.documentElement.scrollTop) {
+				scrollTop = document.documentElement.scollTop;
 			}
 			if(document.body.clientHeight && document.documentElement.clientHeight) {
 				clientHeight = Math.min(document.body.clientHeight, document.documentElement.clientHeight);
@@ -121,7 +116,7 @@
 		
 		$.ajax(option);
 		
-		$scrollObj = !option.self && $(window) || $this;
+		$scrollObj = !option.self && $(document) || $this;
 		// 为了解决ace带来的bug，必须判断添加滚动加载事件的dom元素是否存在，并且带有滚动加载的标志参数
 		$this.attr('scroll-flag', true);
 		$scrollObj.unbind('mousewheel DOMMouseScroll').bind('mousewheel DOMMouseScroll', function(e) {
@@ -139,7 +134,7 @@
 							&& isReady
 							&& curTime - $this.preTime >= option.interval
 					) {
-						option.data.curPage += 1;
+						option.data.currentPage += 1;
 						$this.isReady = false;
 						$.ajax(option);
 					}

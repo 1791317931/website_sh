@@ -6,7 +6,11 @@ $(function() {
 	$categoryModal = $('#category-modal'),
 	$categoryList = $('#category-list'),
 	$propertyList = $('#property-list'),
-	$productPropertyContainer = $('#product-property-container');
+	$productPropertyContainer = $('#product-property-container'),
+	$imageModal = $('#image-modal'),
+	$imageListModal = $('#image-list-modal'),
+	$imageList = $('#image-list'),
+	$imgAdd = $('#img-add');
 	
 	// init data
 	(function() {
@@ -58,8 +62,10 @@ $(function() {
 					}
 				}]
 			});
-		}, function() {
-			
+		});
+		
+		$('#close-category-modal').bind('click', function() {
+			$categoryModal.trigger('hide');			
 		});
 		
 		$categoryList.on('click', '.to-property', function() {
@@ -140,6 +146,95 @@ $(function() {
 		$('#close-property-modal').bind('click', function() {
 			$propertyModal.trigger('hide');
 		});
+		
+		$imgAdd.bind('click', function() {
+			$imageModal.trigger('show');
+		});
+		
+		$imageModal.ClipImage({
+			fullscreenContainer : $imageModal,
+			saveCallback : function(data) {
+				var url = data.imgPath,
+				html = '<div class="image-item">'
+						+ '<img src="' + base_url + url + '" data-url="' + url + '" />'
+					+ '</div>';
+				$imgAdd.before(html);
+				$imageModal.trigger('hide');
+				$imageModal.trigger('reset');
+			}
+		});
+		
+		$imageModal.ToggleModal();
+		
+		$('#select-img-from-source').bind('click', function() {
+			$imageListModal.trigger('show');
+		});
+		
+		$('.cancel-btn').bind('click', function() {
+			$imageModal.trigger('hide');
+		});
+		
+		$imageListModal.ToggleModal(function() {
+			$imageList.Scroll({
+				self : true,
+				url : base_url + 'attachment/page',
+				data : {
+					type : 'file',
+					code : 2
+				},
+				success : function(result) {
+					var html = '',
+					list = result.data.list || [];
+					for (var i = 0, length = list.length; i < length; i++) {
+						var item = list[i];
+						html += '<div class="pull-left server-image">'
+								+ '<img src="' + (base_url + item.path) + '" data-url="' + item.path + '" />'
+							+ '</div>';
+					}
+					$imageList.append(html);
+				}
+			});
+		}, function() {
+			$imageList.empty();
+		});
+		
+		// 单击
+		$imageListModal.on('click', '.server-image', function() {
+			var $this = $(this);
+			if ($this.hasClass('active')) {
+				$this.removeClass('active');
+			} else {
+				$this.siblings('.server-image').removeClass('active');
+				$this.addClass('active');
+			}
+		});
+		
+		// 双击
+		$imageListModal.on('dblclick', '.server-image', function() {
+			var $this = $(this);
+			$('.source-image').trigger('change', {
+				prefix : base_url,
+				path : $this.find('img').attr('data-url')
+			});
+			$imageListModal.trigger('hide');
+		});
+		
+		$('#sure-image-list-modal').bind('click', function() {
+			var $item = $imageListModal.find('.server-image.active');
+			if (!$item.length) {
+				ZUtil.error('请选择一个图片');
+			} else {
+				$('.source-image').trigger('change', {
+					prefix : base_url,
+					path : $item.find('img').attr('data-url')
+				});
+				$imageListModal.trigger('hide');
+			}
+		});
+		
+		$('#close-image-list-modal').bind('click', function() {
+			$imageListModal.trigger('hide');
+		});
+		
 	})();
-	
 });

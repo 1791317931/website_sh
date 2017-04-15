@@ -1436,7 +1436,7 @@
 					 */ 
 					$sourceImage.bind('change', function(event, obj) {
 						var image = new Image(),
-						prefix = obj.prefix,
+						prefix = obj.prefix || '',
 						path = obj.path,
 						src = prefix + path;
 						
@@ -1601,6 +1601,9 @@
 					$target.removeAttr('x').removeAttr('y').removeAttr('drag');
 				});
 			});
+		},
+		error : function() {
+			ZUtil.error('服务器异常');
 		},
 		/**
 		 * 2016-9-25
@@ -3538,5 +3541,9 @@
 				}
 			}
 		}
+	});
+	
+	$.ajaxSetup({
+		error : $.fn.error
 	});
 })();

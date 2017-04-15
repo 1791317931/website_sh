@@ -378,6 +378,7 @@ public class UploadController extends BaseController {
 		fileMap.put("savePath", savePath);
 		fileMap.put("fileName", fileName);
 		fileMap.put("fullPath", realPath + imgPath);
+		fileMap.put("type", getType(imgPath));
 		
 		// 缩放
 		if(resizable) {
