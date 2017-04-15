@@ -57,3 +57,23 @@
 	border: 1px solid #ccc;
 	padding: 10px 0;
 }
+
+.img-add {
+	width: 150px;
+	height: 180px;
+	border: 0;
+	background: #ccc;
+	position: relative;
+}
+
+.img-add:before, .img-add:after {
+	content: '';
+	width: 40px;
+	height: 6px;
+	border-radius: 3px;
+	background: #888;
+	position: absolute;
+}
+.img-add:before {
+	
+}

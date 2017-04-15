@@ -87,7 +87,24 @@
 		<div class="title">商品自定义属性:</div>
 		<div class="product-property-container empty" data-empty="请添加商品属性" id="product-property-container"></div>
 		<div class="title">商品图片:</div>
-		<div class="img-container empty" id="img-container"></div>
+		<div class="img-container" id="img-container">
+		
+		
+		
+		
+		
+		
+			<div class="img-add"></div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</div>
 		<div class="mt20 text-center">
 			<button class="btn btn-primary btn-2" id="saveOrUpdate">保存</button>
 			<button class="btn btn-danger btn-2 ml10" id="save-cancel">取消</button>
