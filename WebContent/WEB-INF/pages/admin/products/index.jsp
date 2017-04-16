@@ -61,7 +61,7 @@
 					<input type="text" id="product-special-price" />
 				</div>
 			</div>
-			<div class="form-group col-4">
+			<div class="form-group col-4 hide">
 				<label class="label-5">是否有效:</label>
 				<div class="form-control">
 					<select id="product-is-valid">

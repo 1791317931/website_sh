@@ -6,4 +6,6 @@ public interface PropertyObjService {
 	
 	public void deleteByProductId(Integer productId);
 	
+	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value);
+	
 }

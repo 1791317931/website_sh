@@ -22,5 +22,10 @@ public class PropertyObjServiceImpl implements PropertyObjService {
 	public void deleteByProductId(Integer productId) {
 		propertyObjDao.deleteByProductId(productId);
 	}
+	
+	@Override
+	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value) {
+		propertyObjDao.save(created_by, productId, categoryId, propertyId, value);
+	}
 
 }

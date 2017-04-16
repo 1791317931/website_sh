@@ -122,5 +122,10 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		return list;
 	}
+	
+	@Override
+	public Category getById(int id) {
+		return categoryDao.get(id);
+	}
 
 }

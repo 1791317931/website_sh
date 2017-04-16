@@ -1,17 +1,22 @@
 package com.cn.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
 import com.cn.service.ProductService;
 import com.cn.vo.Page;
+import com.cn.vo.ProductVO;
 
 @Controller
 @RequestMapping(value = "/product")
@@ -42,6 +47,16 @@ public class ProductController extends BaseController {
 		Page page = productService.getPageByParam(pageSize, currentPage, name, code);
 		
 		return getMap(page);
+	}
+	
+	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> saveOrUpdate(@RequestBody ProductVO productVO) {
+		/*productVO.setImgUrls(imgUrls);
+		productVO.setPropertyObjs(propertyObjs);
+		productService.saveOrUpdate(productVO, created_by);*/
+		
+		return getMap(null);
 	}
 	
 }

@@ -50,5 +50,11 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 		String sql = "delete from w_property_obj where product_id = ?";
 		sqlUpdate(sql, productId);
 	}
+	
+	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value) {
+		String sql = "insert into w_property_obj(product_id, category_id, property_id, value, created_by, updated_by, create_date, update_date)"
+					+ " values(?, ?, ?, ?, ?, ?, now(), now())";
+		sqlUpdate(sql, productId, categoryId, propertyId, value, created_by, created_by);
+	}
 
 }

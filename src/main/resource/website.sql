@@ -14,7 +14,12 @@ drop table if exists w_attachment_obj;
 create table w_attachment_obj (
 	id int primary key auto_increment,
 	attachment_id int not null comment '附件id',
-	obj_id int not null comment '对象id'
+	obj_id int not null comment '对象id',
+	type_id int not null comment '类型id',
+	create_date datetime not null default now() comment '创建时间',
+	update_date datetime not null default now() comment '最后修改时间',
+	created_by int not null comment '创建人id',
+	updated_by int not null comment '最后修改人'
 ) ENGINE = INNODB comment '附件中间表';
 
 drop table if exists w_const;
@@ -157,6 +162,7 @@ create table w_property_obj (
 	property_id int not null comment '属性id，为空时：该属性是自定义',
 	category_id int not null comment '分类id',
 	obj_id int not null comment '实体id:当分类为商品时，obj_id指向商品；否则指向material',
+	value varchar(50) not null comment '属性值',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
 	created_by int not null comment '创建人id',

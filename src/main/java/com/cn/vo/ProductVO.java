@@ -1,32 +1,34 @@
 package com.cn.vo;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import com.cn.base.IdEntity;
 
 public class ProductVO extends IdEntity {
 
 	private static final long serialVersionUID = 6146383097145661850L;
 
-	private Integer id;
-	
 	private String name;
 	
 	private String code;
 	
-	private String is_valid;
+	private String isValid;
 	
 	private String status;
 	
 	private double price;
 	
-	private double special_price;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
+	private double specialPrice;
+	
+	private int count;
+	
+	private Integer categoryId;
+	
+	private String imgUrls[];
+	
+	private List<Map<String, Object>> propertyObjs = new ArrayList<Map<String, Object>>();
 
 	public String getName() {
 		return name;
@@ -44,12 +46,12 @@ public class ProductVO extends IdEntity {
 		this.code = code;
 	}
 
-	public String getIs_valid() {
-		return is_valid;
+	public String getIsValid() {
+		return isValid;
 	}
 
-	public void setIs_valid(String is_valid) {
-		this.is_valid = is_valid;
+	public void setIsValid(String isValid) {
+		this.isValid = isValid;
 	}
 
 	public String getStatus() {
@@ -68,12 +70,44 @@ public class ProductVO extends IdEntity {
 		this.price = price;
 	}
 
-	public double getSpecial_price() {
-		return special_price;
+	public double getSpecialPrice() {
+		return specialPrice;
 	}
 
-	public void setSpecial_price(double special_price) {
-		this.special_price = special_price;
+	public void setSpecialPrice(double specialPrice) {
+		this.specialPrice = specialPrice;
+	}
+
+	public Integer getCategoryId() {
+		return categoryId;
+	}
+
+	public void setCategoryId(Integer categoryId) {
+		this.categoryId = categoryId;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+
+	public String[] getImgUrls() {
+		return imgUrls;
+	}
+
+	public void setImgUrls(String[] imgUrls) {
+		this.imgUrls = imgUrls;
+	}
+
+	public List<Map<String, Object>> getPropertyObjs() {
+		return propertyObjs;
+	}
+
+	public void setPropertyObjs(List<Map<String, Object>> propertyObjs) {
+		this.propertyObjs = propertyObjs;
 	}
 	
 }

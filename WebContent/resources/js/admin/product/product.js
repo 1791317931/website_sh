@@ -236,5 +236,79 @@ $(function() {
 			$imageListModal.trigger('hide');
 		});
 		
+		// 保存商品
+		$('#saveOrUpdate').bind('click', function() {
+			var productId = $('#product-id').val(),
+			productName = $.trim($('#product-name').val()),
+			price = $.trim($('#product-price').val()),
+			specialPrice = $.trim($('#product-special-price').val()),
+			count = $.trim($('#product-count').val()),
+			categoryId = $('#product-category').attr('data-id'),
+			$propertyInputs = $productPropertyContainer.find('input'),
+			$imgs = $('#img-container .image-item img'),
+			propertyObjs = [],
+			imgUrls = [],
+			productObj = {
+				name : productName,
+				price : price,
+				specialPrice : specialPrice,
+				count : count,
+				categoryId : categoryId
+			};
+			
+			if (!$propertyInputs.length) {
+				ZUtil.error('请选择一个分类属性');
+				return false;
+			}
+			
+			for (var i = 0, length = $propertyInputs.length; i < length; i++) {
+				var $input = $propertyInputs.eq(i),
+				isMust = $input.attr('data-is-must') == 'Y',
+				propertyId = $input.attr('data-id'),
+				value = $.trim($input.val());
+				if (isMust) {
+					if (!value) {
+						ZUtil.error('请填写所有必填属性');
+						return false;
+					}
+				}
+				propertyObjs.push({
+					propertyId : propertyId,
+					value : value
+				});
+			}
+			if (!$imgs.length) {
+				ZUtil.error('请至少上传一张图片');
+				return false;
+			}
+			$imgs.each(function(index, img) {
+				imgUrls.push($(img).attr('data-url'));
+			});
+			if (productId) {
+				productObj.id = productId;
+			}
+			productObj.imgUrls = imgUrls;
+			productObj.propertyObjs = propertyObjs;
+			
+			saveOrUpdate(productObj);
+		});
+		
+		function saveOrUpdate(productObj) {
+			$.ajax({
+				url : base_url + 'product/saveOrUpdate',
+				data : JSON.stringify(productObj),
+				type : 'post',
+				/*datatype : 'json',
+				contentType : 'application/json;charset=utf-8',*/
+				success : function(result) {
+					if (productObj.id) {
+						ZUtil.success('数据修改成功');
+					} else {
+						ZUtil.success('数据保存成功');
+					}
+				}
+			});
+		}
+		
 	})();
 });
