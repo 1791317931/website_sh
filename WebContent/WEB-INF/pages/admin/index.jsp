@@ -53,7 +53,10 @@
 					<p>资源数据</p>
 					<ul class="sub-menu">
 						<li>
-							<p data-url="product/admin/index">商品管理</p>
+							<p data-url="product/admin/index">商品列表</p>
+						</li>
+						<li>
+							<p data-url="product/admin/toEdit">商品编辑</p>
 						</li>
 						<!-- <li>
 							<p data-url="">材料管理</p>

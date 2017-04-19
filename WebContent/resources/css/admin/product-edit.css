@@ -5,10 +5,7 @@
 }
 
 .product-modal {
-	width: 80%;
-	height: 80%;
-	min-width: 900px;
-	min-height: 520px;
+	min-width: 1000px;
 	padding: 20px;
 }
 
@@ -27,11 +24,11 @@
 }
 
 .property-modal, .category-modal {
-	width: 60%;
-	height: 60%;
-	min-width: 700px;
+	width: 70%;
+	height: 70%;
+	min-width: 800px;
 	min-height: 500px;
-	padding: 20px;
+	padding: 50px 20px 20px;
 }
 
 .must {
@@ -48,16 +45,16 @@
 }
 
 .img-container > div {
-	margin-left: 10px;
+	margin: 0 0 10px 11px;
 }
 
-.img-container > div:nth-child(5n + 1) {
+.img-container > div:nth-child(6n + 1) {
 	margin-left: 0;
 }
 
 .img-add {
-	width: 150px;
-	height: 180px;
+	width: 170px;
+	height: 190px;
 	border: 0;
 	background: #ccc;
 	position: relative;
@@ -85,8 +82,8 @@
 }
 
 .image-item {
-	width: 150px;
-	height: 180px;
+	width: 170px;
+	height: 190px;
 	position: relative;
     cursor: pointer;
     float: left;
@@ -104,7 +101,7 @@
 }
 
 .image-list-modal {
-	width: 870px;
+	width: 886px;
 	height: 530px;
 	padding: 20px;
 }
@@ -112,7 +109,7 @@
 .image-list {
 	min-height: 200px;
 	max-height: 460px;
-	padding: 10px 10px 0 10px;
+	padding: 10px;
 	border: 1px solid #ccc;
 	overflow: auto;
 }

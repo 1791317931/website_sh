@@ -30,6 +30,12 @@ public class ProductController extends BaseController {
 		return "admin/products/index";
 	}
 	
+	@RequestMapping(value = "/admin/toEdit")
+	public String toEdit(ModelMap map, Integer id) {
+		map.put("id", id);
+		return "admin/products/edit";
+	}
+	
 	@RequestMapping(value = "/user/index")
 	public String toDetail(Integer id, ModelMap map) {
 		map.put("id", id);
@@ -56,6 +62,7 @@ public class ProductController extends BaseController {
 		productVO.setPropertyObjs(propertyObjs);
 		productService.saveOrUpdate(productVO, created_by);*/
 		
+		System.out.println("xxx");
 		return getMap(null);
 	}
 	

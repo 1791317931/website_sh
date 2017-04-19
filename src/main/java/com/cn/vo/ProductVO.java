@@ -28,7 +28,9 @@ public class ProductVO extends IdEntity {
 	
 	private String imgUrls[];
 	
-	private List<Map<String, Object>> propertyObjs = new ArrayList<Map<String, Object>>();
+	/*private List<Map<String, Object>> propertyObjs = new ArrayList<Map<String, Object>>();*/
+	
+	private List<PropertyObjVO> propertyObjs;
 
 	public String getName() {
 		return name;
@@ -102,12 +104,21 @@ public class ProductVO extends IdEntity {
 		this.imgUrls = imgUrls;
 	}
 
-	public List<Map<String, Object>> getPropertyObjs() {
+	public List<PropertyObjVO> getPropertyObjs() {
+		return propertyObjs;
+	}
+
+	public void setPropertyObjs(List<PropertyObjVO> propertyObjs) {
+		this.propertyObjs = propertyObjs;
+	}
+
+
+	/*public List<Map<String, Object>> getPropertyObjs() {
 		return propertyObjs;
 	}
 
 	public void setPropertyObjs(List<Map<String, Object>> propertyObjs) {
 		this.propertyObjs = propertyObjs;
-	}
+	}*/
 	
 }
