@@ -5,7 +5,6 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cn.dao.PropertyCategoryDao;
 import com.cn.entity.PropertyCategory;
@@ -13,7 +12,6 @@ import com.cn.service.CategoryService;
 import com.cn.service.PropertyCategoryService;
 
 @Service(value = "propertyCategoryService")
-@Transactional
 public class PropertyCategoryServiceImpl implements PropertyCategoryService {
 	
 	@Resource(name = "propertyCategoryDao")

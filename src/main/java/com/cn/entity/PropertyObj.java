@@ -17,7 +17,7 @@ public class PropertyObj extends IdEntity {
 	
 	private Category category;
 	
-	private Product product;
+	private Integer obj_id;
 	
 	private String value;
 
@@ -31,16 +31,14 @@ public class PropertyObj extends IdEntity {
 		this.property = property;
 	}
 
-	@ManyToOne
-	@JoinColumn(name = "product_id")
-	public Product getProduct() {
-		return product;
+	public Integer getObj_id() {
+		return obj_id;
 	}
 
-	public void setProduct(Product product) {
-		this.product = product;
+	public void setObj_id(Integer obj_id) {
+		this.obj_id = obj_id;
 	}
-	
+
 	@ManyToOne
 	@JoinColumn(name = "category_id")
 	public Category getCategory() {

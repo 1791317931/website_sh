@@ -9,7 +9,6 @@ import java.util.Map;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cn.dao.CategoryDao;
 import com.cn.dao.ConstDao;
@@ -25,7 +24,6 @@ import com.cn.vo.CategoryVO;
 import com.cn.vo.Page;
 
 @Service(value = "categoryService")
-@Transactional
 public class CategoryServiceImpl implements CategoryService {
 
 	@Resource(name = "categoryDao")

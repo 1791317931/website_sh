@@ -16,12 +16,12 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 	}
 
 	@Override
-	public int countProduct(Integer productId, Integer propertyId, Integer categoryId) {
+	public int countObj(Integer productId, Integer propertyId, Integer categoryId) {
 		String sql = "select count(*) from w_property_obj po";
 		String appendSql = "";
 		boolean flag = false;
 		if(productId != null) {
-			appendSql += " po.product_id = " + productId;
+			appendSql += " po.obj_id = " + productId;
 			flag = true;
 		}
 		if(propertyId != null) {
@@ -47,12 +47,12 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 	
 	@Override
 	public void deleteByProductId(Integer productId) {
-		String sql = "delete from w_property_obj where product_id = ?";
+		String sql = "delete from w_property_obj where obj_id = ?";
 		sqlUpdate(sql, productId);
 	}
 	
 	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value) {
-		String sql = "insert into w_property_obj(product_id, category_id, property_id, value, created_by, updated_by, create_date, update_date)"
+		String sql = "insert into w_property_obj(obj_id, category_id, property_id, value, created_by, updated_by, create_date, update_date)"
 					+ " values(?, ?, ?, ?, ?, ?, now(), now())";
 		sqlUpdate(sql, productId, categoryId, propertyId, value, created_by, created_by);
 	}

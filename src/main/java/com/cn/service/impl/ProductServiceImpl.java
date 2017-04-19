@@ -2,13 +2,11 @@ package com.cn.service.impl;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.cn.dao.ProductDao;
 import com.cn.entity.Attachment;
@@ -23,9 +21,9 @@ import com.cn.service.ProductService;
 import com.cn.service.PropertyObjService;
 import com.cn.vo.Page;
 import com.cn.vo.ProductVO;
+import com.cn.vo.PropertyObjVO;
 
 @Service(value = "productService")
-@Transactional
 public class ProductServiceImpl implements ProductService {
 	
 	@Resource(name = "productDao")
@@ -78,12 +76,12 @@ public class ProductServiceImpl implements ProductService {
 		
 		Integer productId = product.getId();
 		propertyObjService.deleteByProductId(productId);
-		List<Map<String, Object>> propertyObjs = productVO.getPropertyObjs();
-		Map<String, Object> map = null;
-		for(int i = 0, length = propertyObjs.size(); i < length; i++) {
-			map = propertyObjs.get(i);
-			String value = map.get("value") + "";
-			Integer propertyId = Integer.parseInt(map.get("propertyId") + "");
+		List<PropertyObjVO> propertyObjVOs = productVO.getPropertyObjs();
+		PropertyObjVO propertyObjVO = null;
+		for(int i = 0, length = propertyObjVOs.size(); i < length; i++) {
+			propertyObjVO = propertyObjVOs.get(i);
+			String value = propertyObjVO.getValue();
+			Integer propertyId = propertyObjVO.getPropertyId();
 			propertyObjService.save(created_by, productId, categoryId, propertyId, value);
 		}
 		String urls[] = productVO.getImgUrls();
@@ -110,6 +108,7 @@ public class ProductServiceImpl implements ProductService {
 			attachmentObj.setCreated_by(created_by);
 			attachmentObj.setUpdated_by(created_by);
 			attachmentObj.setObj_id(productId);
+			attachmentObj.setAttachment_id(attachment.getId());
 			attachmentObjService.save(attachmentObj);
 		}
 	}

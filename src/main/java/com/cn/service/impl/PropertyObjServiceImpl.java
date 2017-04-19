@@ -15,7 +15,7 @@ public class PropertyObjServiceImpl implements PropertyObjService {
 	
 	@Override
 	public int countProperty(Integer productId, Integer propertyId, Integer categoryId) {
-		return propertyObjDao.countProduct(productId, propertyId, categoryId);
+		return propertyObjDao.countObj(productId, propertyId, categoryId);
 	}
 	
 	@Override

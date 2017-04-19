@@ -1,6 +1,5 @@
 package com.cn.controller;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -10,7 +9,6 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
@@ -58,11 +56,8 @@ public class ProductController extends BaseController {
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(@RequestBody ProductVO productVO) {
-		/*productVO.setImgUrls(imgUrls);
-		productVO.setPropertyObjs(propertyObjs);
-		productService.saveOrUpdate(productVO, created_by);*/
+		productService.saveOrUpdate(productVO, created_by);
 		
-		System.out.println("xxx");
 		return getMap(null);
 	}
 	
