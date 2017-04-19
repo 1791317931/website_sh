@@ -15,7 +15,7 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 	}
 	
 	@Override
-	public Page getPageByParam(Page page, String name, String code) {
+	public Page getSimplePageByParam(Page page, String name, String code) {
 		String sql = "from Product wp";
 		boolean flag = false;
 		if(name != null && name.length() > 0) {

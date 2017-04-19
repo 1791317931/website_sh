@@ -17,7 +17,7 @@
 	<div class="title">基本属性:</div>
 	<div class="clearfix p10 base-property-container">
 		<!-- 隐藏product-id -->
-		<input type="hidden" id="product-id" />
+		<input type="hidden" id="product-id" value="${id}" />
 		<div class="form-group col-4">
 			<label class="label-5">名称:</label>
 			<div class="form-control">

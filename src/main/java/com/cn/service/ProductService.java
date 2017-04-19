@@ -5,7 +5,7 @@ import com.cn.vo.ProductVO;
 
 public interface ProductService {
 
-	public Page getPageByParam(int pageSize, int currentPage, String name, String code);
+	public Page getSimplePageByParam(int pageSize, int currentPage, String name, String code);
 	
 	public void saveOrUpdate(ProductVO productVO, int created_by);
 	

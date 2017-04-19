@@ -8,7 +8,8 @@ $(function() {
 	$imageModal = $('#image-modal'),
 	$imageListModal = $('#image-list-modal'),
 	$imageList = $('#image-list'),
-	$imgAdd = $('#img-add');
+	$imgAdd = $('#img-add'),
+	id = $('#product-id').val();
 	
 	// init data
 	(function() {

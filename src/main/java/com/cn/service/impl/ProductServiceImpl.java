@@ -42,10 +42,10 @@ public class ProductServiceImpl implements ProductService {
 	private AttachmentObjService attachmentObjService;
 	
 	@Override
-	public Page getPageByParam(int pageSize, int currentPage, String name,
+	public Page getSimplePageByParam(int pageSize, int currentPage, String name,
 			String code) {
 		Page page = new Page(pageSize, currentPage);
-		return productDao.getPageByParam(page, name, code);
+		return productDao.getSimplePageByParam(page, name, code);
 	}
 	
 	@Override

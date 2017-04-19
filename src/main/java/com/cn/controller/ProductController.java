@@ -45,10 +45,10 @@ public class ProductController extends BaseController {
 		return "user/products/shop_car";
 	}
 	
-	@RequestMapping(value = "/page")
+	@RequestMapping(value = "/page/simple")
 	@ResponseBody
 	public Map<String, Object> getPage(int pageSize, int currentPage, String name, String code) {
-		Page page = productService.getPageByParam(pageSize, currentPage, name, code);
+		Page page = productService.getSimplePageByParam(pageSize, currentPage, name, code);
 		
 		return getMap(page);
 	}
