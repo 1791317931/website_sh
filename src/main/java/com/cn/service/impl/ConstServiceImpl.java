@@ -23,8 +23,9 @@ public class ConstServiceImpl implements ConstService {
 		return constDao.getPageByType(page, type);
 	}
 	
-	public List<Const> getListByType(String type) {
-		return constDao.getListByQuery("from Const c where c.type = ?", type);
+	@Override
+	public List<Const> getByTypeAndCode(String type, Integer code) {
+		return constDao.getByTypeAndCode(type, code);
 	}
 	
 }

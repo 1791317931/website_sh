@@ -1,5 +1,6 @@
 package com.cn.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -12,9 +13,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
+import com.cn.entity.Category;
+import com.cn.entity.Product;
+import com.cn.service.AttachmentObjService;
 import com.cn.service.ProductService;
 import com.cn.vo.Page;
 import com.cn.vo.ProductVO;
+import com.cn.vo.PropertyObjVO;
 
 @Controller
 @RequestMapping(value = "/product")
@@ -22,6 +27,9 @@ public class ProductController extends BaseController {
 	
 	@Resource(name = "productService")
 	private ProductService productService;
+	
+	@Resource(name = "attachmentObjService")
+	private AttachmentObjService attachmentObjService;
 
 	@RequestMapping(value = "/admin/index")
 	public String index() {
@@ -53,12 +61,48 @@ public class ProductController extends BaseController {
 		return getMap(page);
 	}
 	
+	/**
+	 * 获取商品详情
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/detail")
+	@ResponseBody
+	public Map<String, Object> getProductById(Integer id) {
+		Product product = productService.getDetail(id);
+		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, 2);
+		
+		return getMap(null);
+	}
+	
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(@RequestBody ProductVO productVO) {
 		productService.saveOrUpdate(productVO, created_by);
 		
 		return getMap(null);
+	}
+	
+	public static ProductVO transform(Product product, List<String> imgUrls, List<PropertyObjVO> propertyObjVOs) {
+		ProductVO vo = new ProductVO();
+		Category category = product.getCategory();
+		vo.setCategoryId(category.getId());
+		vo.setCategoryName(category.getName());
+		vo.setCode(product.getCode());
+		vo.setCreate_date(product.getCreate_date());
+		vo.setCreated_by(product.getCreated_by());
+		vo.setUpdate_date(product.getUpdate_date());
+		vo.setUpdated_by(product.getUpdated_by());
+		vo.setId(product.getId());
+		vo.setIsValid(product.getIs_valid());
+		vo.setName(product.getName());
+		vo.setPrice(product.getPrice());
+		vo.setSpecialPrice(product.getSpecial_price());
+		vo.setStatus(product.getStatus());
+		String urls[] = imgUrls.toArray(new String[imgUrls.size()]);
+		vo.setImgUrls(urls);
+		vo.setPropertyObjs(propertyObjVOs);
+		return vo;
 	}
 	
 }

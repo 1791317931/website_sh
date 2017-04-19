@@ -40,7 +40,7 @@
 			<div class="form-group col-4">
 				<label class="label-5">名称:</label>
 				<div class="form-control">
-					<input type="text" id="product-name" />
+					<input type="text" id="product-name" readonly />
 				</div>
 			</div>
 			<div class="form-group col-4 hide">
@@ -52,19 +52,19 @@
 			<div class="form-group col-4">
 				<label class="label-5">价格:</label>
 				<div class="form-control">
-					<input type="text" id="product-price" />
+					<input type="text" id="product-price" readonly />
 				</div>
 			</div>
 			<div class="form-group col-4">
 				<label class="label-5">特价:</label>
 				<div class="form-control">
-					<input type="text" id="product-special-price" />
+					<input type="text" id="product-special-price" readonly />
 				</div>
 			</div>
 			<div class="form-group col-4 hide">
 				<label class="label-5">是否有效:</label>
 				<div class="form-control">
-					<select id="product-is-valid">
+					<select id="product-is-valid" readonly>
 						<option value="Y">有效</option>
 						<option value="N">无效</option>
 					</select>
@@ -73,7 +73,7 @@
 			<div class="form-group col-4">
 				<label class="label-5">库存:</label>
 				<div class="form-control right-10">
-					<input type="text" id="product-count" />
+					<input type="text" id="product-count" readonly />
 				</div>
 			</div>
 			<div class="form-group col-4">
@@ -91,7 +91,6 @@
 			<div class="img-add pull-left" id="img-add"></div>
 		</div>
 		<div class="mt20 text-center">
-			<button class="btn btn-primary btn-2" id="saveOrUpdate">保存</button>
 			<button class="btn btn-danger btn-2 ml10" id="save-cancel">取消</button>
 		</div>
 	</div>

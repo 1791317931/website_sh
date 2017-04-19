@@ -9,6 +9,6 @@ public interface ConstService {
 	
 	public Page getPageByType(int pageSize, int currentPage, String type);
 	
-	public List<Const> getListByType(String type);
+	public List<Const> getByTypeAndCode(String type, Integer code);
 
 }

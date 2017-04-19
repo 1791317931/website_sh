@@ -17,6 +17,7 @@ import com.cn.entity.Product;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.AttachmentService;
 import com.cn.service.CategoryService;
+import com.cn.service.ConstService;
 import com.cn.service.ProductService;
 import com.cn.service.PropertyObjService;
 import com.cn.vo.Page;
@@ -41,11 +42,18 @@ public class ProductServiceImpl implements ProductService {
 	@Resource(name = "attachmentObjService")
 	private AttachmentObjService attachmentObjService;
 	
+	@Resource(name = "constService")
+	private ConstService constService;
+	
 	@Override
 	public Page getSimplePageByParam(int pageSize, int currentPage, String name,
 			String code) {
 		Page page = new Page(pageSize, currentPage);
 		return productDao.getSimplePageByParam(page, name, code);
+	}
+	
+	public Product getDetail(int id) {
+		return productDao.get(id);
 	}
 	
 	@Override
@@ -85,7 +93,8 @@ public class ProductServiceImpl implements ProductService {
 			propertyObjService.save(created_by, productId, categoryId, propertyId, value);
 		}
 		String urls[] = productVO.getImgUrls();
-		Const con = category.getCon();
+		// 获取商品图片对应的const
+		Const con = constService.getByTypeAndCode("file", 2).get(0);
 		Integer typeId = con.getId();
 		Attachment attachment = null;
 		AttachmentObj attachmentObj = null;

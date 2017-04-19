@@ -32,7 +32,7 @@ public class ConstController extends BaseController {
 	@RequestMapping(value = "/list")
 	@ResponseBody
 	public Map<String, Object> getList(String type) {
-		return getMap(constService.getListByType(type));
+		return getMap(constService.getByTypeAndCode(type, null));
 	}
 	
 	@RequestMapping(value = "/supply")

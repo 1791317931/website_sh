@@ -1,8 +1,6 @@
 package com.cn.vo;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import com.cn.base.IdEntity;
 
@@ -26,9 +24,9 @@ public class ProductVO extends IdEntity {
 	
 	private Integer categoryId;
 	
-	private String imgUrls[];
+	private String categoryName;
 	
-	/*private List<Map<String, Object>> propertyObjs = new ArrayList<Map<String, Object>>();*/
+	private String imgUrls[];
 	
 	private List<PropertyObjVO> propertyObjs;
 
@@ -112,13 +110,12 @@ public class ProductVO extends IdEntity {
 		this.propertyObjs = propertyObjs;
 	}
 
-
-	/*public List<Map<String, Object>> getPropertyObjs() {
-		return propertyObjs;
+	public String getCategoryName() {
+		return categoryName;
 	}
 
-	public void setPropertyObjs(List<Map<String, Object>> propertyObjs) {
-		this.propertyObjs = propertyObjs;
-	}*/
+	public void setCategoryName(String categoryName) {
+		this.categoryName = categoryName;
+	}
 	
 }

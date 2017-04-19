@@ -40,12 +40,10 @@ public class AttachmentController extends BaseController {
 		
 		Date now = new Date();
 		attachment.setUpdate_date(now);
-		// TODO
-		int createBy = 1;
-		attachment.setUpdated_by(createBy);
+		attachment.setUpdated_by(created_by);
 		if(attachment.getId() == null) {
 			attachment.setCreate_date(now);
-			attachment.setCreated_by(createBy);
+			attachment.setCreated_by(created_by);
 			attachment.setIs_deleted("N");
 		}
 		attachment.setCon(con);

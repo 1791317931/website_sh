@@ -1,5 +1,7 @@
 package com.cn.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -22,6 +24,11 @@ public class AttachmentObjServiceImpl implements AttachmentObjService {
 	@Override
 	public void save(AttachmentObj attachmentObj) {
 		attachmentObjDao.save(attachmentObj);
+	}
+	
+	@Override
+	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code) {
+		return attachmentObjDao.getUrlsByObjIdAndCode(objId, code);
 	}
 
 }
