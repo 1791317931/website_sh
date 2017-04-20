@@ -11,6 +11,7 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<script src="<%=basePath%>resources/js/user/header.js"></script>
 	<script type="text/javascript">
 		var base_url = '<%=basePath%>';
 	</script>

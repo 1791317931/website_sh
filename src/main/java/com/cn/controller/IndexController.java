@@ -14,14 +14,14 @@ public class IndexController extends BaseController {
 		return "user/main";
 	}
 	
-	@RequestMapping(value = "/header")
-	public String header() {
-		return "user/main";
+	@RequestMapping(value = "/toRegist")
+	public String toRegist() {
+		return "users/regist";
 	}
 	
-	@RequestMapping(value = "/footer")
-	public String footer() {
-		return "user/main";
+	@RequestMapping(value = "/toLogin")
+	public String toLogin() {
+		return "users/login";
 	}
 	
 }
