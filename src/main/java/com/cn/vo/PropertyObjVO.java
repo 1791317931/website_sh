@@ -7,6 +7,8 @@ public class PropertyObjVO {
 	private String name;
 	
 	private String value;
+	
+	private String isMust;
 
 	public Integer getPropertyId() {
 		return propertyId;
@@ -30,6 +32,14 @@ public class PropertyObjVO {
 
 	public void setValue(String value) {
 		this.value = value;
+	}
+
+	public String getIsMust() {
+		return isMust;
+	}
+
+	public void setIsMust(String isMust) {
+		this.isMust = isMust;
 	}
 	
 }

@@ -2,6 +2,8 @@ $(function() {
 	
 	var $productList = $('#product-list'),
 	$productModal = $('#product-modal'),
+	$propertyContainer = $('#product-property-container'),
+	$imgContainer = $('#img-container'),
 	// N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）
 	statusObj = {
 		N : '新增',
@@ -59,6 +61,46 @@ $(function() {
 			
 		});
 		
+		function renderForm(result) {
+			var data = result.data || {},
+			propertyHtml = '',
+			imgHtml = '';
+			
+			// 基本属性
+			$('#product-name').val(data.name);
+			$('#product-code').val(data.code);
+			$('#product-price').val(data.price);
+			$('#product-special-price').val(data.specialPrice);
+			$('#product-is-valid').val(data.status);
+			$('#product-count').val(data.count);
+			$('#category-name').val(data.categoryName);
+			
+			// 自定义属性
+			var propertyObjs = data.propertyObjs;
+			for (var i = 0, length = propertyObjs.length; i < length; i++) {
+				var vo = propertyObjs[i];
+				is_must = vo.iSmust == 'Y',
+				name = vo.name || '';
+				propertyHtml += '<div class="form-group col-4">'
+								+ '<label class="label-5">' + name + ':</label>'
+								+ '<div class="form-control">'
+									+ '<input type="text" readonly value="' + vo.value + '" />'
+								+ '</div>'
+								+ '<span class="must' + (is_must ? '' : ' hide') + '">*</span>'
+							+ '</div>';
+			}
+			$propertyContainer.html(propertyHtml);
+			
+			// 图片
+			var imgUrls = data.imgUrls;
+			for (var i = 0, length = imgUrls.length; i < length; i++) {
+				imgHtml += '<div class="image-item">'
+							+ '<img src="' + base_url + imgUrls[i] + '" />'
+						+ '</div>';
+			}
+			$imgContainer.html(imgHtml);
+		}
+		
 		$productList.on('click', '.to-detail', function() {
 			var id = $(this).attr('data-id');
 			$.ajax({
@@ -67,14 +109,31 @@ $(function() {
 					id : id
 				},
 				success : function(result) {
-					// 回显数据
+					renderForm(result);
 					$productModal.trigger('show');
 				}
 			});
 		});
 		
+		$productList.on('click', '.to-edit', function() {
+			$.ajax({
+				url : base_url + 'product/admin/toEdit',
+				data : {
+					id : $(this).attr('data-id')
+				},
+				success : function(result) {
+					$('#content-body').html(result);
+				}
+			});
+		});
+		
+		$('#save-cancel').bind('click', function() {
+			$productModal.trigger('hide');
+		});
+		
 		$productModal.ToggleModal($.noop, function() {
-			
+			$('#readonly-form').get(0).reset();
+			$imgContainer.empty();
 		});
 		
 	})();

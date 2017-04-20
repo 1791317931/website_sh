@@ -61,8 +61,8 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<String> getListByObjIdAndCode(Integer objId, Integer code) {
-		String sql = "select wp.name, wpo.value, wp.is_must"
+	public List<Object[]> getListByObjIdAndCode(Integer objId, Integer code) {
+		String sql = "select wp.id, wp.name, wpo.value, wp.is_must"
 					+ " from w_property wp"
 					+ " left join w_property_obj wpo on wp.id = wpo.property_id"
 					+ " left join w_const wc on wc.type = 'product'"

@@ -15,8 +15,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cn.base.BaseController;
 import com.cn.entity.Category;
 import com.cn.entity.Product;
+import com.cn.enums.FileConst;
+import com.cn.enums.ProductConst;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.ProductService;
+import com.cn.service.PropertyObjService;
 import com.cn.vo.Page;
 import com.cn.vo.ProductVO;
 import com.cn.vo.PropertyObjVO;
@@ -30,6 +33,9 @@ public class ProductController extends BaseController {
 	
 	@Resource(name = "attachmentObjService")
 	private AttachmentObjService attachmentObjService;
+
+	@Resource(name = "propertyObjService")
+	private PropertyObjService propertyObjService;
 
 	@RequestMapping(value = "/admin/index")
 	public String index() {
@@ -70,9 +76,12 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> getProductById(Integer id) {
 		Product product = productService.getDetail(id);
-		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, 2);
+		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, FileConst.PRODUCT_IMAGE);
+		List<PropertyObjVO> objVOs = propertyObjService.getListByObjIdAndCode(id, ProductConst.PRODUCT_PROPERTY);
 		
-		return getMap(null);
+		ProductVO vo = transform(product, imgUrls, objVOs);
+		
+		return getMap(vo);
 	}
 	
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)

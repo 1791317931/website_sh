@@ -13,7 +13,7 @@ public class Const extends IdEntity {
 	
 	private String type;
 	
-	private String code;
+	private Integer code;
 	
 	private String value;
 	
@@ -27,11 +27,11 @@ public class Const extends IdEntity {
 		this.type = type;
 	}
 
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 

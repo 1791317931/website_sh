@@ -33,65 +33,62 @@
 </div>
 <div class="z-modal hide" id="product-modal">
 	<div class="z-modal-body product-modal">
-		<div class="clearfix p10 base-property-container">
-			<div class="title">基本属性:</div>
-			<!-- 隐藏product-id -->
-			<input type="hidden" id="product-id" />
-			<div class="form-group col-4">
-				<label class="label-5">名称:</label>
-				<div class="form-control">
-					<input type="text" id="product-name" readonly />
+		<form id="readonly-form">
+			<div class="clearfix p10 base-property-container">
+				<div class="title">基本属性:</div>
+				<div class="form-group col-4">
+					<label class="label-5">名称:</label>
+					<div class="form-control">
+						<input type="text" id="product-name" readonly />
+					</div>
+				</div>
+				<div class="form-group col-4 hide">
+					<label class="label-5">编号:</label>
+					<div class="form-control">
+						<input type="text" id="product-code" readonly />
+					</div>
+				</div>
+				<div class="form-group col-4">
+					<label class="label-5">价格:</label>
+					<div class="form-control">
+						<input type="text" id="product-price" readonly />
+					</div>
+				</div>
+				<div class="form-group col-4">
+					<label class="label-5">特价:</label>
+					<div class="form-control">
+						<input type="text" id="product-special-price" readonly />
+					</div>
+				</div>
+				<div class="form-group col-4 hide">
+					<label class="label-5">是否有效:</label>
+					<div class="form-control">
+						<select id="product-is-valid" readonly>
+							<option value="Y">有效</option>
+							<option value="N">无效</option>
+						</select>
+					</div>
+				</div>
+				<div class="form-group col-4">
+					<label class="label-5">库存:</label>
+					<div class="form-control right-10">
+						<input type="text" id="product-count" readonly />
+					</div>
+				</div>
+				<div class="form-group col-4">
+					<label class="label-5">属性分类:</label>
+					<div class="form-control right-10">
+						<input type="text" id="category-name" readonly />
+					</div>
 				</div>
 			</div>
-			<div class="form-group col-4 hide">
-				<label class="label-5">编号:</label>
-				<div class="form-control">
-					<input type="text" id="product-code" readonly />
-				</div>
+			<div class="title">商品自定义属性:</div>
+			<div class="product-property-container empty" data-empty="请添加商品属性" id="product-property-container"></div>
+			<div class="title">商品图片:</div>
+			<div class="img-container clearfix" id="img-container"></div>
+			<div class="mt20 text-center">
+				<button class="btn btn-danger btn-2" type="button" id="save-cancel">关闭</button>
 			</div>
-			<div class="form-group col-4">
-				<label class="label-5">价格:</label>
-				<div class="form-control">
-					<input type="text" id="product-price" readonly />
-				</div>
-			</div>
-			<div class="form-group col-4">
-				<label class="label-5">特价:</label>
-				<div class="form-control">
-					<input type="text" id="product-special-price" readonly />
-				</div>
-			</div>
-			<div class="form-group col-4 hide">
-				<label class="label-5">是否有效:</label>
-				<div class="form-control">
-					<select id="product-is-valid" readonly>
-						<option value="Y">有效</option>
-						<option value="N">无效</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group col-4">
-				<label class="label-5">库存:</label>
-				<div class="form-control right-10">
-					<input type="text" id="product-count" readonly />
-				</div>
-			</div>
-			<div class="form-group col-4">
-				<label class="label-5">属性分类:</label>
-				<div class="form-control right-10">
-					<input type="text" id="product-category" readonly />
-				</div>
-			</div>
-			<button class="btn btn-primary" id="select-category">选择属性分类</button>
-		</div>
-		<div class="title">商品自定义属性:</div>
-		<div class="product-property-container empty" data-empty="请添加商品属性" id="product-property-container"></div>
-		<div class="title">商品图片:</div>
-		<div class="img-container clearfix" id="img-container">
-			<div class="img-add pull-left" id="img-add"></div>
-		</div>
-		<div class="mt20 text-center">
-			<button class="btn btn-danger btn-2 ml10" id="save-cancel">取消</button>
-		</div>
+		</form>
 	</div>
 </div>

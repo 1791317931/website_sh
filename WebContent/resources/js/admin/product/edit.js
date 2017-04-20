@@ -5,6 +5,7 @@ $(function() {
 	$categoryList = $('#category-list'),
 	$propertyList = $('#property-list'),
 	$productPropertyContainer = $('#product-property-container'),
+	$imgContainer = $('#img-container'),
 	$imageModal = $('#image-modal'),
 	$imageListModal = $('#image-list-modal'),
 	$imageList = $('#image-list'),
@@ -14,6 +15,60 @@ $(function() {
 	// init data
 	(function() {
 		
+		function renderForm(result) {
+			var data = result.data || {},
+			propertyHtml = '',
+			imgHtml = '';
+			
+			// 基本属性
+			$('#product-name').val(data.name);
+			$('#product-code').val(data.code);
+			$('#product-price').val(data.price);
+			$('#product-special-price').val(data.specialPrice);
+			$('#product-is-valid').val(data.status);
+			$('#product-count').val(data.count);
+			$('#product-category').val(data.categoryName).attr('data-id', data.categoryId);
+			
+			// 自定义属性
+			var propertyObjs = data.propertyObjs;
+			for (var i = 0, length = propertyObjs.length; i < length; i++) {
+				var vo = propertyObjs[i],
+				propertyId = vo.propertyId,
+				is_must = vo.isMust == 'Y',
+				name = vo.name || '';
+				propertyHtml += '<div class="form-group col-4">'
+								+ '<label class="label-5">' + name + ':</label>'
+								+ '<div class="form-control">'
+									+ '<input type="text" data-is-must="' + vo.isMust + '" data-id="' + propertyId + '" value="' + vo.value + '" />'
+								+ '</div>'
+								+ '<span class="must' + (is_must ? '' : ' hide') + '">*</span>'
+							+ '</div>';
+			}
+			$productPropertyContainer.html(propertyHtml);
+			
+			// 图片
+			var imgUrls = data.imgUrls;
+			for (var i = 0, length = imgUrls.length; i < length; i++) {
+				var url = imgUrls[i];
+				imgHtml += '<div class="image-item">'
+							+ '<img src="' + base_url + url + '" data-url="' + url + '" />'
+							+ '<div class="image-item-close"></div>'
+						+ '</div>';
+			}
+			$imgContainer.prepend(imgHtml);
+		}
+		
+		if (id) {
+			$.ajax({
+				url : base_url + 'product/detail',
+				data : {
+					id : id
+				},
+				success : function(result) {
+					renderForm(result);
+				}
+			});
+		}
 	})();
 	
 	// init bind
@@ -132,12 +187,18 @@ $(function() {
 			$imageModal.trigger('show');
 		});
 		
+		// 删除图片
+		$imgContainer.on('click', '.image-item-close', function() {
+			$(this).closest('.image-item').remove();
+		});
+		
 		$imageModal.ClipImage({
 			fullscreenContainer : $imageModal,
 			saveCallback : function(data) {
 				var url = data.imgPath,
 				html = '<div class="image-item">'
 						+ '<img src="' + base_url + url + '" data-url="' + url + '" />'
+						+ '<div class="image-item-close"></div>'
 					+ '</div>';
 				$imgAdd.before(html);
 				$imageModal.trigger('hide');
@@ -217,6 +278,26 @@ $(function() {
 			$imageListModal.trigger('hide');
 		});
 		
+		function validate(data) {
+			if (!data.name) {
+				ZUtil.error('商品属性必填');
+				return false;
+			}
+			if (!data.price) {
+				ZUtil.error('价格必填');
+				return false;
+			}
+			if (!data.specialPrice) {
+				ZUtil.error('特价必填');
+				return false;
+			}
+			if (!data.count) {
+				ZUtil.error('商品库存必填');
+				return false;
+			}
+			return true;
+		}
+		
 		// 保存商品
 		$('#saveOrUpdate').bind('click', function() {
 			var productId = $('#product-id').val(),
@@ -236,6 +317,10 @@ $(function() {
 				count : count,
 				categoryId : categoryId
 			};
+			
+			if (!validate(productObj)) {
+				return false;
+			}
 			
 			if (!$propertyInputs.length) {
 				ZUtil.error('请选择一个分类属性');
@@ -287,9 +372,20 @@ $(function() {
 					} else {
 						ZUtil.success('数据保存成功');
 					}
+					reloadList();
 				}
 			});
 		}
+		
+		function reloadList() {
+			$.ajax({
+				url : base_url + 'product/admin/index',
+				success : function(result) {
+					$('#content-body').html(result);
+				}
+			});
+		}
+		
 	})();
 	
 });

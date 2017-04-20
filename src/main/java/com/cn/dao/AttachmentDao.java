@@ -6,6 +6,6 @@ import com.cn.vo.Page;
 
 public interface AttachmentDao extends BaseDao<Attachment> {
 	
-	public Page getPageByCode(Page page, String type, String code);
+	public Page getPageByCode(Page page, String type, Integer code);
 
 }

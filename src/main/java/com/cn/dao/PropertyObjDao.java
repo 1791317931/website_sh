@@ -13,6 +13,6 @@ public interface PropertyObjDao extends BaseDao<PropertyObj> {
 	
 	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value);
 	
-	public List<String> getListByObjIdAndCode(Integer objId, Integer code);
+	public List<Object[]> getListByObjIdAndCode(Integer objId, Integer code);
 	
 }

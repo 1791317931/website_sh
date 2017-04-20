@@ -7,7 +7,7 @@ import com.cn.vo.Page;
 
 public interface AttachmentService {
 
-	public Page getAttachmentByCode(int pageSize, int currentPage, String type, String code);
+	public Page getAttachmentByCode(int pageSize, int currentPage, String type, Integer code);
 	
 	public void saveOrUpdate(Attachment attachment);
 	

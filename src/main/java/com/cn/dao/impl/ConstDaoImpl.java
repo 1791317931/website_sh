@@ -25,7 +25,7 @@ public class ConstDaoImpl extends BaseDaoImpl<Const> implements ConstDao {
 	
 	public List<Const> getByTypeAndCode(String type, Integer code) {
 		String sql = "from Const c where c.type = ? ";
-		if (code != null) {
+		if (code == null) {
 			return getListByQuery(sql, type);
 		} else {
 			sql += "and c.code = ?";

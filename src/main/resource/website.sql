@@ -42,7 +42,7 @@ insert into w_const(type, code, value, description, created_by, updated_by) valu
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', '1', 'material_img', '材料图片', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', '2', 'product_img', '商品图片', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('product', '1', 'product_property', '商品属性', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('product', '2', 'materia_property', '商品材料属性', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('product', '2', 'material_property', '商品材料属性', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('product_category', '1', 'hot', '热销商品', 1, 1);
 
 drop table if exists w_user;

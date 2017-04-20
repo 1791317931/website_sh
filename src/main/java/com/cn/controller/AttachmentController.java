@@ -28,7 +28,7 @@ public class AttachmentController extends BaseController {
 	
 	@RequestMapping(value = "/page")
 	@ResponseBody
-	public Map<String, Object> getPageByCode(int pageSize, int currentPage, String type, String code) {
+	public Map<String, Object> getPageByCode(int pageSize, int currentPage, String type, Integer code) {
 		return getMap(attachmentService.getAttachmentByCode(pageSize, currentPage, type, code));
 	}
 	

@@ -22,7 +22,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 	private AttachmentObjDao attachmentObjDao;
 
 	@Override
-	public Page getAttachmentByCode(int pageSize, int currentPage, String type, String code) {
+	public Page getAttachmentByCode(int pageSize, int currentPage, String type, Integer code) {
 		Page page = new Page(pageSize, currentPage);
 		return attachmentDao.getPageByCode(page, type, code);
 	}

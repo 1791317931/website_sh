@@ -14,6 +14,7 @@ import com.cn.entity.AttachmentObj;
 import com.cn.entity.Category;
 import com.cn.entity.Const;
 import com.cn.entity.Product;
+import com.cn.enums.FileConst;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.AttachmentService;
 import com.cn.service.CategoryService;
@@ -94,7 +95,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		String urls[] = productVO.getImgUrls();
 		// 获取商品图片对应的const
-		Const con = constService.getByTypeAndCode("file", 2).get(0);
+		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT_IMAGE).get(0);
 		Integer typeId = con.getId();
 		Attachment attachment = null;
 		AttachmentObj attachmentObj = null;

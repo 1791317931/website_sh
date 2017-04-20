@@ -14,7 +14,7 @@ public class AttachmentDaoImpl extends BaseDaoImpl<Attachment> implements Attach
 		super(Attachment.class);
 	}
 
-	public Page getPageByCode(Page page, String type, String code) {
+	public Page getPageByCode(Page page, String type, Integer code) {
 		String sql = null;
 		if(null != code) {
 			sql = "from Attachment a where a.con.type = ? and a.con.code = ?";
