@@ -7,6 +7,8 @@ import com.cn.vo.Page;
 
 public interface ConstService {
 	
+	public Const getById(int id);
+	
 	public Page getPageByType(int pageSize, int currentPage, String type);
 	
 	public List<Const> getByTypeAndCode(String type, Integer code);

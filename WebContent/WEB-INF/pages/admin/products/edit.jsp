@@ -13,35 +13,35 @@
 <link rel="stylesheet" href="<%=basePath %>resources/css/admin/product-edit.css?<%=new Date().getTime()%>">
 <script src="<%=basePath%>resources/js/admin/product/edit.js?<%=new Date().getTime()%>"></script>
 
-<div class="product-modal">
+<div class="p20">
 	<div class="title">基本属性:</div>
 	<div class="clearfix p10 base-property-container">
 		<!-- 隐藏product-id -->
 		<input type="hidden" id="product-id" value="${id}" />
 		<div class="form-group col-4">
 			<label class="label-5">名称:</label>
-			<div class="form-control right-10">
+			<div class="form-control r10">
 				<input type="text" id="product-name" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4 hide">
 			<label class="label-5">编号:</label>
-			<div class="form-control">
+			<div class="form-control r10">
 				<input type="text" id="product-code" readonly />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4">
 			<label class="label-5">价格:</label>
-			<div class="form-control">
+			<div class="form-control r10">
 				<input type="text" id="product-price" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4">
 			<label class="label-5">特价:</label>
-			<div class="form-control">
+			<div class="form-control r10">
 				<input type="text" id="product-special-price" />
 			</div>
 			<span class="must">*</span>
@@ -57,14 +57,14 @@
 		</div>
 		<div class="form-group col-4">
 			<label class="label-5">库存:</label>
-			<div class="form-control">
+			<div class="form-control r10">
 				<input type="text" id="product-count" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4">
 			<label class="label-5">属性分类:</label>
-			<div class="form-control">
+			<div class="form-control r10">
 				<input type="text" id="product-category" readonly />
 			</div>
 		</div>

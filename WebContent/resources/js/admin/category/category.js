@@ -105,7 +105,7 @@ $(function() {
 	$.ajax({
 		url : base_url + 'const/list',
 		data : {
-			type : 'product'
+			type : 'property'
 		},
 		success : function(result) {
 			if(result.success) {

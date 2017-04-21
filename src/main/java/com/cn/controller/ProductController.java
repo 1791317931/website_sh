@@ -16,7 +16,7 @@ import com.cn.base.BaseController;
 import com.cn.entity.Category;
 import com.cn.entity.Product;
 import com.cn.enums.FileConst;
-import com.cn.enums.ProductConst;
+import com.cn.enums.PropertyConst;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.ProductService;
 import com.cn.service.PropertyObjService;
@@ -76,8 +76,8 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> getProductById(Integer id) {
 		Product product = productService.getDetail(id);
-		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, FileConst.PRODUCT_IMAGE);
-		List<PropertyObjVO> objVOs = propertyObjService.getListByObjIdAndCode(id, ProductConst.PRODUCT_PROPERTY);
+		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, FileConst.PRODUCT);
+		List<PropertyObjVO> objVOs = propertyObjService.getListByObjIdAndCode(id, PropertyConst.PRODUCT);
 		
 		ProductVO vo = transform(product, imgUrls, objVOs);
 		

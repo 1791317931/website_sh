@@ -66,10 +66,17 @@
 						</li>
 					</ul>
 				</li>
+				<li>
+					<p>首页配置</p>
+					<ul class="sub-menu">
+						<li>
+							<p data-url="attachment/logo/index">LOGO配置</p>
+						</li>
+					</ul>
+				</li>
 			</ul>
 		</div>
 		<div class="content-container ">
-			<!-- <iframe class="content-body" id="content-body"></iframe> -->
 			<div class="content-body" id="content-body"></div>
 		</div>
 	</div>

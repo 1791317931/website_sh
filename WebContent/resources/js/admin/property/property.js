@@ -88,7 +88,7 @@ $(function() {
 	$.ajax({
 		url : base_url + 'const/list',
 		data : {
-			type : 'product'
+			type : 'property'
 		},
 		success : function(result) {
 			var list = result.data,

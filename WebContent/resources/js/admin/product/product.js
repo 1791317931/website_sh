@@ -58,7 +58,12 @@ $(function() {
 	// bind
 	(function() {
 		$('#add-product').bind('click', function() {
-			
+			$.ajax({
+				url : base_url + 'product/admin/toEdit',
+				success : function(result) {
+					$('#content-body').html(result);
+				}
+			});
 		});
 		
 		function renderForm(result) {
@@ -83,7 +88,7 @@ $(function() {
 				name = vo.name || '';
 				propertyHtml += '<div class="form-group col-4">'
 								+ '<label class="label-5">' + name + ':</label>'
-								+ '<div class="form-control">'
+								+ '<div class="form-control r10">'
 									+ '<input type="text" readonly value="' + vo.value + '" />'
 								+ '</div>'
 								+ '<span class="must' + (is_must ? '' : ' hide') + '">*</span>'

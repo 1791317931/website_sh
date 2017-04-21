@@ -16,6 +16,12 @@
 			$registModal.trigger('show');
 		});
 		
+		$('#username,#phone,#password').bind('keydown', function(e) {
+			if (e.keyCode == 13) {
+				regist();
+			}
+		});
+		
 		function regist() {
 			var username = $.trim($('#username').val()),
 			phone = $.trim($('#phone').val()),
@@ -106,7 +112,7 @@
 							location.href = location.href;
 						}, 2000);
 					} else {
-						ZUtil.success('手机号或密码不正确');
+						ZUtil.error('手机号或密码不正确');
 					}
 				}
 			});
@@ -126,6 +132,12 @@
 			login(phone, password);
 		});
 		
+		$('#login-phone,#login-password').bind('keydown', function(e) {
+			if (e.keyCode == 13) {
+				$loginSure.click();
+			}
+		});
+		
 		$toLogin.bind('click', function() {
 			$loginContainer.trigger('show');
 		});
@@ -138,9 +150,11 @@
 	}
 })();
 
+// 初始化顶部
 (function() {
 	var $optionContainer = $('.option-container');
 	
+	// 已登录
 	if (id) {
 		$('.to-login').closest('span').remove();
 		$('.to-regist').closest('span').remove();
@@ -148,6 +162,7 @@
 			$('.to-manage').closest('span').remove();
 		}
 	} else {
+		// 未登录
 		$('.to-shopCar').closest('span').remove();
 		$('.to-manage').closest('span').remove();
 		$('.welcome-container').closest('span').remove();

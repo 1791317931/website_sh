@@ -29,12 +29,15 @@
 				<li data-type="user-info">
 					<p>资料编辑</p>
 				</li>
-				<li data-type="owned-product-list">
+				<li data-type="password-edit">
+					<p>密码修改</p>
+				</li>
+				<!-- <li data-type="owned-product-list">
 					<p>已购买商品</p>
 				</li>
 				<li data-type="receive-list">
 					<p>收货地址编辑</p>
-				</li>
+				</li> -->
 			</ul>
 		</div>
 		<div class="content-body">

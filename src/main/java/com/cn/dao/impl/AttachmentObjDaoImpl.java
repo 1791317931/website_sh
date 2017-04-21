@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import com.cn.base.BaseDaoImpl;
 import com.cn.dao.AttachmentObjDao;
 import com.cn.entity.AttachmentObj;
+import com.cn.enums.FileConst;
 
 @Repository(value = "attachmentObjDao")
 public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
@@ -17,9 +18,12 @@ public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
 	}
 
 	@Override
-	public void deleteByObjId(Integer typeId, Integer objId) {
-		String sql = "delete from w_attachment_obj where type_id = ? and obj_id = ?";
-		sqlUpdate(sql, typeId, objId);
+	public void deleteByParam(Integer typeId, Integer objId) {
+		String sql = "delete from w_attachment_obj where type_id = " + typeId;
+		if (objId != null) {
+			sql += " and obj_id = " + objId;
+		}
+		sqlUpdate(sql);
 	}
 	
 	@Override
@@ -35,10 +39,34 @@ public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
 		String sql = "select wa.path"
 					+ " from w_attachment wa"
 					+ " left join w_attachment_obj wao on wao.attachment_id = wa.id"
-					+ " left join w_const wc on wao.type_id = wc.id and wc.type = 'file'"
+					+ " left join w_const wc on wao.type_id = wc.id and wc.type = '" + FileConst.TYPE + "'"
 					+ " where wao.obj_id = ?"
 					+ " and wc.code = ?";
 		return getSession().createSQLQuery(sql).setParameter(0, objId).setParameter(1, code).list();
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public void updateStatusByParam(String type, int code, String status) {
+		String sql = "update w_attachment_obj set status = ? where type = ? and code = ?";
+		sqlUpdate(sql, status, type, code);
+	}
+	
+	public void updateStatus(int attachmentId, String status) {
+		String sql = "update w_attachment_obj set status = ? where attachment_id = ?";
+		sqlUpdate(sql, status, attachmentId);
 	}
 
 }

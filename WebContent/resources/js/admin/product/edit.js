@@ -38,7 +38,7 @@ $(function() {
 				name = vo.name || '';
 				propertyHtml += '<div class="form-group col-4">'
 								+ '<label class="label-5">' + name + ':</label>'
-								+ '<div class="form-control">'
+								+ '<div class="form-control r10">'
 									+ '<input type="text" data-is-must="' + vo.isMust + '" data-id="' + propertyId + '" value="' + vo.value + '" />'
 								+ '</div>'
 								+ '<span class="must' + (is_must ? '' : ' hide') + '">*</span>'
@@ -122,7 +122,7 @@ $(function() {
 						name = property.name || '';
 						html += '<div class="form-group col-4">'
 								+ '<label class="label-5">' + name + '</label>'
-								+ '<div class="form-control">'
+								+ '<div class="form-control r10">'
 									+ '<input type="text" readonly />'
 								+ '</div>'
 								+ '<span class="must' + (is_must ? '' : ' hide') + '">*</span>'
@@ -162,7 +162,7 @@ $(function() {
 						name = property.name || '';
 						html += '<div class="form-group col-4">'
 								+ '<label class="label-5">' + name + ':</label>'
-								+ '<div class="form-control">'
+								+ '<div class="form-control r10">'
 									+ '<input type="text" data-is-must="' + property.is_must + '" data-id="' + property.id + '" />'
 								+ '</div>'
 								+ '<span class="must' + (is_must ? '' : ' hide') + '">*</span>'

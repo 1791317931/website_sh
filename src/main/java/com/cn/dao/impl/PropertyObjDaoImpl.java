@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cn.base.BaseDaoImpl;
 import com.cn.dao.PropertyObjDao;
 import com.cn.entity.PropertyObj;
+import com.cn.enums.PropertyConst;
 
 @Repository(value = "propertyObjDao")
 public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements PropertyObjDao {
@@ -65,7 +66,7 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 		String sql = "select wp.id, wp.name, wpo.value, wp.is_must"
 					+ " from w_property wp"
 					+ " left join w_property_obj wpo on wp.id = wpo.property_id"
-					+ " left join w_const wc on wc.type = 'product'"
+					+ " left join w_const wc on wc.type = '" + PropertyConst.PRODUCT + "'"
 					+ " where wpo.obj_id = ?"
 					+ " and wc.code = ?";
 		return getSession().createSQLQuery(sql).setParameter(0, objId).setParameter(1, code).list();

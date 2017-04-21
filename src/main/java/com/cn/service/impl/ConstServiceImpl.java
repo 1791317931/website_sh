@@ -18,6 +18,11 @@ public class ConstServiceImpl implements ConstService {
 	private ConstDao constDao;
 	
 	@Override
+	public Const getById(int id) {
+		return constDao.get(id);
+	}
+	
+	@Override
 	public Page getPageByType(int pageSize, int currentPage, String type) {
 		Page page = new Page(pageSize, currentPage);
 		return constDao.getPageByType(page, type);

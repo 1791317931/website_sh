@@ -11,13 +11,13 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 
 import com.cn.dao.CategoryDao;
-import com.cn.dao.ConstDao;
 import com.cn.dao.PropertyDao;
 import com.cn.entity.Category;
 import com.cn.entity.Const;
 import com.cn.entity.Property;
 import com.cn.entity.PropertyCategory;
 import com.cn.service.CategoryService;
+import com.cn.service.ConstService;
 import com.cn.service.PropertyCategoryService;
 import com.cn.service.PropertyObjService;
 import com.cn.vo.CategoryVO;
@@ -29,11 +29,11 @@ public class CategoryServiceImpl implements CategoryService {
 	@Resource(name = "categoryDao")
 	private CategoryDao categoryDao;
 	
-	@Resource(name = "constDao")
-	private ConstDao constDao;
-	
 	@Resource(name = "propertyDao")
 	private PropertyDao propertyDao;
+	
+	@Resource(name = "constService")
+	private ConstService constService;
 	
 	@Resource(name = "propertyCategoryService")
 	private PropertyCategoryService propertyCategoryService;
@@ -43,8 +43,14 @@ public class CategoryServiceImpl implements CategoryService {
 	
 	@Override
 	public Page getPageByParam(int pageSize, int currentPage, String name,
-			Integer typeId, String isValid) {
+			String type, Integer code, String isValid) {
 		Page page = new Page(pageSize, currentPage);
+		Integer typeId = null;
+		if (type != null && type.length() > 0) {
+			List<Const> list = constService.getByTypeAndCode(type, code);
+			Const con = list.get(0);
+			typeId = con.getId();
+		}
 		
 		return categoryDao.getPageByParam(page, name, typeId, isValid);
 	}
@@ -62,7 +68,7 @@ public class CategoryServiceImpl implements CategoryService {
 		}
 		
 		Date now = new Date();
-		Const con = constDao.get(categoryVO.getTypeId());
+		Const con = constService.getById(categoryVO.getTypeId());
 		String name = categoryVO.getName();
 		Integer propertyIds[] = categoryVO.getPropertyIds();
 		

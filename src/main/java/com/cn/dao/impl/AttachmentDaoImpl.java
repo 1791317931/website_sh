@@ -15,14 +15,11 @@ public class AttachmentDaoImpl extends BaseDaoImpl<Attachment> implements Attach
 	}
 
 	public Page getPageByCode(Page page, String type, Integer code) {
-		String sql = null;
+		String sql = "from Attachment a where a.con.type = '" + type + "'";
 		if(null != code) {
-			sql = "from Attachment a where a.con.type = ? and a.con.code = ?";
-			return getPageByQuery(sql, page, type, code);
-		} else {
-			sql = "from Attachment a where a.con.type = ?";
-			return getPageByQuery(sql, page, type);
+			sql += " and a.con.code = " + code;
 		}
+		return getPageByQuery(sql, page);
 	}
 
 }

@@ -21,6 +21,7 @@ body {
 .option-container > span:after {
 	content: '|';
 	margin-left: 5px;
+	color: #888;
 }
 
 .option-container > span:last-child:after {

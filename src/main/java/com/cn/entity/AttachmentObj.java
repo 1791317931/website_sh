@@ -16,7 +16,7 @@ public class AttachmentObj extends IdEntity {
 	private Integer obj_id;
 	
 	private Integer type_id;
-
+	
 	public Integer getAttachment_id() {
 		return attachment_id;
 	}

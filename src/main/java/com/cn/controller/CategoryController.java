@@ -42,8 +42,8 @@ public class CategoryController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> getPageByParam(int pageSize, int currentPage,
 			@RequestParam(defaultValue = "") String name,
-			Integer typeId, String isValid) {
-		Page page = categoryService.getPageByParam(pageSize, currentPage, name, typeId, isValid);
+			String type, Integer code, String isValid) {
+		Page page = categoryService.getPageByParam(pageSize, currentPage, name, type, code, isValid);
 		
 		return getMap(page);
 	}

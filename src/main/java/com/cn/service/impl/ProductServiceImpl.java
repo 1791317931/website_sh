@@ -95,11 +95,11 @@ public class ProductServiceImpl implements ProductService {
 		}
 		String urls[] = productVO.getImgUrls();
 		// 获取商品图片对应的const
-		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT_IMAGE).get(0);
+		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT).get(0);
 		Integer typeId = con.getId();
 		Attachment attachment = null;
 		AttachmentObj attachmentObj = null;
-		attachmentObjService.deleteByObjId(typeId, productId);
+		attachmentObjService.deleteByParam(typeId, productId);
 		for(int i = 0, length = urls.length; i < length; i++) {
 			attachment = new Attachment();
 			attachment.setCon(con);
