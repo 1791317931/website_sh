@@ -21,5 +21,5 @@ public class AttachmentDaoImpl extends BaseDaoImpl<Attachment> implements Attach
 		}
 		return getPageByQuery(sql, page);
 	}
-
+	
 }

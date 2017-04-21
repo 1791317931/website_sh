@@ -8,6 +8,7 @@ import com.cn.base.BaseDaoImpl;
 import com.cn.dao.AttachmentObjDao;
 import com.cn.entity.AttachmentObj;
 import com.cn.enums.FileConst;
+import com.cn.vo.Page;
 
 @Repository(value = "attachmentObjDao")
 public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
@@ -19,9 +20,18 @@ public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
 
 	@Override
 	public void deleteByParam(Integer typeId, Integer objId) {
-		String sql = "delete from w_attachment_obj where type_id = " + typeId;
+		String sql = "delete from w_attachment_obj";
+		boolean flag = false;
+		if (typeId != null) {
+			sql += " where type_id = " + typeId;
+			flag = true;
+		}
 		if (objId != null) {
-			sql += " and obj_id = " + objId;
+			if (flag) {
+				sql += " and obj_id = " + objId;
+			} else {
+				sql += " where obj_id = " + objId;
+			}
 		}
 		sqlUpdate(sql);
 	}
@@ -29,7 +39,7 @@ public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
 	@Override
 	public void save(Integer attachmentId, Integer objId, Integer typeId, int created_by) {
 		String sql = "insert into w_attachment_obj(attachment_id, obj_id, type_id, created_by, updated_by, create_date, update_date)"
-					+ " values(?, ?, ?, ?, now(), now())";
+					+ " values(?, ?, ?, ?, ?, now(), now())";
 		sqlUpdate(sql, attachmentId, objId, typeId, created_by, created_by);
 	}
 	
@@ -44,6 +54,18 @@ public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
 					+ " and wc.code = ?";
 		return getSession().createSQLQuery(sql).setParameter(0, objId).setParameter(1, code).list();
 	}
+	
+	public Page getPageObjByParam(Page page, String type, Integer code) {
+		String sql = "select wa.id, wa.path, wao.obj_id"
+					+ " from w_attachment wa"
+					+ " left join w_attachment_obj wao on wa.id = wao.attachment_id and wa.type_id = wao.type_id"
+					+ " left join w_const wc on wa.type_id = wc.id"
+					+ " where wc.type = '" + type + "'"
+					+ " and wc.code = " + code;
+		return getPageObjBySQL(sql, page);
+	}
+	
+	
 	
 	
 	

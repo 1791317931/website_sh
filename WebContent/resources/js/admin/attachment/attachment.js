@@ -28,17 +28,14 @@ $(function() {
 	function reload() {
 		var value = $categoryList.val(),
 		data = {
-			currentPage : 1,
-			pageSize : 10,
-			type : 'file'
+			currentPage : 1
 		};
 		
 		if(value != -1) {
 			data.code = value;
 		}
 		
-		$attachmentList.setData(data, true);
-		$attachmentList.load();
+		$attachmentList.trigger('load', data);
 	}
 	
 	$categoryList.bind('change', function() {

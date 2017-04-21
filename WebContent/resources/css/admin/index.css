@@ -5,16 +5,18 @@
 
 .wp100 {width: 100%;}
 
+.main-body {
+	min-width: 1345px;
+}
+
 .common-body {
-	overflow: auto;
-	min-width: 1360px;
+	table-layout: auto !important;
 }
 
 .menu-container {
 	width: 198px;
 	min-height: 450px;
 	border: 1px solid #ccc;
-	float: left;
 }
 
 .menu p {
@@ -45,7 +47,10 @@
 
 .content-container {
 	border: 1px solid #ccc;
+}
+
+.content-body {
+	width: 1140px;
 	min-height: 550px;
-	float: left;
-	width: 1138px;
+	margin: auto;
 }

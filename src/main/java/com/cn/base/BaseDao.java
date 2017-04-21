@@ -33,10 +33,14 @@ public interface BaseDao<T> {
 	int countByQuery(String queryString, Object... values);
 
 	Page getPageBySQL(String sqlString, Page page, Object... values);
+	
+	public Page getPageObjBySQL(String sqlString, Page page, Object... values);
 
 	int countBySQL(String sqlString, Object... values);
 
 	Page getPage(Page page);
 
 	Page buildPage(Page page, int count, List<T> list);
+	
+	public Page buildPageObj(Page page, int count, List<Object[]> list);
 }

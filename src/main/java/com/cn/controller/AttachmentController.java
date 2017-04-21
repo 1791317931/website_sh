@@ -46,6 +46,13 @@ public class AttachmentController extends BaseController {
 		return getMap(attachmentService.getAttachmentByCode(pageSize, currentPage, type, code));
 	}
 	
+	@RequestMapping(value = "/page/vo")
+	@ResponseBody
+	public Map<String, Object> getPageVOByCode(int pageSize, int currentPage, 
+			String type, Integer code, String status) {
+		return getMap(attachmentObjService.getPageObjByParam(pageSize, currentPage, type, code));
+	}
+	
 	/**
 	 * 禁用logo，只有一个logo会被启用，所以禁用时，不需要传递id
 	 * @param logoId
@@ -68,6 +75,18 @@ public class AttachmentController extends BaseController {
 	public Map<String, Object> endableLogo(int attachmentId) {
 		attachmentObjService.enableLogo(attachmentId, created_by);
 		return getMap(null);
+	}
+	
+	/**
+	 * 删除LOGO
+	 * @param attachmentId
+	 * @return
+	 */
+	@RequestMapping(value = "/logo/delete")
+	@ResponseBody
+	public Map<String, Object> deleteById(int attachmentId) {
+		Map<String, Object> result = attachmentService.deleteLogoById(attachmentId);
+		return getMap(result);
 	}
 	
 	@RequestMapping(value = "/saveOrUpdate")

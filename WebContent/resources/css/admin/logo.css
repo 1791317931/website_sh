@@ -1,3 +1,39 @@
-.logo-container {
-	width: 0;
+.image-item {
+	width: 180px;
+	height: 230px;
+	border: 1px solid #ccc;
+	margin: 0 0 10px 4px;
+	position: relative;
+}
+
+.logo_list .image-item:nth-child(6n + 1) {
+	margin-left: 0;
+}
+
+.image-item .img {
+	width: 100%;
+	height: 200px;
+}
+
+.image-item:hover .close {
+	opacity: 1;
+}
+
+.item-desc {
+	line-height: 30px;
+	padding: 0 3px;
+}
+
+.item-desc .not-active {
+	color: #aaa;
+}
+
+.item-desc .active {
+	color: #0035ff;
+	font-weight: 600;
+}
+
+.logo-modal {
+	width: 835px;
+	height: 530px;
 }

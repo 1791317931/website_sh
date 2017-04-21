@@ -95,39 +95,8 @@
 	border: 0;
 }
 
-.image-item-close {
-	width: 20px;
-	height: 20px;
-	border-radius: 50%;
-	position: absolute;
-	top: 5px;
-	right: 5px;
-	background: rgb(230, 230, 230);
-	opacity: .1;
-}
-
-.image-item:hover .image-item-close {
+.image-item:hover .close {
 	opacity: 1;
-}
-
-.image-item-close:before, .image-item-close:after {
-	content: '';
-    width: 85%;
-    height: 2px;
-    border-radius: 1px;
-    position: absolute;
-    background: #888;
-    top: 9px;
-}
-
-.image-item-close:before {
-	transform: rotate(45deg);
-	right: 1px;
-}
-
-.image-item-close:after {
-	transform: rotate(-45deg);
-	left: 1px;
 }
 
 .image-modal {

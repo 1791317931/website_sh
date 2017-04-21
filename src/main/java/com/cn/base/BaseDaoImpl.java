@@ -121,7 +121,18 @@ public class BaseDaoImpl<T extends IdEntity> implements BaseDao<T> {
 
 	// 通过sql语句查询所有数据的条数
 	public int countBySQL(String sqlString, Object... values) {
-		return ((SQLQuery) setParameter(getSession().createSQLQuery(sqlString),	values)).addEntity(entityClass).list().size();
+		return ((SQLQuery) setParameter(getSession().createSQLQuery(sqlString),	values)).list().size();
+	}
+	
+	// 通过sql语句查询所有数据进行分页，不组装数据
+	@SuppressWarnings("unchecked")
+	public Page getPageObjBySQL(String sqlString, Page page, Object... values) {
+		int currentPage = page.getCurrentPage();
+		int pageSize = page.getPageSize();
+		List<Object[]> list = ((SQLQuery) setParameter(getSession().createSQLQuery(sqlString), values))
+				.setFirstResult((currentPage - 1) * pageSize)
+				.setMaxResults(pageSize).list();
+		return buildPageObj(page, countBySQL(sqlString,values), list);
 	}
 
 	// 通过Query语句查询表中所有数据进行分页
@@ -138,6 +149,16 @@ public class BaseDaoImpl<T extends IdEntity> implements BaseDao<T> {
 
 	// 设置Page属性
 	public Page buildPage(Page page, int count, List<T> list) {
+		page.setList(list);
+		int pageSize = page.getPageSize();
+		int totalPage = (int) Math.ceil(count * 1f / pageSize  * 1f);
+		page.setTotalCount(count);
+		page.setTotalPage(totalPage);
+		return page;
+	}
+	
+	// 设置Page属性，不组装数据
+	public Page buildPageObj(Page page, int count, List<Object[]> list) {
 		page.setList(list);
 		int pageSize = page.getPageSize();
 		int totalPage = (int) Math.ceil(count * 1f / pageSize  * 1f);

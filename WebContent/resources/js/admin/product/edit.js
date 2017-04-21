@@ -52,7 +52,7 @@ $(function() {
 				var url = imgUrls[i];
 				imgHtml += '<div class="image-item">'
 							+ '<img src="' + base_url + url + '" data-url="' + url + '" />'
-							+ '<div class="image-item-close"></div>'
+							+ '<div class="close"></div>'
 						+ '</div>';
 			}
 			$imgContainer.prepend(imgHtml);
@@ -188,7 +188,7 @@ $(function() {
 		});
 		
 		// 删除图片
-		$imgContainer.on('click', '.image-item-close', function() {
+		$imgContainer.on('click', '.close', function() {
 			$(this).closest('.image-item').remove();
 		});
 		
@@ -198,7 +198,7 @@ $(function() {
 				var url = data.imgPath,
 				html = '<div class="image-item">'
 						+ '<img src="' + base_url + url + '" data-url="' + url + '" />'
-						+ '<div class="image-item-close"></div>'
+						+ '<div class="close"></div>'
 					+ '</div>';
 				$imgAdd.before(html);
 				$imageModal.trigger('hide');

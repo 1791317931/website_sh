@@ -3,6 +3,7 @@ package com.cn.service;
 import java.util.List;
 
 import com.cn.entity.AttachmentObj;
+import com.cn.vo.Page;
 
 public interface AttachmentObjService {
 
@@ -19,5 +20,9 @@ public interface AttachmentObjService {
 	 * @param attachmentId
 	 */
 	public void enableLogo(int attachmentId, int created_by);
+	
+	public Page getPageObjByParam(int pageSize, int currentPage, String type, Integer code);
+	
+	public AttachmentObj getById(int id);
 	
 }

@@ -1,5 +1,6 @@
 package com.cn.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
+import com.cn.entity.Const;
 import com.cn.service.ConstService;
 
 @Controller
@@ -38,6 +40,13 @@ public class ConstController extends BaseController {
 	@RequestMapping(value = "/supply")
 	public String supply() {
 		return "admin/consts/supply";
+	}
+	
+	@RequestMapping(value = "/get")
+	@ResponseBody
+	public Map<String, Object> getConstByParam(String type, Integer code) {
+		List<Const> list = constService.getByTypeAndCode(type, code);
+		return getMap(list.get(0));
 	}
 	
 }

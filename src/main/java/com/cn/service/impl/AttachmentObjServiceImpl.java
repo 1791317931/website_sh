@@ -1,5 +1,6 @@
 package com.cn.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -12,6 +13,8 @@ import com.cn.entity.Const;
 import com.cn.enums.FileConst;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.ConstService;
+import com.cn.vo.AttachmentObjVO;
+import com.cn.vo.Page;
 
 @Service(value = "attachmentObjService")
 public class AttachmentObjServiceImpl implements AttachmentObjService {
@@ -52,6 +55,42 @@ public class AttachmentObjServiceImpl implements AttachmentObjService {
 		int typeId = con.getId();
 		attachmentObjDao.deleteByParam(typeId, null);
 		attachmentObjDao.save(attachmentId, 0, typeId, created_by);
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Page getPageObjByParam(int pageSize, int currentPage, String type,
+			Integer code) {
+		Page page = new Page(pageSize, currentPage);
+		page = attachmentObjDao.getPageObjByParam(page, type, code);
+		List<Object[]> list = page.getList();
+		if (FileConst.LOGO == code) {
+			List<AttachmentObjVO> vos = transformToAttachmentObj(list);
+			page.setList(vos);
+		}
+		return page;
+	}
+	
+	private static List<AttachmentObjVO> transformToAttachmentObj(List<Object[]> list) {
+		List<AttachmentObjVO> vos = new ArrayList<AttachmentObjVO>();
+		AttachmentObjVO vo = null;
+		for (int i = 0, length = list.size(); i < length; i++) {
+			vo = new AttachmentObjVO();
+			Object[] objs = list.get(i);
+			vo.setId(Integer.parseInt(objs[0] + ""));
+			vo.setPath(objs[1] + "");
+			Object objId = objs[2];
+			if (objId != null) {
+				vo.setObjId(Integer.parseInt(objId + ""));
+			}
+			vos.add(vo);
+		}
+		return vos;
+	}
+	
+	@Override
+	public AttachmentObj getById(int id) {
+		return attachmentObjDao.get(id);
 	}
 
 }

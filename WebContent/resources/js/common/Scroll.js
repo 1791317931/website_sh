@@ -50,13 +50,15 @@
 		
 		var beforeScroll = option.beforeScroll;
 		
-		$this.setData = function(param) {
-			option.data = $.extend(true, option.data, param);
-		};
-		
-		$this.load = function() {
+		$this.bind('load', function(e, opt) {
+			option.data = $.extend(true, option.data, opt);
 			$.ajax(option);
-		};
+		});
+		
+		$this.bind('reload', function() {
+			option.data.currentPage = 1;
+			$.ajax(option);
+		});
 		
 		// 可以继续加载数据
 		function setState(obj) {

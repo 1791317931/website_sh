@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.cn.base.BaseDao;
 import com.cn.entity.AttachmentObj;
+import com.cn.vo.Page;
 
 public interface AttachmentObjDao extends BaseDao<AttachmentObj> {
 
@@ -12,6 +13,10 @@ public interface AttachmentObjDao extends BaseDao<AttachmentObj> {
 	public void save(Integer attachmentId, Integer objId, Integer typeId, int created_by);
 	
 	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code);
+	
+	public Page getPageObjByParam(Page page, String type, Integer code);
+	
+	
 	
 	
 	

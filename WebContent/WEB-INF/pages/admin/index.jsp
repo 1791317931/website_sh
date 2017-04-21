@@ -29,55 +29,57 @@
 </head>
 <body>
 	<div class="nav-head"></div>
-	<div class="common-body clearfix">
-		<div class="menu-container">
-			<ul class="menu">
-				<li>
-					<p>基础数据</p>
-					<ul class="sub-menu">
-						<li>
-							<p data-url="const/role">角色管理</p>
-						</li>
-						<li>
-							<p data-url="property/admin/index">属性管理</p>
-						</li>
-						<li>
-							<p data-url="category/admin/index">属性分类管理</p>
-						</li>
-						<!-- <li>
-							<p data-url="">供应商管理</p>
-						</li> -->
-					</ul>
-				</li>
-				<li>
-					<p>资源数据</p>
-					<ul class="sub-menu">
-						<li>
-							<p data-url="product/admin/index">商品列表</p>
-						</li>
-						<li>
-							<p data-url="product/admin/toEdit">商品编辑</p>
-						</li>
-						<!-- <li>
-							<p data-url="">材料管理</p>
-						</li> -->
-						<li>
-							<p data-url="attachment/index">图片管理</p>
-						</li>
-					</ul>
-				</li>
-				<li>
-					<p>首页配置</p>
-					<ul class="sub-menu">
-						<li>
-							<p data-url="attachment/logo/index">LOGO配置</p>
-						</li>
-					</ul>
-				</li>
-			</ul>
-		</div>
-		<div class="content-container ">
-			<div class="content-body" id="content-body"></div>
+	<div class="main-body">
+		<div class="common-body clearfix table">
+			<div class="menu-container table-cell vt">
+				<ul class="menu">
+					<li>
+						<p>基础数据</p>
+						<ul class="sub-menu">
+							<li>
+								<p data-url="const/role">角色管理</p>
+							</li>
+							<li>
+								<p data-url="property/admin/index">属性管理</p>
+							</li>
+							<li>
+								<p data-url="category/admin/index">属性分类管理</p>
+							</li>
+							<!-- <li>
+								<p data-url="">供应商管理</p>
+							</li> -->
+						</ul>
+					</li>
+					<li>
+						<p>资源数据</p>
+						<ul class="sub-menu">
+							<li>
+								<p data-url="product/admin/index">商品列表</p>
+							</li>
+							<li>
+								<p data-url="product/admin/toEdit">商品编辑</p>
+							</li>
+							<!-- <li>
+								<p data-url="">材料管理</p>
+							</li> -->
+							<li>
+								<p data-url="attachment/index">图片管理</p>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<p>首页配置</p>
+						<ul class="sub-menu">
+							<li>
+								<p data-url="attachment/logo/index">LOGO配置</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+			<div class="content-container table-cell vt">
+				<div class="content-body" id="content-body"></div>
+			</div>
 		</div>
 	</div>
 </body>
