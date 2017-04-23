@@ -38,7 +38,7 @@ create table w_const (
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 1, 'super_admin', '超级管理员', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 2, 'admin', '管理员', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 3, 'supplier', '供货商', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 4, 'admin', '管理员', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 4, 'user', '普通用户', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 1, 'N', '新建', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 2, 'P', '审核通过', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('sex', 1, 'man', '男', 1, 1);
@@ -117,7 +117,7 @@ create table w_material (
 	category_id int not null comment '分类id',
 	code varchar(255) not null comment '材料编号',
 	is_valid char(1) not null default 'Y' comment '是否有效',
-	status varchar(10) not null default 'N' comment '状态：N（新增）、P（审核通过）、F（审核失败）',
+	status varchar(10) not null default 'N' comment '状态：N（新增）、P（审核通过）、F（审核失败）、S（特价）',
 	price double not null comment '价格',
 	special_price double not null comment '特价',
 	create_date datetime not null default now() comment '创建时间',

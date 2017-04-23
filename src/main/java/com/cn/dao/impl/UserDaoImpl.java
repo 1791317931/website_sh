@@ -36,44 +36,23 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 	public Page getPageByParam(Page page, String username, String phone,
 			Integer typeId, String valid, String status) {
 		String sql = "select *"
-					+ " from w_user wu";
-		boolean flag = false;
+					+ " from w_user wu where 1 = 1";
 		if (StringUtils.isNotBlank(username)) {
-			flag = true;
-			sql += " where wu.username liek '%" + username + "%'";
+			sql += " and wu.username liek '%" + username + "%'";
 		}
 		if (StringUtils.isNotBlank(phone)) {
-			flag = true;
-			if (flag) {
-				sql += " and wu.phone like '%" + phone + "%'";
-			} else {
-				sql += " wu.phone like '%" + phone + "%'";
-			}
+			sql += " and wu.phone like '%" + phone + "%'";
 		}
 		if (typeId != null) {
-			flag = true;
-			if (flag) {
-				sql += " and wu.type_id = " + typeId;
-			} else {
-				sql += " wu.type_id = " + typeId;
-			}
+			sql += " and wu.type_id = " + typeId;
 		}
 		if (StringUtils.isNotBlank(valid)) {
-			flag = true;
-			if (flag) {
-				sql += " and wu.is_valid like '%" + valid + "%'";
-			} else {
-				sql += " wu.phone like '%" + valid + "%'";
-			}
+			sql += " and wu.is_valid like '%" + valid + "%'";
 		}
 		if (StringUtils.isNotBlank(status)) {
-			flag = true;
-			if (flag) {
-				sql += " and wu.phone like '%" + status + "%'";
-			} else {
-				sql += " wu.phone like '%" + status + "%'";
-			}
+			sql += " and wu.phone like '%" + status + "%'";
 		}
+		sql += " order by wu.update_date desc";
 		return getPageBySQL(sql, page);
 	}
 	

@@ -92,6 +92,19 @@ public class ProductController extends BaseController {
 		return getMap(null);
 	}
 	
+	/**
+	 * 删除商品，暂时不校验
+	 * @param id
+	 * @return
+	 */
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> delete(int id) {
+		productService.deleteById(id);
+		
+		return getMap(null);
+	}
+	
 	public static ProductVO transform(Product product, List<String> imgUrls, List<PropertyObjVO> propertyObjVOs) {
 		ProductVO vo = new ProductVO();
 		Category category = product.getCategory();

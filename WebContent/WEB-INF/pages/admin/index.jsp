@@ -54,19 +54,22 @@
 						</ul>
 					</li>
 					<li>
-						<p>资源数据</p>
+						<p>资源管理</p>
 						<ul class="sub-menu">
+							<li>
+								<p data-url="attachment/index">图片管理</p>
+							</li>
 							<li>
 								<p data-url="product/admin/index">商品列表</p>
 							</li>
 							<li>
 								<p data-url="product/admin/toEdit">商品编辑</p>
 							</li>
-							<!-- <li>
-								<p data-url="">材料管理</p>
-							</li> -->
 							<li>
-								<p data-url="attachment/index">图片管理</p>
+								<p data-url="material/admin/index">材料管理</p>
+							</li>
+							<li>
+								<p data-url="material/admin/toEdit">材料管理</p>
 							</li>
 						</ul>
 					</li>

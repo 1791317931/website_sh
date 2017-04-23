@@ -16,6 +16,7 @@ import com.cn.entity.Category;
 import com.cn.entity.Const;
 import com.cn.entity.Property;
 import com.cn.entity.PropertyCategory;
+import com.cn.enums.ValidConst;
 import com.cn.service.CategoryService;
 import com.cn.service.ConstService;
 import com.cn.service.PropertyCategoryService;
@@ -61,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Integer categoryId = categoryVO.getId();
 		
 		// 如果categoryId不为空，需要判断该分类已被使用
-		if(propertyObjService.countProperty(null, null, categoryId) > 0) {
+		if(categoryId != null && propertyObjService.countProperty(null, null, categoryId) > 0) {
 			map.put("success", false);
 			map.put("data", "该分类已经被使用，无法修改");
 			return map;
@@ -77,7 +78,7 @@ public class CategoryServiceImpl implements CategoryService {
 			category.setCon(con);
 			category.setCreated_by(created_by);
 			category.setUpdated_by(created_by);
-			category.setIs_valid("Y");
+			category.setIs_valid(ValidConst.VALID);
 			category.setName(name);
 			category.setCreate_date(now);
 			category.setUpdate_date(now);

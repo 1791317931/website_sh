@@ -27,4 +27,6 @@ public interface UserService {
 	public Page getPageByParam(int pageSize, int currentPage, String username, String phone,
 			Integer typeId, String valid, String status);
 	
+	public void updatePassword(int id, String password);
+	
 }

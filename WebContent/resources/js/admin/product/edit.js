@@ -283,16 +283,33 @@ $(function() {
 				ZUtil.error('商品属性必填');
 				return false;
 			}
-			if (!data.price) {
+			
+			var price = data.price,
+			priceReg = /^(([1-9]\d*)|0)(\.\d{1,2})?$/;
+			if (!price) {
 				ZUtil.error('价格必填');
 				return false;
-			}
-			if (!data.specialPrice) {
-				ZUtil.error('特价必填');
+			} else if (!priceReg.test(price)) {
+				ZUtil.error('价格不能小于0，且最多保留两位小数');
 				return false;
 			}
-			if (!data.count) {
+			
+			var specialPrice = data.specialPrice;
+			if (!specialPrice) {
+				ZUtil.error('特价必填');
+				return false;
+			} else if (!priceReg.test(specialPrice)) {
+				ZUtil.error('特价不能小于0，且最多保留两位小数');
+				return false;
+			}
+			
+			var count = data.count,
+			countReg = /^([1-9]\d*)|0$/;
+			if (!count) {
 				ZUtil.error('商品库存必填');
+				return false;
+			} else if (!countReg.test(count)) {
+				ZUtil.error('商品库存只能大于或等于0的整数');
 				return false;
 			}
 			return true;

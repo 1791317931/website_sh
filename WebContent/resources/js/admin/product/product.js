@@ -132,6 +132,22 @@ $(function() {
 			});
 		});
 		
+		$productList.on('click', '.delete', function() {
+			$.ajax({
+				url : base_url + 'product/delete',
+				type : 'post',
+				data : {
+					id : $(this).attr('data-id')
+				},
+				success : function(result) {
+					ZUtil.success('删除成功');
+					$productList.trigger('reload', {
+						currentPage : 1
+					});
+				}
+			});
+		});
+		
 		$('#save-cancel').bind('click', function() {
 			$productModal.trigger('hide');
 		});

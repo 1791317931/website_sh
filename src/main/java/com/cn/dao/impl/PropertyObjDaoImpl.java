@@ -66,7 +66,7 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 		String sql = "select wp.id, wp.name, wpo.value, wp.is_must"
 					+ " from w_property wp"
 					+ " left join w_property_obj wpo on wp.id = wpo.property_id"
-					+ " left join w_const wc on wc.type = '" + PropertyConst.PRODUCT + "'"
+					+ " left join w_const wc on wc.type = '" + PropertyConst.TYPE + "'"
 					+ " where wpo.obj_id = ?"
 					+ " and wc.code = ?";
 		return getSession().createSQLQuery(sql).setParameter(0, objId).setParameter(1, code).list();

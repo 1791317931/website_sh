@@ -84,4 +84,11 @@ public class UserServiceImpl implements UserService {
 		return userDao.getPageByParam(page, username, phone, typeId, valid, status);
 	}
 	
+	@Override
+	public void updatePassword(int id, String password) {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("password", MD5Util.EncoderPwdByMd5AndApacheBase64(password));
+		userDao.updateByParam(id, map);
+	}
+	
 }

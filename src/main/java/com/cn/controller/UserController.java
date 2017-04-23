@@ -54,10 +54,20 @@ public class UserController extends BaseController {
 		return "admin/users/index";
 	}
 	
+	/**
+	 * 添加用户
+	 * @param request
+	 * @param username
+	 * @param phone
+	 * @param password
+	 * @param login		注册成功后是否登录
+	 * @return
+	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> regist(HttpServletRequest request, 
-			String username, String phone, String password) {
+			String username, String phone, String password,
+			@RequestParam(defaultValue = "true") boolean login) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		if (userService.countByUsernameOrPhone(ValidConst.VALID, username, phone) > 0) {
 			String msg = "用户名或密码重复";
@@ -68,8 +78,8 @@ public class UserController extends BaseController {
 			user.setPhone(phone);
 			user.setPassword(MD5Util.EncoderPwdByMd5AndApacheBase64(password));
 			user.setUsername(username);
-			user.setIs_valid(ValidConst.INVALID);
-			user.setStatus(UserStatusConst.NEW);
+			user.setIs_valid(ValidConst.VALID);
+			user.setStatus(UserStatusConst.PASS);
 			List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER);
 			Const con = list.get(0);
 			user.setCon(con);
@@ -82,11 +92,13 @@ public class UserController extends BaseController {
 			
 			userService.saveOrUpdate(user);
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("user", user);
-			
+			if (login) {
+				HttpSession session = request.getSession();
+				session.setAttribute("user", user);
+			}
 			result.put("code", 1);
 		}
+		
 		return getMap(result);
 	}
 	
@@ -101,6 +113,13 @@ public class UserController extends BaseController {
 		} else {
 			return getMap(null);
 		}
+	}
+	
+	@RequestMapping(value = "/updatePassword", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updatePassword(int id , String password) {
+		userService.updatePassword(id, password);
+		return getMap(null);
 	}
 	
 	/**

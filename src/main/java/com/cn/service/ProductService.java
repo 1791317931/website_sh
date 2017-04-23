@@ -12,4 +12,6 @@ public interface ProductService {
 	
 	public void saveOrUpdate(ProductVO productVO, int created_by);
 	
+	public void deleteById(int id);
+	
 }

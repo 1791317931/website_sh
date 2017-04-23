@@ -54,8 +54,38 @@
 			</div>
 		</div>
 		<button class="btn btn-primary ml20 btn-2" id="user-list-search">查询</button>
+		<button class="btn btn-danger ml20" id="add-user">新增用户</button>
 	</div>
 	<div class="empty user-list mt20" id="user-list" data-empty="暂无用户"></div>
+</div>
+<div class="z-modal hide" id="user-modal">
+	<div class="z-modal-body user-modal">
+		<div class="form-group">
+			<label>用户名</label>
+			<div class="form-control r10">
+				<input type="text" id="add-username" placeholder="请输入用户名" />
+			</div>
+			<span class="must">*</span>
+		</div>
+		<div class="form-group">
+			<label>手机号</label>
+			<div class="form-control r10">
+				<input type="text" id="add-phone" value="" placeholder="请输入手机号" />
+			</div>
+			<span class="must">*</span>
+		</div>
+		<div class="form-group">
+			<label class="btn-3">密码</label>
+			<div class="form-control r10">
+				<input type="password" id="add-password" value="" placeholder="请输入密码" />
+			</div>
+			<span class="must">*</span>
+		</div>
+		<div class="form-group text-center mt30">
+			<button class="btn btn-primary btn-2" id="add-user-sure">添加</button>
+			<button class="btn btn-danger btn-2 ml20" id="add-user-cancel">取消</button>
+		</div>
+	</div>
 </div>
 <div class="z-modal hide" id="valid-modal">
 	<div class="z-modal-body valid-modal">
@@ -85,6 +115,21 @@
 		<div class="form-group mt30 text-center">
 			<button class="btn btn-primary btn-2" id="change-status-sure">确定</button>
 			<button class="btn btn-danger btn-2 ml20" id="change-status-cancel">取消</button>
+		</div>
+	</div>
+</div>
+<div class="z-modal hide" id="password-modal">
+	<div class="z-modal-body password-modal">
+		<div class="form-group">
+			<label class="label-3">新密码:</label>
+			<div class="form-control r10">
+				<input type="password" id="update-password" />
+			</div>
+			<span class="must">*</span>
+		</div>
+		<div class="form-group mt30 text-center">
+			<button class="btn btn-primary btn-2" id="update-password-sure">确定</button>
+			<button class="btn btn-danger btn-2 ml20" id="update-password-cancel">取消</button>
 		</div>
 	</div>
 </div>

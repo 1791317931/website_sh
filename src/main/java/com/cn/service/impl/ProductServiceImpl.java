@@ -15,6 +15,8 @@ import com.cn.entity.Category;
 import com.cn.entity.Const;
 import com.cn.entity.Product;
 import com.cn.enums.FileConst;
+import com.cn.enums.ProductStatusConst;
+import com.cn.enums.ValidConst;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.AttachmentService;
 import com.cn.service.CategoryService;
@@ -58,6 +60,19 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
+	public void deleteById(int id) {
+		// 删除附件
+		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.PRODUCT);
+		Const con = conList.get(0);
+		attachmentObjService.deleteByParam(con.getId(), id);
+		
+		// 删除相关属性
+		propertyObjService.deleteByProductId(id);
+		
+		productDao.delete(id);
+	}
+	
+	@Override
 	public void saveOrUpdate(ProductVO productVO, int created_by) {
 		Integer id = productVO.getId();
 		Integer categoryId = productVO.getCategoryId();
@@ -74,11 +89,11 @@ public class ProductServiceImpl implements ProductService {
 		Date now = new Date();
 		product.setCreate_date(now);
 		product.setUpdate_date(now);
-		product.setIs_valid("Y");
+		product.setIs_valid(ValidConst.VALID);
 		product.setName(productVO.getName());
 		product.setPrice(productVO.getPrice());
 		product.setSpecial_price(productVO.getSpecialPrice());
-		product.setStatus("N");
+		product.setStatus(ProductStatusConst.NEW);
 		product.setCreated_by(created_by);
 		product.setUpdated_by(created_by);
 		productDao.save(product);

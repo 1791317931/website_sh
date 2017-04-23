@@ -32,16 +32,29 @@ public class BaseDaoImpl<T extends IdEntity> implements BaseDao<T> {
 	}
 
 	public void save(T entity) {
-		getSession().save(entity);
+		Session session = getSession();
+		session.save(entity);
+		if (entity.getId() != null) {
+			session.flush();
+		}
 	}
 
 	public void delete(T entity) {
-		getSession().delete(entity);
+		Session session = getSession();
+		session.delete(entity);
+		if (entity.getId() != null) {
+			session.flush();
+		}
 	}
 
 	@SuppressWarnings("unchecked")
 	public T get(int id) {
 		return (T) getSession().get(entityClass, id);
+	}
+	
+	// 通过id删除数据
+	public void delete(int id) {
+		getSession().createQuery("delete from " + entityClass.getSimpleName() + " where id = ?").setParameter(0, id).executeUpdate();
 	}
 
 	public Object setParameter(Object string, Object... values) {
@@ -69,12 +82,7 @@ public class BaseDaoImpl<T extends IdEntity> implements BaseDao<T> {
 	public List<T> getListBySql(String sqlString, Object... values) {
 		return ((SQLQuery) setParameter(getSession().createSQLQuery(sqlString),	values)).addEntity(entityClass).list();
 	}
-
-	// 通过id删除数据
-	public void delete(int id) {
-		getSession().createQuery("delete from " + entityClass.getSimpleName() + " where id = ?").setParameter(0, id).executeUpdate();
-	}
-
+	
 	// 获取所有数据
 	@SuppressWarnings("unchecked")
 	public List<T> getList() {
