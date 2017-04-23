@@ -15,6 +15,7 @@ create table w_attachment_obj (
 	id int primary key auto_increment,
 	attachment_id int not null comment '附件id',
 	obj_id int not null comment '对象id，如果为0，那么该附件可能是LOGO、Banner',
+	sort int comment '排序',
 	type_id int not null comment '类型id',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
@@ -34,17 +35,20 @@ create table w_const (
 	created_by int not null comment '创建人id',
 	updated_by int not null comment '最后修改人'
 ) ENGINE = INNODB comment '常量表';
-insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 1, 'user', '普通用户', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 1, 'super_admin', '超级管理员', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 2, 'admin', '管理员', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 3, 'supplier', '供货商', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 4, 'admin', '管理员', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 1, 'N', '新增', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 2, 'P', '审核通过', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('sex', 1, 'man', '男', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('sex', 2, 'woman', '女', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('file', 1, 'material_img', '材料图片', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('file', 2, 'product_img', '商品图片', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('file', 3, 'logo_img', 'LOGO图片', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('product', 1, 'product_property', '商品属性', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('product', 2, 'material_property', '商品材料属性', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('product_category', 1, 'hot', '热销商品', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('file', 1, 'material', '材料图片', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('file', 2, 'product', '商品图片', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('file', 3, 'logo', 'LOGO图片', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('file', 4, 'banner', 'Banner图片', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('property', 1, 'product', '商品属性', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('property', 2, 'material', '商品材料属性', 1, 1);
 
 drop table if exists w_user;
 create table w_user (
@@ -53,8 +57,8 @@ create table w_user (
 	real_name varchar(20) comment '真实姓名',
 	phone varchar(20) not null comment '手机',
 	password varchar(255) not null comment '密码',
-	is_valid char(1) not null default 'Y' comment '是否有效',
-	status varchar(10) not null default 'N' comment '状态',
+	is_valid char(1) not null default 'N' comment '是否有效',
+	status varchar(10) not null default 'N' comment '状态:N(新建)、P(已审核)',
 	age int comment '年龄',
 	sex char(1) comment '性别：1（男，默认）、2（女）',
 	type_id varchar(10) not null default 'user' comment '用户类型',

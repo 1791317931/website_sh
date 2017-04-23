@@ -12,7 +12,7 @@ public interface AttachmentService {
 	
 	public void saveOrUpdate(Attachment attachment);
 	
-	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code);
+	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code, String orderBy);
 	
 	public void deleteById(int id);
 	

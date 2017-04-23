@@ -130,8 +130,7 @@ $(function() {
 			typeId : typeId,
 			isValid : isValid
 		};
-		$categoryList.trigger('setData', data);
-		$categoryList.trigger('reload');
+		$categoryList.trigger('reload', data);
 	});
 	
 	$searchName.bind('keydown', function(e) {

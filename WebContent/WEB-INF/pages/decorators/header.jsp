@@ -45,7 +45,9 @@
 		</div>
 	</div>
 	<div class="head-nav">
-		<img class="logo" src="<%=basePath %>resources/imgs/logo.jpg" />
+		<a href="<%=basePath%>main/index">
+			<img class="logo" />
+		</a>
 	</div>
 	<div class="z-modal hide" id="regist-modal">
 		<div class="z-modal-body regist-modal">

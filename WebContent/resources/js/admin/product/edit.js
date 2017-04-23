@@ -51,7 +51,7 @@ $(function() {
 			for (var i = 0, length = imgUrls.length; i < length; i++) {
 				var url = imgUrls[i];
 				imgHtml += '<div class="image-item">'
-							+ '<img src="' + base_url + url + '" data-url="' + url + '" />'
+							+ '<img src="' + base_img + url + '" data-url="' + url + '" />'
 							+ '<div class="close"></div>'
 						+ '</div>';
 			}
@@ -197,7 +197,7 @@ $(function() {
 			saveCallback : function(data) {
 				var url = data.imgPath,
 				html = '<div class="image-item">'
-						+ '<img src="' + base_url + url + '" data-url="' + url + '" />'
+						+ '<img src="' + base_img + url + '" data-url="' + url + '" />'
 						+ '<div class="close"></div>'
 					+ '</div>';
 				$imgAdd.before(html);
@@ -230,7 +230,7 @@ $(function() {
 					for (var i = 0, length = list.length; i < length; i++) {
 						var item = list[i];
 						html += '<div class="pull-left server-image">'
-								+ '<img src="' + (base_url + item.path) + '" data-url="' + item.path + '" />'
+								+ '<img src="' + (base_img + item.path) + '" data-url="' + item.path + '" />'
 							+ '</div>';
 					}
 					$imageList.append(html);

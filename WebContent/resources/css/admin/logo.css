@@ -1,18 +1,22 @@
-.image-item {
-	width: 180px;
-	height: 230px;
-	border: 1px solid #ccc;
-	margin: 0 0 10px 4px;
-	position: relative;
+.logo_list:empty {
+	min-height: 100px;
 }
 
-.logo_list .image-item:nth-child(6n + 1) {
+.image-item {
+	width: 267px;
+    height: 225px;
+    border: 1px solid #ccc;
+    margin: 0 0 10px 13px;
+    position: relative;
+}
+
+.logo_list .image-item:nth-child(4n + 1) {
 	margin-left: 0;
 }
 
 .image-item .img {
 	width: 100%;
-	height: 200px;
+	height: 195px;
 }
 
 .image-item:hover .close {
@@ -34,6 +38,11 @@
 }
 
 .logo-modal {
-	width: 835px;
+	width: 935px;
 	height: 530px;
+}
+
+.preview-container {
+	width: 300px;
+	height: 150px;
 }

@@ -4,11 +4,11 @@ public class AttachmentObjVO {
 
 	private Integer id;
 	
-	private Integer attachmentId;
-	
 	private String path;
 	
 	private Integer objId;
+	
+	private Integer sort;
 
 	public Integer getId() {
 		return id;
@@ -16,14 +16,6 @@ public class AttachmentObjVO {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public Integer getAttachmentId() {
-		return attachmentId;
-	}
-
-	public void setAttachmentId(Integer attachmentId) {
-		this.attachmentId = attachmentId;
 	}
 
 	public String getPath() {
@@ -40,6 +32,14 @@ public class AttachmentObjVO {
 
 	public void setObjId(Integer objId) {
 		this.objId = objId;
+	}
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 	
 }

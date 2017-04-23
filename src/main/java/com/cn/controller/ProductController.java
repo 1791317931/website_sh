@@ -76,7 +76,7 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> getProductById(Integer id) {
 		Product product = productService.getDetail(id);
-		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, FileConst.PRODUCT);
+		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, FileConst.PRODUCT, null);
 		List<PropertyObjVO> objVOs = propertyObjService.getListByObjIdAndCode(id, PropertyConst.PRODUCT);
 		
 		ProductVO vo = transform(product, imgUrls, objVOs);

@@ -37,8 +37,8 @@ public class AttachmentServiceImpl implements AttachmentService {
 		attachmentDao.save(attachment);
 	}
 	
-	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code) {
-		return attachmentObjDao.getUrlsByObjIdAndCode(objId, code);
+	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code, String orderBy) {
+		return attachmentObjDao.getUrlsByObjIdAndCode(objId, code, orderBy);
 	}
 	
 	@Override

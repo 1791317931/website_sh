@@ -82,6 +82,8 @@
             <tx:method name="add*" propagation="REQUIRED" />
             <tx:method name="update*" propagation="REQUIRED" />
             <tx:method name="delete*" propagation="REQUIRED" />
+            <tx:method name="enable*" propagation="REQUIRED" />
+            <tx:method name="disable*" propagation="REQUIRED" />
             <tx:method name="*" read-only="true" />
         </tx:attributes>
     </tx:advice>

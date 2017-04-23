@@ -22,7 +22,8 @@ $(function() {
 			url : base_url + 'attachment/page/vo',
 			data : {
 				type : 'file',
-				code : 3
+				code : 3,
+				pageSize : 8
 			},
 			success : function(result) {
 				if (result.data.currentPage == 1) {
@@ -36,14 +37,14 @@ $(function() {
 					// objId = 0时，是启用状态
 					isActive = item.objId == 0;
 					html += '<div class="pull-left image-item" data-id="' + item.id + '">'
-							+ '<img class="img" src="' + (base_url + item.path) + '" />'
+							+ '<img class="img" src="' + (base_img + item.path) + '" />'
 							+ '<div class="item-desc clearfix">'
 								+ '<div class="pull-left">'
 									+ '状态:<span class="ml5 ' + (isActive ? 'active' : 'not-active') + '">' + (isActive ? '启用中' : '未启用') + '</span>'
 								+ '</div>'
 								+ '<span class="pull-right for-edit update-status">' + (isActive ? '禁用' : '启用') + '</span>'
 							+ '</div>'
-							+ '<div class="close"></div>'
+							+ '<div class="close" title="删除"></div>'
 						+ '</div>';
 				}
 				$logoList.append(html);

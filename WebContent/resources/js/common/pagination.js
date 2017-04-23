@@ -259,18 +259,10 @@ $.fn.extend({
 			}
 		});
 		
-		$container.unbind('reload').bind('reload', function() {
+		$container.unbind('reload').bind('reload', function(e, param) {
+			param = param || {};
+			opt.data = $.extend(true, opt.data, param);
 			load();
-		});
-		
-		$container.unbind('setData').bind('setData', function(e, param) {
-			opt.data = param;
-			if(!param.currentPage) {
-				param.currentPage = 1;
-			}
-			if(!param.pageSize) {
-				param.pageSize = 10;
-			}
 		});
 		
 		load();

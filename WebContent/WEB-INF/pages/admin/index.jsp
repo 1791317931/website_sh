@@ -40,13 +40,16 @@
 								<p data-url="const/role">角色管理</p>
 							</li>
 							<li>
+								<p data-url="user/admin/index">用户管理</p>
+							</li>
+							<li>
 								<p data-url="property/admin/index">属性管理</p>
 							</li>
 							<li>
 								<p data-url="category/admin/index">属性分类管理</p>
 							</li>
 							<!-- <li>
-								<p data-url="">供应商管理</p>
+								<p data-url="const/product">商品分类管理</p>
 							</li> -->
 						</ul>
 					</li>
@@ -73,6 +76,12 @@
 							<li>
 								<p data-url="attachment/logo/index">LOGO配置</p>
 							</li>
+							<li>
+								<p data-url="attachment/banner/index">Banner配置</p>
+							</li>
+							<!-- <li>
+								<p data-url="attachment/banner/index">配置</p>
+							</li> -->
 						</ul>
 					</li>
 				</ul>

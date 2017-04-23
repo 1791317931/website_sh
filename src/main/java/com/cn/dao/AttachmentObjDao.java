@@ -10,13 +10,19 @@ public interface AttachmentObjDao extends BaseDao<AttachmentObj> {
 
 	public void deleteByParam(Integer typeId, Integer objId);
 	
+	public void deleteByAttachmentId(int attachmentId);
+	
 	public void save(Integer attachmentId, Integer objId, Integer typeId, int created_by);
 	
-	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code);
+	public List<String> getUrlsByObjIdAndCode(Integer objId, Integer code, String orderBy);
 	
-	public Page getPageObjByParam(Page page, String type, Integer code);
+	public Page getPageObjByParam(Page page, String type, Integer code, String orderBy);
 	
+	public List<AttachmentObj> getByAttachmentId(int attachmentId);
 	
+	public int countByTypeAndCode(String type, int code);
+	
+	public void updateSortByAttachmentId(int attachmentId, int sort);
 	
 	
 	

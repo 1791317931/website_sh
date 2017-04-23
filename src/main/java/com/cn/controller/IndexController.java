@@ -8,7 +8,7 @@ import com.cn.base.BaseController;
 @Controller
 @RequestMapping(value = "/main")
 public class IndexController extends BaseController {
-
+	
 	@RequestMapping(value = "/index")
 	public String index() {
 		return "user/main";

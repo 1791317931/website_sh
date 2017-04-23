@@ -10,4 +10,6 @@ public class FileConst {
 	
 	public static final int LOGO = 3;
 	
+	public static final int BANNER = 4;
+	
 }

@@ -31,7 +31,8 @@ import com.cn.ref.ImageUtils;
 @RequestMapping(value = "/upload")
 public class UploadController extends BaseController {
 
-	private static String UPLOAD_PATH = "upload/img/";
+	private static String IMAGE_PATH = "E:/sharedisk/img/";
+	private static String FILE_PATH = "E:/sharedisk/file/";
 	private static String NOT_RGB = "请上传未被处理过的原图";
 	private static String JPG = "ffd8ffe0/ffd8ffe1";
 	private static String JPEG = "ffd8ffe0/ffd8ffe1";
@@ -240,7 +241,7 @@ public class UploadController extends BaseController {
 		Map<String, Object> result = new HashMap<String, Object>();
 		
 		// 保存路径
-		String savePath = request.getServletContext().getRealPath("/") + UPLOAD_PATH;
+		String savePath = IMAGE_PATH;
 		// 文件名
 		String fileName = UUID.randomUUID() + "";
 		
@@ -268,7 +269,7 @@ public class UploadController extends BaseController {
 		// 校验文件类型是否合法
 		if (valid) {
 			// 1、首先上传图片
-			Map<String, Object> fileMap = ImageUtils.uploadImage(file, savePath, UPLOAD_PATH, fileName, fw, fh);
+			Map<String, Object> fileMap = ImageUtils.uploadImage(file, savePath, IMAGE_PATH, fileName, fw, fh);
 			
 			// 2、校验已经上传图片是否合法：P过的图片保存为jpg格式时，默认的模式是CMYK模式（注意，这是给印刷机用的）。在图像-->模式中改为RGB模式才是显示器用的
 			boolean isRGB = ImageUtils.isRGB((String) fileMap.get("fullPath"));
@@ -292,7 +293,7 @@ public class UploadController extends BaseController {
 				// delFolder(system_physical_path + savePath + fileName);
 				
 				map.put("success", success);
-				map.put("imgPath", UPLOAD_PATH + fileName + "." + fileMap.get("type"));
+				map.put("imgPath", fileName + "." + fileMap.get("type"));
 			}
 		} else {
 			map.put("success", false);
@@ -324,7 +325,7 @@ public class UploadController extends BaseController {
 			@RequestParam(required = true, defaultValue = "true") boolean cutable,
 			@RequestParam(defaultValue = "image/jpg,image/jpeg,image/png", required = false) String accept) throws Exception {
 		
-		String basePath = UPLOAD_PATH;
+		String basePath = IMAGE_PATH;
 		String realPath = request.getServletContext().getRealPath("/");
 		// 保存路径
 		String savePath = realPath + basePath;
@@ -395,7 +396,7 @@ public class UploadController extends BaseController {
 		// delFolder(system_physical_path + savePath + fileName);
 		
 		map.put("success", success);
-		map.put("imgPath", UPLOAD_PATH + fileName + "." + fileMap.get("type"));
+		map.put("imgPath", fileName + "." + fileMap.get("type"));
 		
 		return map;
 	}
@@ -436,11 +437,11 @@ public class UploadController extends BaseController {
 	 */
 	@RequestMapping(value="/attachment/upload", method = RequestMethod.POST)	
 	@ResponseBody
-	public Map<String, Object> uploadFile(MultipartFile file, HttpServletRequest request,
-			@RequestParam(defaultValue = "upload/") String savePath) {
+	public Map<String, Object> uploadFile(MultipartFile file, HttpServletRequest request) {
 
 		// --------------------------校验字段--------------------------
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
+		String savePath = FILE_PATH;
 		fieldMap.put("savePath", savePath);
 		Map<String, Object> resultMap = validateFields(fieldMap);
 		

@@ -47,7 +47,7 @@
     <mvc:resources location="/resources/css/" mapping="/resources/css/**"></mvc:resources>
     <mvc:resources location="/resources/js/" mapping="/resources/js/**"></mvc:resources>
     <mvc:resources location="/resources/imgs/" mapping="/resources/imgs/**"></mvc:resources>
-    <mvc:resources location="/upload/" mapping="/upload/**"></mvc:resources>
+    <mvc:resources location="/shardisk/" mapping="/shardisk/**"></mvc:resources>
     
     <!-- 视图层配置 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">

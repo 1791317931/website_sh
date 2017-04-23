@@ -100,7 +100,7 @@ $(function() {
 			var imgUrls = data.imgUrls;
 			for (var i = 0, length = imgUrls.length; i < length; i++) {
 				imgHtml += '<div class="image-item">'
-							+ '<img src="' + base_url + imgUrls[i] + '" />'
+							+ '<img src="' + base_img + imgUrls[i] + '" />'
 						+ '</div>';
 			}
 			$imgContainer.html(imgHtml);

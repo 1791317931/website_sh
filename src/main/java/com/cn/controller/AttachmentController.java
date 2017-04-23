@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
@@ -39,6 +40,11 @@ public class AttachmentController extends BaseController {
 		return "admin/logos/index";
 	}
 	
+	@RequestMapping(value = "/banner/index")
+	public String bannerIndex() {
+		return "admin/banners/index";
+	}
+	
 	@RequestMapping(value = "/page")
 	@ResponseBody
 	public Map<String, Object> getPageByCode(int pageSize, int currentPage, 
@@ -48,9 +54,11 @@ public class AttachmentController extends BaseController {
 	
 	@RequestMapping(value = "/page/vo")
 	@ResponseBody
-	public Map<String, Object> getPageVOByCode(int pageSize, int currentPage, 
-			String type, Integer code, String status) {
-		return getMap(attachmentObjService.getPageObjByParam(pageSize, currentPage, type, code));
+	public Map<String, Object> getPageVOByCode(
+			@RequestParam(defaultValue = "10") int pageSize,
+			@RequestParam(defaultValue = "1") int currentPage, 
+			String type, Integer code, String orderBy) {
+		return getMap(attachmentObjService.getPageObjByParam(pageSize, currentPage, type, code, orderBy));
 	}
 	
 	/**
@@ -86,6 +94,44 @@ public class AttachmentController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> deleteById(int attachmentId) {
 		Map<String, Object> result = attachmentService.deleteLogoById(attachmentId);
+		return getMap(result);
+	}
+	
+	/**
+	 * 禁用banner
+	 * @param attachmentId
+	 * @return
+	 */
+	@RequestMapping(value = "/banner/disable")
+	@ResponseBody
+	public Map<String, Object> disableLogo(int attachmentId) {
+		attachmentObjService.disableBanner(attachmentId);
+		return getMap(null);
+	}
+	
+	/**
+	 * 启用或修改banner
+	 * @param logoId
+	 * @return
+	 */
+	@RequestMapping(value = "/banner/saveOrUpdate")
+	@ResponseBody
+	public Map<String, Object> saveOrUpdateBanner(int attachmentId, Integer sort) {
+		Map<String, Object> result = attachmentObjService.enableBanner(attachmentId, created_by, sort);
+		return getMap(result);
+	}
+	
+	@RequestMapping(value = "/banner/updateSort")
+	@ResponseBody
+	public Map<String, Object> updateSortByAttachmentId(int attachmentId, int sort) {
+		Map<String, Object> result = attachmentObjService.updateSortByAttachmentId(attachmentId, sort);
+		return getMap(result);
+	}
+	
+	@RequestMapping(value = "/banner/delete")
+	@ResponseBody
+	public Map<String, Object> deleteBannerByAttachmentId(int attachmentId) {
+		Map<String, Object> result = attachmentObjService.deleteBannerByAttachmentId(attachmentId);
 		return getMap(result);
 	}
 	

@@ -21,8 +21,18 @@ public class ConstController extends BaseController {
 	private ConstService constService;
 
 	@RequestMapping(value = "/role")
-	public String role() {
-		return "admin/consts/index";
+	public String roleIndex() {
+		return "admin/consts/role";
+	}
+	
+	@RequestMapping(value = "/product")
+	public String productIndex() {
+		return "admin/consts/product";
+	}
+	
+	@RequestMapping(value = "/supply")
+	public String supply() {
+		return "admin/consts/supply";
 	}
 	
 	@RequestMapping(value = "/page")
@@ -35,11 +45,6 @@ public class ConstController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> getList(String type) {
 		return getMap(constService.getByTypeAndCode(type, null));
-	}
-	
-	@RequestMapping(value = "/supply")
-	public String supply() {
-		return "admin/consts/supply";
 	}
 	
 	@RequestMapping(value = "/get")

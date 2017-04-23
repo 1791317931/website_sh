@@ -21,7 +21,10 @@
 <body>
 	<jsp:include page="../decorators/header.jsp" />
 	<div class="standard">
-		<div class="banner"></div>
+		<div class="banner-container" id="banner-container">
+			<div class="banner-body clearfix" id="banner"></div>
+			<div class="banner-footer text-center" id="banner-footer"></div>
+		</div>
 		<div class="product-list pt20 pb20 empty">
 			<div class="clearfix mb30">
 				<h4 class="mb10 product-category">

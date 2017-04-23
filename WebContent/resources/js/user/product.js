@@ -3,7 +3,7 @@ $(function() {
 	var html = '';
 	for(var i = 1, length = 3; i <= length; i++) {
 		html += '<div class="slider-item">'
-				+ '<img src="' + base_url + 'resources/imgs/' + i + '.jpg" />'
+				+ '<img src="' + base_img + 'resources/imgs/' + i + '.jpg" />'
 			+ '</div>'
 	}
 	$('.product-scroll').HorizontalSlide({

@@ -55,7 +55,7 @@ $(function() {
 			for(var i = 0, length = list.length; i < length; i++) {
 				var item = list[i];
 				html += '<div class="pull-left relative img-item">'
-						+ '<img class="src-img" src="' + base_url + item.path + '" />'
+						+ '<img class="src-img" src="' + base_img + item.path + '" />'
 						+ '<div class="img-desc">'
 							+ '<div class="lh24">所属分类:<span class="ml5">' + item.con.description + '</span></div>'
 							+ '<div class="lh24">更新时间:<span class="ml5">' + item.update_date + '</span></div>'

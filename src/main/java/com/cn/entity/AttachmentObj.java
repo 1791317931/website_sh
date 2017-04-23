@@ -17,6 +17,8 @@ public class AttachmentObj extends IdEntity {
 	
 	private Integer type_id;
 	
+	private Integer sort;
+	
 	public Integer getAttachment_id() {
 		return attachment_id;
 	}
@@ -41,4 +43,12 @@ public class AttachmentObj extends IdEntity {
 		this.type_id = type_id;
 	}
 
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
+	}
+	
 }

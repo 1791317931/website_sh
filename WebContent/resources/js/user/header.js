@@ -170,3 +170,22 @@
 	}
 	$optionContainer.removeClass('hide');
 })();
+
+// 加载LOGO
+(function() {
+	$.ajax({
+		url : base_url + 'attachment/page/vo',
+		data : {
+			type : 'file',
+			code : 3
+		},
+		success : function(result) {
+			var data = result.data,
+			list = data.list || [],
+			item = list[0];
+			if (item) {
+				$('.logo').attr('src', base_img + item.path);
+			}
+		}
+	});
+})();
