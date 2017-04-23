@@ -1,6 +1,7 @@
 package com.cn.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.cn.base.BaseDao;
 import com.cn.entity.User;
@@ -14,5 +15,7 @@ public interface UserDao extends BaseDao<User> {
 	
 	public Page getPageByParam(Page page, String username, String phone,
 			Integer typeId, String valid, String status);
+	
+	public void updateByParam(int id, Map<String, Object> map);
 	
 }

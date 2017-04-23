@@ -7,9 +7,9 @@ import com.cn.vo.Page;
 public interface BaseDao<T> {
 
 	void clear();
-
+	
 	void save(T entity);
-
+	
 	void delete(T entity);
 
 	void delete(int id);

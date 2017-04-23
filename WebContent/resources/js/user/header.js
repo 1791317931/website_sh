@@ -156,17 +156,17 @@
 	
 	// 已登录
 	if (id) {
-		$('.to-login').closest('span').remove();
-		$('.to-regist').closest('span').remove();
+		$('.to-login').parent('span').remove();
+		$('.to-regist').parent('span').remove();
 		if (role != 2) {
-			$('.to-manage').closest('span').remove();
+			$('.to-manage').parent('span').remove();
 		}
 	} else {
 		// 未登录
-		$('.to-shopCar').closest('span').remove();
-		$('.to-manage').closest('span').remove();
-		$('.welcome-container').closest('span').remove();
-		$('.to-logout').closest('span').remove();
+		$('.to-shopCar').parent('span').remove();
+		$('.to-manage').parent('span').remove();
+		$('.welcome-container').parent('span').remove();
+		$('.to-logout').parent('span').remove();
 	}
 	$optionContainer.removeClass('hide');
 })();

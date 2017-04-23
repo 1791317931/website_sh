@@ -1,6 +1,7 @@
 package com.cn.dao.impl;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
@@ -74,6 +75,24 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 			}
 		}
 		return getPageBySQL(sql, page);
+	}
+	
+	@Override
+	public void updateByParam(int id, Map<String, Object> map) {
+		String sql = "update w_user set ";
+		boolean flag = false;
+		for (Map.Entry<String, Object> entry : map.entrySet()) {
+			String key = entry.getKey();
+			Object value = entry.getValue();
+			if (flag) {
+				sql += ", " + key + " = '" + value + "'";
+			} else {
+				flag = true;
+				sql += " " + key + " = '" + value + "'";
+			}
+		}
+		sql += " where id = " + id;
+		sqlUpdate(sql);
 	}
 
 }

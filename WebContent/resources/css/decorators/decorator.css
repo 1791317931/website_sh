@@ -34,6 +34,10 @@ body {
     margin: 15px auto;
 }
 
+.welcome-container {
+	color: #0072ff;
+}
+
 .logo {
 	width: 160px;
 	height: 100%;

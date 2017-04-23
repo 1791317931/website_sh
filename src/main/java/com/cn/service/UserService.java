@@ -15,7 +15,14 @@ public interface UserService {
 	
 	public void saveOrUpdate(User user);
 	
-	public Map<String, Object> updateUserStatus(User user);
+	/**
+	 * 优先修改状态
+	 * @param id
+	 * @param valid
+	 * @param status
+	 * @return
+	 */
+	public Map<String, Object> updateUserStatus(int id, String valid, String status);
 	
 	public Page getPageByParam(int pageSize, int currentPage, String username, String phone,
 			Integer typeId, String valid, String status);

@@ -7,4 +7,6 @@ public class UserStatusConst {
 	
 	public static final String PASS = "P";
 	
+	public static final String FAIL = "F";
+	
 }

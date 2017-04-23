@@ -32,7 +32,7 @@ public class BaseDaoImpl<T extends IdEntity> implements BaseDao<T> {
 	}
 
 	public void save(T entity) {
-		getSession().saveOrUpdate(entity);
+		getSession().save(entity);
 	}
 
 	public void delete(T entity) {

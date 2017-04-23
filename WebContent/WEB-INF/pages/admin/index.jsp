@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>后台管理端</title>
+<title>后台管理系统</title>
 	<script type="text/javascript">
 		var base_url = '<%=basePath%>';
 	</script>

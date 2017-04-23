@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.cn.dao.UserDao;
@@ -48,14 +49,31 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Map<String, Object> updateUserStatus(User user) {
+	public Map<String, Object> updateUserStatus(int id, String valid, String status) {
 		Map<String, Object> result = new HashMap<String, Object>();
-		String valid = user.getIs_valid();
-		if (ValidConst.VALID.equals(valid)) {
-			user.setStatus(UserStatusConst.PASS);
-		}
-		userDao.save(user);
+		Map<String, Object> map = new HashMap<String, Object>();
 		result.put("success", true);
+
+		if (StringUtils.isNotBlank(valid)) {
+			map.put("is_valid", valid);
+			if (ValidConst.VALID.equals(valid)) {
+				map.put("status", UserStatusConst.PASS);
+			}
+		} else {
+			// 如果状态为空，那么修改审核流程
+			if (StringUtils.isBlank(status)) {
+				result.put("success", false);
+				result.put("msg", "参数不能为空");
+				return result;
+			} else {
+				map.put("status", status);
+				if (UserStatusConst.PASS.equals(status)) {
+					map.put("is_valid", ValidConst.VALID);
+				}
+			}
+		}
+		
+		userDao.updateByParam(id, map);
 		return result;
 	}
 	

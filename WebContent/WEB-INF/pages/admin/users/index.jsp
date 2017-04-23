@@ -53,6 +53,38 @@
 				</select>
 			</div>
 		</div>
-		<button class="btn btn-primary ml20 btn-2">查询</button>
+		<button class="btn btn-primary ml20 btn-2" id="user-list-search">查询</button>
+	</div>
+	<div class="empty user-list mt20" id="user-list" data-empty="暂无用户"></div>
+</div>
+<div class="z-modal hide" id="valid-modal">
+	<div class="z-modal-body valid-modal">
+		<div class="form-group">
+			<label>是否有效:</label>
+			<div class="form-control">
+				<select id="valid-select">
+					<option value="Y">是</option>
+					<option value="N">否</option>
+				</select>
+			</div>
+		</div>
+		<div class="form-group mt30 text-center">
+			<button class="btn btn-primary btn-2" id="change-valid-sure">确定</button>
+			<button class="btn btn-danger btn-2 ml20" id="change-valid-cancel">取消</button>
+		</div>
+	</div>
+</div>
+<div class="z-modal hide" id="status-modal">
+	<div class="z-modal-body status-modal">
+		<div class="form-group">
+			<label>审核流程:</label>
+			<div class="form-control">
+				<select id="status-select"></select>
+			</div>
+		</div>
+		<div class="form-group mt30 text-center">
+			<button class="btn btn-primary btn-2" id="change-status-sure">确定</button>
+			<button class="btn btn-danger btn-2 ml20" id="change-status-cancel">取消</button>
+		</div>
 	</div>
 </div>

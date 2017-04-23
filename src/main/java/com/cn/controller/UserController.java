@@ -70,7 +70,7 @@ public class UserController extends BaseController {
 			user.setUsername(username);
 			user.setIs_valid(ValidConst.INVALID);
 			user.setStatus(UserStatusConst.NEW);
-			List<Const> list = constService.getByTypeAndCode("user_type", UserConst.ADMIN);
+			List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER);
 			Const con = list.get(0);
 			user.setCon(con);
 			
@@ -112,7 +112,7 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/admin/update/status", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(HttpServletRequest request,
-			int id, @RequestParam(required = true) String valid) {
+			int id, String valid, String status) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		int userType = UserConst.SUPER_ADMIN;
 		if (!hasPriority(request, userType)) {
@@ -120,9 +120,7 @@ public class UserController extends BaseController {
 			result.put("success", false);
 			return result;
 		}
-		User user = userService.getById(id);
-		user.setIs_valid(valid);
-		result = userService.updateUserStatus(user);
+		result = userService.updateUserStatus(id, valid, status);
 		return getMap(result);
 	}
 	

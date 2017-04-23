@@ -39,7 +39,7 @@
 				<span><a class="to-login" href="javascript:">登录</a></span>
 				<span><a class="to-regist" href="javascript:">注册</a></span>
 				<span><a class="to-manage" href="<%=basePath%>admin/index">管理</a></span>
-				<span><span class="welcome-container">${user.username}，您好</span></span>
+				<span><span class="welcome-container">${user.username}</span>，您好</span>
 				<span><a class="to-logout" href="<%=basePath%>user/logout">退出</a></span>
 			</div>
 		</div>
