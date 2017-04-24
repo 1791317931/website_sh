@@ -4,13 +4,14 @@ $(function() {
 	$categoryModal = $('#category-modal'),
 	$categoryList = $('#category-list'),
 	$propertyList = $('#property-list'),
-	$productPropertyContainer = $('#product-property-container'),
+	$materialPropertyContainer = $('#material-property-container'),
 	$imgContainer = $('#img-container'),
 	$imageModal = $('#image-modal'),
 	$imageListModal = $('#image-list-modal'),
 	$imageList = $('#image-list'),
 	$imgAdd = $('#img-add'),
-	id = $('#product-id').val();
+	id = $('#material-id').val(),
+	$uploadFileContainer = $('.upload-file-container');
 	
 	// init data
 	(function() {
@@ -21,13 +22,13 @@ $(function() {
 			imgHtml = '';
 			
 			// 基本属性
-			$('#product-name').val(data.name);
-			$('#product-code').val(data.code);
-			$('#product-price').val(data.price);
-			$('#product-special-price').val(data.specialPrice);
-			$('#product-is-valid').val(data.status);
-			$('#product-count').val(data.count);
-			$('#product-category').val(data.categoryName).attr('data-id', data.categoryId);
+			$('#material-name').val(data.name);
+			$('#material-code').val(data.code);
+			$('#material-price').val(data.price);
+			$('#material-special-price').val(data.specialPrice);
+			$('#material-is-valid').val(data.status);
+			$('#material-count').val(data.count);
+			$('#material-category').val(data.categoryName).attr('data-id', data.categoryId);
 			
 			// 自定义属性
 			var propertyObjs = data.propertyObjs;
@@ -44,7 +45,7 @@ $(function() {
 								+ '<span class="must' + (is_must ? '' : ' hide') + '">*</span>'
 							+ '</div>';
 			}
-			$productPropertyContainer.html(propertyHtml);
+			$materialPropertyContainer.html(propertyHtml);
 			
 			// 图片
 			var imgUrls = data.imgUrls;
@@ -60,7 +61,7 @@ $(function() {
 		
 		if (id) {
 			$.ajax({
-				url : base_url + 'product/detail',
+				url : base_url + 'material/detail',
 				data : {
 					id : id
 				},
@@ -82,7 +83,7 @@ $(function() {
 				url : base_url + 'category/page',
 				data : {
 					type : 'property',
-					code : 1
+					code : 2
 				},
 				columns : [{
 					id : 'name',
@@ -141,12 +142,12 @@ $(function() {
 			name = $this.attr('data-name');
 			
 			// 先对比属性分类id，如果不同就替换
-			if($('#product-category').attr('data-id') == categoryId) {
+			if($('#material-category').attr('data-id') == categoryId) {
 				$categoryModal.trigger('hide');
 				return false;
 			}
 			
-			$('#product-category').val(name).attr('data-id', categoryId);
+			$('#material-category').val(name).attr('data-id', categoryId);
 			$.ajax({
 				url : base_url + 'category/property/list',
 				data : {
@@ -170,7 +171,7 @@ $(function() {
 							+ '</div>';
 					}
 					
-					$productPropertyContainer.html(html);
+					$materialPropertyContainer.html(html);
 				}
 			});
 			$categoryModal.trigger('hide');
@@ -223,7 +224,7 @@ $(function() {
 				url : base_url + 'attachment/page',
 				data : {
 					type : 'file',
-					code : 2
+					code : 1
 				},
 				success : function(result) {
 					var html = '',
@@ -318,25 +319,27 @@ $(function() {
 		
 		// 保存商品
 		$('#saveOrUpdate').bind('click', function() {
-			var productId = $('#product-id').val(),
-			productName = $.trim($('#product-name').val()),
-			price = $.trim($('#product-price').val()),
-			specialPrice = $.trim($('#product-special-price').val()),
-			count = $.trim($('#product-count').val()),
-			categoryId = $('#product-category').attr('data-id'),
-			$propertyInputs = $productPropertyContainer.find('input'),
+			var materialId = $('#material-id').val(),
+			materialName = $.trim($('#material-name').val()),
+			price = $.trim($('#material-price').val()),
+			specialPrice = $.trim($('#material-special-price').val()),
+			count = $.trim($('#material-count').val()),
+			categoryId = $('#material-category').attr('data-id'),
+			$propertyInputs = $materialPropertyContainer.find('input'),
 			$imgs = $('#img-container .image-item img'),
 			propertyObjs = [],
 			imgUrls = [],
-			productObj = {
-				name : productName,
+			fileUploads = [],
+			attachmentUrls = [],
+			materialObj = {
+				name : materialName,
 				price : price,
 				specialPrice : specialPrice,
 				count : count,
 				categoryId : categoryId
 			};
 			
-			if (!validate(productObj)) {
+			if (!validate(materialObj)) {
 				return false;
 			}
 			
@@ -368,24 +371,45 @@ $(function() {
 			$imgs.each(function(index, img) {
 				imgUrls.push($(img).attr('data-url'));
 			});
-			if (productId) {
-				productObj.id = productId;
+			if (materialId) {
+				materialObj.id = materialId;
 			}
-			productObj.imgUrls = imgUrls;
-			productObj.propertyObjs = propertyObjs;
+			materialObj.imgUrls = imgUrls;
+			materialObj.propertyObjs = propertyObjs;
 			
-			saveOrUpdate(productObj);
+			var $rowDivs = $uploadFileContainer.find('.z-upload-row'),
+			fileUploads = [];
+			
+			// 检测是否有文件
+			$rowDivs.each(function(index, item) {
+				var fileUpload = $(item).data('file');
+				if(fileUpload) {
+					fileUploads.push(fileUpload);
+				}
+			});
+			
+			if (!fileUploads.length) {
+				ZUtil.error('请至少上传一个附件');
+				return false;
+			} else {
+				for (var i = 0, length = fileUploads.length; i < length; i++) {
+					attachmentUrls.push(fileUploads[i].path);
+				}
+			}
+			materialObj.attachmentUrls = attachmentUrls;
+			
+			saveOrUpdate(materialObj);
 		});
 		
-		function saveOrUpdate(productObj) {
+		function saveOrUpdate(materialObj) {
 			$.ajax({
-				url : base_url + 'product/saveOrUpdate',
-				data : JSON.stringify(productObj),
+				url : base_url + 'material/saveOrUpdate',
+				data : JSON.stringify(materialObj),
 				type : 'post',
 				datatype : 'json',
 				contentType : 'application/json;charset=utf-8',
 				success : function(result) {
-					if (productObj.id) {
+					if (materialObj.id) {
 						ZUtil.success('数据修改成功');
 					} else {
 						ZUtil.success('数据保存成功');
@@ -397,12 +421,21 @@ $(function() {
 		
 		function reloadList() {
 			$.ajax({
-				url : base_url + 'product/admin/index',
+				url : base_url + 'material/admin/index',
 				success : function(result) {
 					$('#content-body').html(result);
 				}
 			});
 		}
+		
+		$uploadFileContainer.UploadFile({
+			maxSize : 20,
+			multiple : true,
+			type : 'file',
+			splitUpload : false,
+			tip : '使用不大于20M的pdf,xls,xlsx,doc,docx,wps,zip,txt文件',
+			uploadUrl : base_url + 'upload/attachment/upload'
+		});
 		
 	})();
 	

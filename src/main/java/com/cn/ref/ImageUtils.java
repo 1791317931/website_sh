@@ -760,9 +760,7 @@ public class ImageUtils {
 		file.transferTo(localFile);
 		
         result.put("type", type);
-        result.put("fullPath", filePath);
-        result.put("savePath", savePath);
-        result.put("fileName", fileName);
+        result.put("path", fileName + "." + type);
 		
 		return result;
 	}

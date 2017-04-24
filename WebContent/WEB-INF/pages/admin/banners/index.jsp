@@ -17,7 +17,7 @@
 	<div>
 		<button class="btn btn-primary" id="add-banner">新增Banner</button>
 	</div>
-	<div class="clearfix mt10 banner-list empty" id="bannerList" data-empty="暂无LOGO"></div>
+	<div class="clearfix mt10 banner-list empty" id="bannerList" data-empty="暂无Banner"></div>
 </div>
 <div class="z-modal hide" id="banner-modal">
 	<div class="z-modal-body banner-modal">

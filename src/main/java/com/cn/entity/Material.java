@@ -28,6 +28,8 @@ public class Material extends IdEntity {
 	
 	// 特价
 	private double special_price;
+	
+	private int count;
 
 	public String getName() {
 		return name;
@@ -87,4 +89,12 @@ public class Material extends IdEntity {
 		this.category = category;
 	}
 
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
 }

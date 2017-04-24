@@ -18,4 +18,6 @@ public interface AttachmentService {
 	
 	public Map<String, Object> deleteLogoById(int id);
 	
+	public List<Integer> batchSave(String urls[], String type, int code, int created_by);
+	
 }

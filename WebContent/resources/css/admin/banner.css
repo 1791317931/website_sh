@@ -8,6 +8,10 @@
 	height: 150px;
 }
 
+.banner-list:empty {
+	min-height: 100px;
+}
+
 .banner-list .item-banner:nth-child(4n + 1) {
 	margin-left: 0;
 }

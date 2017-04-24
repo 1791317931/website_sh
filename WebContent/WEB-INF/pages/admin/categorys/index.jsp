@@ -39,7 +39,7 @@
 			</select>
 		</div>
 	</div>
-	<button class="btn btn-primary pull-left btn-2 ml20" id="search-category">搜索</button>
+	<button class="btn btn-primary pull-left btn-2 ml20" id="search-category">查询</button>
 	<button class="btn btn-primary pull-left ml20" id="add-category">新增分类</button>
 </div>
 <div id="categoryList"></div>

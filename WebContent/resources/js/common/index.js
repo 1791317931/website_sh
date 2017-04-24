@@ -3036,15 +3036,15 @@
 				// 检查容量
 				sizeCheckUrl : '',
 				uploadUrl : '',
-				saveButtonSelector : '#saveFile',
+				saveButtonSelector : '.save-file',
 				// 默认上传视频
 				type : 'video',
 				// normal、modal
 				mode : 'modal',
 				// 是否允许分片上传
-				manyTimes : true,
+				splitUpload : true,
 				// 分片上传时，每次上传10M
-				perSize : 10,
+				splitSize : 10,
 				// 相应文件类型提示信息
 				tip : '使用不大于 600M的rmvb,rm,mkv,mp4,3gp,avi,mov,flv,wma,mpg,wmv文件',
 				fileName : 'file',
@@ -3066,6 +3066,7 @@
 				repeatUpload : function() {
 					ZUtil.error('请勿重复上传文件');
 				},
+				renderCallback : $.noop,
 				emptyFile : function(multiple, type) {
 					var typeObj = {
 						save : '上传',
@@ -3106,8 +3107,8 @@
 			uploadUrl = option.uploadUrl,
 			saveButtonSelector = option.saveButtonSelector,
 			mode =option.mode,
-			perSize = option.perSize * 1024 * 1024,
-			manyTimes = option.manyTimes,
+			splitSize = option.splitSize * 1024 * 1024,
+			splitUpload = option.splitUpload,
 			type = option.type,
 			acceptObj = Accept[type],
 			accept = acceptObj.text,
@@ -3125,6 +3126,7 @@
 			uploadError = option.uploadError,
 			invalidType = option.invalidType,
 			rowAddCallback = option.rowAddCallback,
+			renderCallback = option.renderCallback,
 			changeCallback = option.changeCallback,
 			beforeSave = option.beforeSave,
 			saveCallback = option.saveCallback;
@@ -3141,16 +3143,13 @@
 								+ '<div class="z-progress-bar" tip="' + tip + '"></div>'
 							+ '</div>'
 							+ '<div class="z-upload-cell z-buttons" multiple="' + multiple + '">'
-								+ '<button type="button" class="btn btn-primary btn-sm z-select-button">'
-									+ '<span class="fa fa-cloud-upload"></span>'
+								+ '<button type="button" class="btn btn-primary btn-sm z-select-button br0">'
 									+ (type == 'video' ? '选择视频' : '上传文件')
 								+ '</button>'
 								+ '<button class="btn btn-primary btn-sm z-upload">'
-									+ '<span class="fa fa-cloud-upload"></span>'
 									+ '上传'
 								+ '</button>'
 								+ '<button class="btn btn-primary btn-sm z-upload-delete">'
-									+ '<i class="ace-icon fa fa-trash-o align-top bigger-125"></i>'
 									+ '删除'
 								+ '</button>'
 							+ '</div>'
@@ -3158,7 +3157,6 @@
 				html = '<div class="z-upload-rows">' + row + '</div>'
 					+ '<div class="z-upload-operations hide">'
 						+ '<button class="btn btn-primary z-upload-add">'
-							+ '<i class="ace-icon fa fa-plus-square align-top bigger-125"></i>'
 							+ '新增'
 						+ '</button>'
 					+ '</div>';
@@ -3167,12 +3165,13 @@
 					
 				// 开发者自己调整保存按钮位置
 				$uploadContainer.html(html);
+				renderCallback();
+				
 				$container.attr('data-version', 'z-upload-' + ZUtil.getVersion());
 				
 				var $rows = $container.find('.z-upload-rows');
 				$operations = $container.find('.z-upload-operations'),
-				$add = $operations.find('.z-upload-add'),
-				$save = $(saveButtonSelector);
+				$add = $operations.find('.z-upload-add');
 				
 				// 重置插件
 				$container.bind('reset', function(e) {
@@ -3335,7 +3334,7 @@
 					uploadFile($row, file);
 				});
 				
-				$save.bind('click', function() {
+				$container.on('click', saveButtonSelector, function() {
 					var $rowDivs = $rows.find('.z-upload-row');
 					
 					if(isUploading() == false) {
@@ -3344,16 +3343,16 @@
 					
 					// 判断multiple是否为true
 					if(multiple) {
-						save($rowDivs);
+						save();
 					} else {
 						// 如果是单文件上传，点击保存按钮时先上传文件，然后执行回调
 						$rows.find('.z-upload').click();
 					}
 				});
 				
-				// 保存到数据库
-				function save($rowDivs) {
-					var fileUploads = [];
+				function getFileUploads() {
+					var $rowDivs = $rows.find('.z-upload-row'),
+					fileUploads = [];
 					
 					// 检测是否有文件
 					$rowDivs.each(function(index, item) {
@@ -3362,6 +3361,13 @@
 							fileUploads.push(fileUpload);
 						}
 					});
+					return fileUploads;
+				}
+				
+				// 保存到数据库
+				function save($rowDivs) {
+					var fileUploads = getFileUploads();
+					
 					if(!fileUploads.length) {
 						emptyFile(multiple, 'save');
 						return false;
@@ -3490,7 +3496,7 @@
 							
 							// success可能会变动
 							if(response.success) {
-								if(manyTimes) {
+								if(splitUpload) {
 									if(index < totalIndex) {
 										start = end;
 										// 继续发送分片文件
@@ -3513,9 +3519,9 @@
 					};
 					
 					// 是否分片上传
-					if(manyTimes) {
+					if(splitUpload) {
 						// 每次上传1M
-						var totalIndex = Math.ceil(size / perSize),
+						var totalIndex = Math.ceil(size / splitSize),
 						start = 0,
 						end = 0,
 						index = 0;
@@ -3530,10 +3536,10 @@
 					function send() {
 						// 必须使用异步（true），才能监控progress
 						xhr.open('post', uploadUrl, true);
-						if(size - start < perSize) {
+						if(size - start < splitSize) {
 							end = size;
 						} else {
-							end = perSize + start;
+							end = splitSize + start;
 						}
 						
 						formData['delete']('index');

@@ -1,5 +1,5 @@
 $(function() {
-	var $logoList = $('#logo_list'),
+	var $logoList = $('#logo-list'),
 	$logoModal = $('#logo-modal'),
 	typeId;
 	

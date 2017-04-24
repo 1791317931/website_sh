@@ -302,6 +302,7 @@ li {list-style: none;}
 .borange5 {border: 5px solid #ff7d00;}
 
 /* border-radius */
+.br0 {border-radius: 0;}
 .br1 {border-radius: 1px;}
 .br2 {border-radius: 2px;}
 .br3 {border-radius: 3px;}

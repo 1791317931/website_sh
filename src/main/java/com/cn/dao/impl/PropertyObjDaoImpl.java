@@ -49,9 +49,9 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 	}
 	
 	@Override
-	public void deleteByProductId(Integer productId) {
-		String sql = "delete from w_property_obj where obj_id = ?";
-		sqlUpdate(sql, productId);
+	public void deleteByObjIdAndTypeId(Integer objId, int typeId) {
+		String sql = "delete from w_property_obj where obj_id = ? and type_id = ?";
+		sqlUpdate(sql, objId, typeId);
 	}
 	
 	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value) {

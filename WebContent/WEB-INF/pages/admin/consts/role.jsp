@@ -12,4 +12,4 @@
 </script>
 
 <script src="<%=basePath%>resources/js/admin/const/role.js?<%=new Date().getTime()%>"></script>
-<div id="roleList"></div>
+<div class="p10" id="roleList"></div>

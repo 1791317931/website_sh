@@ -67,7 +67,7 @@ public class ProductServiceImpl implements ProductService {
 		attachmentObjService.deleteByParam(con.getId(), id);
 		
 		// 删除相关属性
-		propertyObjService.deleteByProductId(id);
+		propertyObjService.deleteByObjIdAndTypeId(id, con.getId());
 		
 		productDao.delete(id);
 	}
@@ -99,7 +99,11 @@ public class ProductServiceImpl implements ProductService {
 		productDao.save(product);
 		
 		Integer productId = product.getId();
-		propertyObjService.deleteByProductId(productId);
+		// 获取商品图片对应的const
+		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT).get(0);
+		Integer typeId = con.getId();
+		propertyObjService.deleteByObjIdAndTypeId(productId, typeId);
+		
 		List<PropertyObjVO> propertyObjVOs = productVO.getPropertyObjs();
 		PropertyObjVO propertyObjVO = null;
 		for(int i = 0, length = propertyObjVOs.size(); i < length; i++) {
@@ -108,10 +112,8 @@ public class ProductServiceImpl implements ProductService {
 			Integer propertyId = propertyObjVO.getPropertyId();
 			propertyObjService.save(created_by, productId, categoryId, propertyId, value);
 		}
+		
 		String urls[] = productVO.getImgUrls();
-		// 获取商品图片对应的const
-		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT).get(0);
-		Integer typeId = con.getId();
 		Attachment attachment = null;
 		AttachmentObj attachmentObj = null;
 		attachmentObjService.deleteByParam(typeId, productId);

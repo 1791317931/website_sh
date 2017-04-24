@@ -1,5 +1,7 @@
 package com.cn.service.impl;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +13,10 @@ import org.springframework.stereotype.Service;
 import com.cn.dao.AttachmentDao;
 import com.cn.dao.AttachmentObjDao;
 import com.cn.entity.Attachment;
+import com.cn.entity.Const;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.AttachmentService;
+import com.cn.service.ConstService;
 import com.cn.vo.Page;
 
 @Service(value = "attachmentService")
@@ -26,6 +30,9 @@ public class AttachmentServiceImpl implements AttachmentService {
 	
 	@Resource(name = "attachmentObjService")
 	private AttachmentObjService attachmentObjService;
+
+	@Resource(name = "constService")
+	private ConstService constService;
 
 	@Override
 	public Page getAttachmentByCode(int pageSize, int currentPage, String type, Integer code) {
@@ -66,6 +73,32 @@ public class AttachmentServiceImpl implements AttachmentService {
 		result.put("success", success);
 		result.put("msg", msg);
 		return result;
+	}
+	
+	@Override
+	public List<Integer> batchSave(String[] urls, String type, int code, int created_by) {
+		Attachment attachment = null;
+		List<Integer> ids = new ArrayList<Integer>();
+		if (urls != null && urls.length > 0) {
+			List<Const> list = constService.getByTypeAndCode(type, code);
+			Const con = list.get(0);
+			Date now = new Date();
+			for (int i = 0, length = urls.length; i < length; i++) {
+				attachment = new Attachment();
+				attachment.setCreate_date(now);
+				attachment.setUpdate_date(now);
+				attachment.setCreated_by(created_by);
+				attachment.setUpdated_by(created_by);
+				attachment.setIs_deleted("N");
+				attachment.setPath(urls[i]);
+				attachment.setCon(con);
+				
+				attachmentDao.save(attachment);
+				ids.add(attachment.getId());
+			}
+		}
+		
+		return ids;
 	}
 	
 }

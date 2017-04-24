@@ -14,7 +14,7 @@
 <script src="<%=basePath%>resources/js/admin/material/material.js?<%=new Date().getTime()%>"></script>
 
 <div class="material-container">
-	<div class="clearfix p10">
+	<div class="clearfix pv10">
 		<div class="form-group col-3">
 			<label class="label-4">材料名称:</label>
 			<div class="form-control">

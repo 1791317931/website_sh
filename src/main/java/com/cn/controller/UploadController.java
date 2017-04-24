@@ -83,8 +83,10 @@ public class UploadController extends BaseController {
 		fieldMaps.put("fileName", fileNameMap);
 	}
 	
+	// 使用sharedisk，就不使用servlet真实路径
 	public static String getFullPath(HttpServletRequest request, String filePath) {
-		return request.getServletContext().getRealPath("/") + filePath;
+//		return request.getServletContext().getRealPath("/") + filePath;
+		return filePath;
 	}
 	
 	// 获取文件类型

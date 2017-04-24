@@ -17,6 +17,7 @@
 	<link rel="stylesheet" href="<%=basePath %>resources/css/common/index.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath %>resources/css/common/message-tip.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath %>resources/css/common/clip-image.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath %>resources/css/common/upload-file.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath %>resources/css/admin/index.css?<%=new Date().getTime()%>">
 	
 	<script src="<%=basePath %>resources/js/common/jquery.js?<%=new Date().getTime()%>"></script>
@@ -69,7 +70,7 @@
 								<p data-url="material/admin/index">材料管理</p>
 							</li>
 							<li>
-								<p data-url="material/admin/toEdit">材料管理</p>
+								<p data-url="material/admin/toEdit">材料编辑</p>
 							</li>
 						</ul>
 					</li>

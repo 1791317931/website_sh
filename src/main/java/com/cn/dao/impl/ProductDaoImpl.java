@@ -16,17 +16,12 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 	
 	@Override
 	public Page getSimplePageByParam(Page page, String name, String code) {
-		String sql = "from Product wp";
-		boolean flag = false;
+		String sql = "from Product wp where 1 = 1";
 		if(name != null && name.length() > 0) {
-			sql += " where wp.name like '%" + name + "%'";
-			flag = true;
+			sql += " and wp.name like '%" + name + "%'";
 		}
 		if(code != null && code.length() > 0) {
-			if(flag) {
-				sql += " and";
-			}
-			sql += " where wp.code like '%" + code + "%'";
+			sql += " and wp.code like '%" + code + "%'";
 		}
 		return getPageByQuery(sql, page);
 	}

@@ -16,7 +16,7 @@
 	<div class="pt10 pb10">
 		<button class="btn btn-primary" id="upload-logo">上传LOGO</button>
 	</div>
-	<div class="empty logo_list clearfix" id="logo_list" data-empty="暂无LOGO"></div>
+	<div class="empty logo-list clearfix" id="logo-list" data-empty="暂无LOGO"></div>
 </div>
 <div class="z-modal hide" id="logo-modal">
 	<div class="z-modal-body logo-modal">

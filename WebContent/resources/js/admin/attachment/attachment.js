@@ -95,6 +95,7 @@ $(function() {
 			
 			$.ajax({
 				url : base_url + 'attachment/saveOrUpdate',
+				type : 'post',
 				data : {
 					path : data.imgPath,
 					typeId : typeId

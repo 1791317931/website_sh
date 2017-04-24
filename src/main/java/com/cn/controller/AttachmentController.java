@@ -1,12 +1,14 @@
 package com.cn.controller;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -135,10 +137,9 @@ public class AttachmentController extends BaseController {
 		return getMap(result);
 	}
 	
-	@RequestMapping(value = "/saveOrUpdate")
+	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(Attachment attachment, Integer typeId) {
-		
 		Date now = new Date();
 		attachment.setUpdate_date(now);
 		attachment.setUpdated_by(created_by);
@@ -151,6 +152,13 @@ public class AttachmentController extends BaseController {
 		}
 		attachmentService.saveOrUpdate(attachment);
 		return getMap(null);
+	}
+	
+	@RequestMapping(value = "/batchSave", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> batchSave(@RequestParam(value = "urls[]") String urls[], String type, int code) {
+		List<Integer> ids = attachmentService.batchSave(urls, type, code, created_by);
+		return getMap(ids);
 	}
 	
 }

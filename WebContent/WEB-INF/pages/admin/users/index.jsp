@@ -61,21 +61,21 @@
 <div class="z-modal hide" id="user-modal">
 	<div class="z-modal-body user-modal">
 		<div class="form-group">
-			<label>用户名</label>
+			<label class="label-3 text-right">用户名:</label>
 			<div class="form-control r10">
 				<input type="text" id="add-username" placeholder="请输入用户名" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group">
-			<label>手机号</label>
+			<label class="label-3 text-right">手机号:</label>
 			<div class="form-control r10">
 				<input type="text" id="add-phone" value="" placeholder="请输入手机号" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group">
-			<label class="btn-3">密码</label>
+			<label class="label-3 text-right">密码:</label>
 			<div class="form-control r10">
 				<input type="password" id="add-password" value="" placeholder="请输入密码" />
 			</div>

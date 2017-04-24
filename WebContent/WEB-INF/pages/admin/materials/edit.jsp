@@ -10,46 +10,46 @@
 <script type="text/javascript">
 	var base_url = '<%=basePath%>';
 </script>
-<link rel="stylesheet" href="<%=basePath %>resources/css/admin/product-edit.css?<%=new Date().getTime()%>">
-<script src="<%=basePath%>resources/js/admin/product/edit.js?<%=new Date().getTime()%>"></script>
+<link rel="stylesheet" href="<%=basePath %>resources/css/admin/material-edit.css?<%=new Date().getTime()%>">
+<script src="<%=basePath%>resources/js/admin/material/edit.js?<%=new Date().getTime()%>"></script>
 
 <div class="p20">
 	<div class="title">基本属性:</div>
 	<div class="clearfix p10 base-property-container">
-		<!-- 隐藏product-id -->
-		<input type="hidden" id="product-id" value="${id}" />
+		<!-- 隐藏material-id -->
+		<input type="hidden" id="material-id" value="${id}" />
 		<div class="form-group col-4">
 			<label class="label-5">名称:</label>
 			<div class="form-control r10">
-				<input type="text" id="product-name" />
+				<input type="text" id="material-name" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4 hide">
 			<label class="label-5">编号:</label>
 			<div class="form-control r10">
-				<input type="text" id="product-code" readonly />
+				<input type="text" id="material-code" readonly />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4">
 			<label class="label-5">价格:</label>
 			<div class="form-control r10">
-				<input type="text" id="product-price" />
+				<input type="text" id="material-price" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4">
 			<label class="label-5">特价:</label>
 			<div class="form-control r10">
-				<input type="text" id="product-special-price" />
+				<input type="text" id="material-special-price" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4 hide">
 			<label class="label-5">是否有效:</label>
 			<div class="form-control">
-				<select id="product-is-valid">
+				<select id="material-is-valid">
 					<option value="Y">有效</option>
 					<option value="N">无效</option>
 				</select>
@@ -58,23 +58,27 @@
 		<div class="form-group col-4">
 			<label class="label-5">库存:</label>
 			<div class="form-control r10">
-				<input type="text" id="product-count" />
+				<input type="text" id="material-count" />
 			</div>
 			<span class="must">*</span>
 		</div>
 		<div class="form-group col-4">
 			<label class="label-5">属性分类:</label>
 			<div class="form-control r10">
-				<input type="text" id="product-category" readonly />
+				<input type="text" id="material-category" readonly />
 			</div>
 		</div>
 		<button class="btn btn-primary ml30" id="select-category">选择属性分类</button>
 	</div>
-	<div class="title">商品自定义属性:</div>
-	<div class="product-property-container empty" data-empty="请添加商品属性" id="product-property-container"></div>
-	<div class="title">商品图片:</div>
+	<div class="title">材料自定义属性:</div>
+	<div class="material-property-container empty" data-empty="请添加材料属性" id="material-property-container"></div>
+	<div class="title">材料图片:</div>
 	<div class="img-container clearfix" id="img-container">
 		<div class="img-add pull-left" id="img-add"></div>
+	</div>
+	<div class="title">材料附件:</div>
+	<div class="upload-file-container">
+		<div class="z-upload-container"></div>
 	</div>
 	<div class="mt20 text-center">
 		<button class="btn btn-primary btn-2" id="saveOrUpdate">保存</button>
@@ -90,7 +94,7 @@
 </div>
 <div class="z-modal hide" id="property-modal">
 	<div class="z-modal-body property-modal">
-		<div class="clearfix property-list empty" id="property-list" data-empty="没有商品属性"></div>
+		<div class="clearfix property-list empty" id="property-list" data-empty="没有材料属性"></div>
 		<div class="text-center p30">
 			<button class="btn btn-primary btn-2" id="close-property-modal">关闭</button>
 		</div>

@@ -120,6 +120,7 @@ create table w_material (
 	status varchar(10) not null default 'N' comment '状态：N（新增）、P（审核通过）、F（审核失败）、S（特价）',
 	price double not null comment '价格',
 	special_price double not null comment '特价',
+	count int not null comment '库存',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
 	created_by int not null comment '创建人id',
