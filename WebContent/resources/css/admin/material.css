@@ -1,0 +1,69 @@
+.lh36 {line-height: 36px;}
+
+.material-list:empty {
+	min-height: 100px;
+}
+
+.material-modal {
+	width: 80%;
+	height: 80%;
+	min-width: 900px;
+	min-height: 520px;
+	padding: 20px;
+}
+
+.material-modal .form-group > label {text-align: right;}
+
+.material-modal .form-control, .property-modal .form-control {right: 10px;}
+
+.base-property-container {
+	border: 1px solid #eee;
+}
+
+.material-property-container {
+	min-height: 100px;
+	border: 1px solid #eee;
+	padding: 10px 0;
+}
+
+.property-modal, .category-modal {
+	width: 60%;
+	height: 60%;
+	min-width: 700px;
+	min-height: 500px;
+	padding: 20px;
+}
+
+.must {
+	position: absolute;
+	right: 0;
+	color: red;
+}
+
+.property-list {min-height: 100px;}
+
+.img-container {
+	border: 1px solid #ccc;
+	padding: 10px;
+}
+
+.img-container > div {
+	margin-left: 10px;
+}
+
+.img-container > div:nth-child(5n + 1) {
+	margin-left: 0;
+}
+
+.image-item {
+	width: 150px;
+	height: 180px;
+	position: relative;
+    float: left;
+}
+
+.image-item img {
+	width: 100%;
+	height: 100%;
+	border: 0;
+}

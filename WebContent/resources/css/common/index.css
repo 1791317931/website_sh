@@ -125,7 +125,21 @@ a {
 .pl-15 {padding-left: -15px;}
 .pl-20 {padding-left: -20px;}
 .pl-25 {padding-left: -25px;}
-.pl-30 {margin-left: -30px;}
+.pl-30 {padding-left: -30px;}
+/* 垂直方向 */
+.pv5 {padding: 5px 0;}
+.pv10 {padding: 10px 0;}
+.pv15 {padding: 15px 0;}
+.pv20 {padding: 20px 0;}
+.pv25 {padding: 25px 0;}
+.pv30 {padding: 30px 0;}
+/* 水平方向 */
+.ph5 {padding: 0 5px;}
+.ph10 {padding: 0 10px;}
+.ph15 {padding: 0 15px;}
+.ph20 {padding: 0 20px;}
+.ph25 {padding: 0 25px;}
+.ph30 {padding: 0 30px;}
 
 /* position */
 .t5 {top: 5px !important;}
