@@ -78,9 +78,9 @@ $(function() {
 				$row.data('file', fileUpload);
 				
 				innerHtml = '<div class="z-file-name z-upload-cell">'+ name + '.' + type + '</div>'
-						+ '<div class="z-upload-progress z-upload-cell"></div>'
+						+ '<div class="z-upload-progress z-upload-cell">进度：100%</div>'
 						+ '<div class="z-upload-speed z-upload-cell"></div>'
-						+ '<div class="z-upload-progress-linear"></div>';
+						+ '<div class="z-upload-progress-linear" style="width: 100%;"></div>';
 				
 				$row.find('.z-progress-bar').html(innerHtml);
 			}

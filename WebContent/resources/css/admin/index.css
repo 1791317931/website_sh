@@ -1,6 +1,24 @@
 .nav-head {
-	height: 60px;
-	background: #00ffc4;
+	height: 30px;
+    background: rgba(150, 173, 168, 0.2);
+}
+
+.nav-container {
+	margin: 6px 20px 0 0;
+}
+
+.nav-container > span:after {
+	content: '|';
+	margin-left: 5px;
+	color: #888;
+}
+
+.nav-container > span:last-child:after {
+	content: '';
+}
+
+.welcome-container {
+	color: #0072ff;
 }
 
 .wp100 {width: 100%;}
@@ -22,7 +40,8 @@
 .menu p {
 	line-height: 26px;
 	padding-left: 15px;
-    border: 1px solid #ccc;
+    border-top: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
     cursor: pointer;
     color: #888;
 }
@@ -53,4 +72,20 @@
 	width: 1140px;
 	min-height: 550px;
 	margin: auto;
+}
+
+.content-loading {
+	position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .1);
+    z-index: 9999;
+}
+
+.content-loading-body {
+	height: 100%;
+    background: url('../../../resources/imgs/loading.gif') no-repeat center center;
+    background-size: 50px;
 }

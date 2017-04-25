@@ -130,6 +130,8 @@
 <div class="z-modal hide" id="image-list-modal">
 	<div class="z-modal-body image-list-modal">
 		<div class="image-list empty clearfix" data-empty="暂无图片" id="image-list"></div>
+		<div class="loading hide">数据加载中...</div>
+		<div class="no-more hide">没有更多数据了</div>
 		<div class="text-center mt20">
 			<button class="btn btn-primary btn-2" id="sure-image-list-modal">确定</button>
 			<button class="btn btn-danger btn-2 ml20" id="close-image-list-modal">关闭</button>

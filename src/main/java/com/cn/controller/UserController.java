@@ -80,7 +80,7 @@ public class UserController extends BaseController {
 			user.setUsername(username);
 			user.setIs_valid(ValidConst.VALID);
 			user.setStatus(UserStatusConst.PASS);
-			List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER);
+			List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER, null);
 			Const con = list.get(0);
 			user.setCon(con);
 			

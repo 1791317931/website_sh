@@ -3,22 +3,18 @@
  * javabean:com.qimooc.common.core.page.PageScroll
  * 说明：每次滚动加载数据的间隔interval，也就是ajax-->success执行间隔interval后才能继续滚动加载数据
  * 如果需要显示交互信息可以在当前dom元素内添加
- * *.empty(暂无数据,css{display:none}),*.loadMore(加载更多),*.loading(正在加载中...,css{display:none})
+ * *.loadMore(加载更多),*.loading(正在加载中...,css{display:none})
  * 用法：
- * (1)、<div id="container" style="overflow-y: auto;">
- * 			<div class="empty">加载更多</div>
- * 			<div class="empty" style="display:none;">数据加载中...</div>
- * 			<div class="empty" style="display:none;">暂无数据</div>
- *     </div>
+ * (1)、<div id="container" style="overflow-y: auto;"></div>
+ * 		<div class="loading hide">数据加载中...</div>
+ * 		<div class="no-more hide">没有更多数据了</div>
  *     $('#container').Scroll({
  *     							self : true,
  *     							url : ''
  *     						});
- * (2)、<div id="container">
- * 			<div class="empty">加载更多</div>
- * 			<div class="empty" style="display:none;">数据加载中...</div>
- * 			<div class="empty" style="display:none;">暂无数据</div>
- *     </div>
+ * (2)、<div id="container"></div>
+ * 		<div class="loading hide">数据加载中...</div>
+ * 		<div class="no-more hide">没有更多数据了</div>
  *     $('#container').Scroll({
  *     							url : ''
  *     						});
@@ -62,21 +58,23 @@
 		
 		// 可以继续加载数据
 		function setState(obj) {
-			var data = obj.data;
-			if(data.totalCount > data.currentPage * data.pageSize) {
+			var data = obj.data,
+			totalCount = data.totalCount,
+			pageSize = data.pageSize,
+			$noMore = $this.siblings('.no-more');
+			if(totalCount > data.currentPage * pageSize) {
 				$this.isReady = true;
 				$this.preTime = new Date().getTime();
-				$this.find('.empty').show();
-			} else {
-				$this.find('.loadMore').show();
+				$noMore.addClass('hide');
+			} else if (totalCount) {
+				$this.siblings('.no-more').removeClass('hide');
 			}
 		}
 		function beforeSend() {
-			$this.find('.loading').show();
-			$this.find('loadMore').hide();
+			$this.siblings('.loading').removeClass('hide');
 		}
 		function complete() {
-			$this.find('.loading').hide();
+			$this.siblings('.loading').addClass('hide');
 		}
 		function success(data) {
 			data = typeof data == 'string' && JSON.parse(data) || data;

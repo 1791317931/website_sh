@@ -1,0 +1,9 @@
+.product-category-list:empty {
+	min-height: 100px;
+}
+
+.category-edit-modal {
+	width: 400px;
+	height: 220px;
+	padding: 30px;
+}

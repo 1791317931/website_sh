@@ -1,5 +1,7 @@
 $(function() {
 	
+	var $contentLoading = $('.content-loading');
+	
 	// 一级菜单
 	$('.menu > li > p').bind('click', function() {
 		var $p = $(this),
@@ -25,18 +27,19 @@ $(function() {
 		$p.closest('.sub-menu').parent().siblings().find('.sub-menu p').removeClass('active');
 		
 		// 切换
-		if(!$p.hasClass('active')) {
-			$p.addClass('active');
-			/*$('#content-body').attr({
-				src : base_url + $p.attr('data-url')
-			});*/
-			$.ajax({
-				url : base_url + $p.attr('data-url'),
-				success : function(data) {
-					$('#content-body').html(data);
-				}
-			});
-		}
+		$p.addClass('active');
+		$.ajax({
+			url : base_url + $p.attr('data-url'),
+			beforeSend : function() {
+				$contentLoading.removeClass('hide');
+			},
+			complete : function() {
+				$contentLoading.addClass('hide');
+			},
+			success : function(data) {
+				$('#content-body').html(data);
+			}
+		});
 		
 	});
 	

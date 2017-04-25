@@ -27,9 +27,9 @@ drop table if exists w_const;
 create table w_const (
 	id int primary key auto_increment,
 	type varchar(25) not null comment '类型',
-	code varchar(100) not null comment '编号',
-	value varchar(100) not null comment '值',
-	description varchar(255) comment '备注',
+	code varchar(10) not null comment '编号',
+	value varchar(20) not null comment '值',
+	description varchar(20) comment '备注',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
 	created_by int not null comment '创建人id',
@@ -70,6 +70,9 @@ create table w_user (
 	updated_by int not null comment '最后修改人'
 ) ENGINE = INNODB comment '用户表';
 
+insert into w_user(created_by, updated_by, username, status, password, phone, type_id, is_valid) 
+    values (1, 1, 'website_admin', 'P', '4QrcOUm6Wau+VuBX8g+IPg==', '13333333333', 1, 'Y');
+
 drop table if exists w_supply;
 create table w_supply(
 	id int primary key auto_increment,
@@ -99,6 +102,7 @@ create table w_product (
 	id int primary key auto_increment,
 	name varchar(100) not null comment '商品名称',
 	category_id int not null comment '分类id',
+	type_id int comment '商品分类，可以为空',
 	code varchar(255) not null comment '商品编号',
 	is_valid char(1) not null default 'Y' comment '是否有效',
 	status varchar(10) not null default 'N' comment '状态：N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）',

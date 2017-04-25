@@ -13,10 +13,12 @@
 <link rel="stylesheet" href="<%=basePath %>resources/css/admin/logo.css?<%=new Date().getTime()%>">
 <script src="<%=basePath%>resources/js/admin/logo/logo.js?<%=new Date().getTime()%>"></script>
 <div class="logo-container p10">
-	<div class="pt10 pb10">
+	<div>
 		<button class="btn btn-primary" id="upload-logo">上传LOGO</button>
 	</div>
-	<div class="empty logo-list clearfix" id="logo-list" data-empty="暂无LOGO"></div>
+	<div class="empty logo-list clearfix mt10" id="logo-list" data-empty="暂无LOGO"></div>
+	<div class="loading hide">数据加载中...</div>
+	<div class="no-more hide">没有更多数据了</div>
 </div>
 <div class="z-modal hide" id="logo-modal">
 	<div class="z-modal-body logo-modal">

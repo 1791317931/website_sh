@@ -24,6 +24,8 @@ public class ProductVO extends IdEntity {
 	
 	private Integer categoryId;
 	
+	private Integer typeId;
+	
 	private String categoryName;
 	
 	private String imgUrls[];
@@ -116,6 +118,14 @@ public class ProductVO extends IdEntity {
 
 	public void setCategoryName(String categoryName) {
 		this.categoryName = categoryName;
+	}
+
+	public Integer getTypeId() {
+		return typeId;
+	}
+
+	public void setTypeId(Integer typeId) {
+		this.typeId = typeId;
 	}
 	
 }

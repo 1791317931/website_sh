@@ -35,10 +35,10 @@
 		<div class="w1200 clearfix">
 			<div class="pull-right option-container mt6 hide">
 				<span><a href="<%=basePath%>main/index">首页</a></span>
+				<span><a class="to-manage" href="<%=basePath%>admin/index">管理</a></span>
 				<span><a class="to-shopCar" href="<%=basePath%>product/user/shopcar">进入购物车</a></span>
 				<span><a class="to-login" href="javascript:">登录</a></span>
 				<span><a class="to-regist" href="javascript:">注册</a></span>
-				<span><a class="to-manage" href="<%=basePath%>admin/index">管理</a></span>
 				<span><span class="welcome-container">${user.username}</span>，您好</span>
 				<span><a class="to-logout" href="<%=basePath%>user/logout">退出</a></span>
 			</div>

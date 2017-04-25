@@ -158,7 +158,7 @@
 	if (id) {
 		$('.to-login').parent('span').remove();
 		$('.to-regist').parent('span').remove();
-		if (role != 2) {
+		if (['1', '2'].indexOf(role) == -1) {
 			$('.to-manage').parent('span').remove();
 		}
 	} else {
@@ -185,6 +185,8 @@
 			item = list[0];
 			if (item) {
 				$('.logo').attr('src', base_img + item.path);
+			} else {
+				$('.logo').attr('title', '暂无Logo');
 			}
 		}
 	});

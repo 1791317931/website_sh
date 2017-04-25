@@ -48,7 +48,7 @@ public class CategoryServiceImpl implements CategoryService {
 		Page page = new Page(pageSize, currentPage);
 		Integer typeId = null;
 		if (type != null && type.length() > 0) {
-			List<Const> list = constService.getByTypeAndCode(type, code);
+			List<Const> list = constService.getByTypeAndCode(type, code, null);
 			Const con = list.get(0);
 			typeId = con.getId();
 		}

@@ -612,3 +612,11 @@ input[readonly] {
 	left: 1px;
 }
 /* close */
+
+/* scroll-plugin */
+.loading, .no-more {
+	text-align: center;
+	padding: 10px;
+	color: #aaa;
+}
+/* scroll-plugin */

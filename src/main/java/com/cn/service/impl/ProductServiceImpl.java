@@ -64,7 +64,7 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public void deleteById(int id) {
 		// 删除附件
-		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.PRODUCT);
+		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.PRODUCT, null);
 		Const con = conList.get(0);
 		attachmentObjService.deleteByParam(con.getId(), id);
 		
@@ -103,7 +103,7 @@ public class ProductServiceImpl implements ProductService {
 		
 		Integer productId = product.getId();
 		// 获取商品图片对应的const
-		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT).get(0);
+		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT, null).get(0);
 		Integer typeId = con.getId();
 		propertyObjService.deleteByObjIdAndCategoryId(productId, categoryId);
 		

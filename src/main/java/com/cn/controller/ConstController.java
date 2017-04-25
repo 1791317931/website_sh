@@ -34,6 +34,11 @@ public class ConstController extends BaseController {
 	public String supply() {
 		return "admin/consts/supply";
 	}
+
+	@RequestMapping(value = "/product/category")
+	public String productCategoryIndex() {
+		return "admin/consts/product-category";
+	}
 	
 	@RequestMapping(value = "/page")
 	@ResponseBody
@@ -44,14 +49,32 @@ public class ConstController extends BaseController {
 	@RequestMapping(value = "/list")
 	@ResponseBody
 	public Map<String, Object> getList(String type) {
-		return getMap(constService.getByTypeAndCode(type, null));
+		return getMap(constService.getByTypeAndCode(type, null, null));
 	}
 	
 	@RequestMapping(value = "/get")
 	@ResponseBody
 	public Map<String, Object> getConstByParam(String type, Integer code) {
-		List<Const> list = constService.getByTypeAndCode(type, code);
+		List<Const> list = constService.getByTypeAndCode(type, code, null);
 		return getMap(list.get(0));
+	}
+	
+	
+	
+	@RequestMapping(value = "/delete")
+	@ResponseBody
+	public Map<String, Object> deleteById(int id) {
+		Map<String, Object> result = constService.deleteById(id);
+		
+		return getMap(result);
+	}
+	
+	@RequestMapping(value = "/saveOrUpdate")
+	@ResponseBody
+	public Map<String, Object> saveOrUpdate(Const con) {
+		Map<String, Object> result = constService.saveOrUpdate(con, created_by);
+		
+		return getMap(result);
 	}
 	
 }

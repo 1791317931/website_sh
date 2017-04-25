@@ -64,12 +64,13 @@ public class MaterialServiceImpl implements MaterialService {
 	@Override
 	public void deleteById(int id) {
 		// 删除图片
-		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.MATERIAL);
+		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.MATERIAL, null);
 		Const con = conList.get(0);
 		attachmentObjService.deleteByParam(con.getId(), id);
 		
 		// 删除附件
-		List<Const> attachmentList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.MATERIAL_ATTACHMENT);
+		List<Const> attachmentList = 
+				constService.getByTypeAndCode(FileConst.TYPE, FileConst.MATERIAL_ATTACHMENT, null);
 		Const attachmentConst = attachmentList.get(0);
 		attachmentObjService.deleteByParam(attachmentConst.getId(), id);
 		
@@ -109,7 +110,7 @@ public class MaterialServiceImpl implements MaterialService {
 		Integer materialId = material.getId();
 		
 		// 获取商品图片对应的const
-		Const con = constService.getByTypeAndCode("file", FileConst.MATERIAL).get(0);
+		Const con = constService.getByTypeAndCode("file", FileConst.MATERIAL, null).get(0);
 		Integer typeId = con.getId();
 		propertyObjService.deleteByObjIdAndCategoryId(materialId, categoryId);
 		
@@ -151,7 +152,7 @@ public class MaterialServiceImpl implements MaterialService {
 		}
 		
 		String attachmentUrls[] = materialVO.getAttachmentUrls();
-		Const attachmentCon = constService.getByTypeAndCode("file", FileConst.MATERIAL_ATTACHMENT).get(0);
+		Const attachmentCon = constService.getByTypeAndCode("file", FileConst.MATERIAL_ATTACHMENT, null).get(0);
 		Integer attachmentTypeId = attachmentCon.getId();
 		Attachment attachmentFile = null;
 		AttachmentObj attachmentFileObj = null;

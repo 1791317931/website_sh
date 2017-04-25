@@ -51,7 +51,7 @@ public class AttachmentObjServiceImpl implements AttachmentObjService {
 	
 	@Override
 	public void disableLogo() {
-		List<Const> list = constService.getByTypeAndCode(FileConst.TYPE, FileConst.LOGO);
+		List<Const> list = constService.getByTypeAndCode(FileConst.TYPE, FileConst.LOGO, null);
 		Const con = list.get(0);
 		int typeId = con.getId();
 		attachmentObjDao.deleteByParam(typeId, null);
@@ -59,7 +59,7 @@ public class AttachmentObjServiceImpl implements AttachmentObjService {
 	
 	@Override
 	public void enableLogo(int attachmentId, int created_by) {
-		List<Const> list = constService.getByTypeAndCode(FileConst.TYPE, FileConst.LOGO);
+		List<Const> list = constService.getByTypeAndCode(FileConst.TYPE, FileConst.LOGO, null);
 		Const con = list.get(0);
 		int typeId = con.getId();
 		attachmentObjDao.deleteByParam(typeId, null);
@@ -137,7 +137,7 @@ public class AttachmentObjServiceImpl implements AttachmentObjService {
 		attachmentObj.setCreate_date(now);
 		attachmentObj.setAttachment_id(attachmentId);
 		attachmentObj.setObj_id(0);
-		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.BANNER);
+		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.BANNER, null);
 		Const con = conList.get(0);
 		int typeId = con.getId();
 		attachmentObj.setType_id(typeId);

@@ -10,7 +10,7 @@
     position: relative;
 }
 
-.logo_list .image-item:nth-child(4n + 1) {
+.logo-list .image-item:nth-child(4n + 1) {
 	margin-left: 0;
 }
 

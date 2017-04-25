@@ -112,7 +112,7 @@
 
 .image-list {
 	min-height: 200px;
-	max-height: 460px;
+	max-height: 430px;
 	border: 1px solid #ccc;
 	overflow: auto;
 }

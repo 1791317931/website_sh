@@ -80,7 +80,7 @@ public class AttachmentServiceImpl implements AttachmentService {
 		Attachment attachment = null;
 		List<Integer> ids = new ArrayList<Integer>();
 		if (urls != null && urls.length > 0) {
-			List<Const> list = constService.getByTypeAndCode(type, code);
+			List<Const> list = constService.getByTypeAndCode(type, code, null);
 			Const con = list.get(0);
 			Date now = new Date();
 			for (int i = 0, length = urls.length; i < length; i++) {
