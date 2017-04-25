@@ -17,6 +17,7 @@ import com.cn.entity.Const;
 import com.cn.entity.Material;
 import com.cn.enums.FileConst;
 import com.cn.enums.MaterialStatusConst;
+import com.cn.enums.PropertyConst;
 import com.cn.enums.ValidConst;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.AttachmentService;
@@ -59,6 +60,25 @@ public class MaterialServiceImpl implements MaterialService {
 	public Material getById(int id) {
 		return materialDao.get(id);
 	}
+	
+	@Override
+	public void deleteById(int id) {
+		// 删除图片
+		List<Const> conList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.MATERIAL);
+		Const con = conList.get(0);
+		attachmentObjService.deleteByParam(con.getId(), id);
+		
+		// 删除附件
+		List<Const> attachmentList = constService.getByTypeAndCode(FileConst.TYPE, FileConst.MATERIAL_ATTACHMENT);
+		Const attachmentConst = attachmentList.get(0);
+		attachmentObjService.deleteByParam(attachmentConst.getId(), id);
+		
+		Map<String, Object> categoryMap = categoryService.getListByTypeCode(PropertyConst.TYPE, PropertyConst.MATERIAL).get(0);
+		// 删除相关属性
+		propertyObjService.deleteByObjIdAndCategoryId(id, Integer.parseInt(categoryMap.get("id") + ""));
+		
+		materialDao.delete(id);
+	}
 
 	@Override
 	public void saveOrUpdate(MaterialVO materialVO, int created_by) {
@@ -86,11 +106,12 @@ public class MaterialServiceImpl implements MaterialService {
 		material.setUpdated_by(created_by);
 		materialDao.save(material);
 		
+		Integer materialId = material.getId();
+		
 		// 获取商品图片对应的const
 		Const con = constService.getByTypeAndCode("file", FileConst.MATERIAL).get(0);
 		Integer typeId = con.getId();
-		Integer materialId = material.getId();
-		propertyObjService.deleteByObjIdAndTypeId(materialId, typeId);
+		propertyObjService.deleteByObjIdAndCategoryId(materialId, categoryId);
 		
 		List<PropertyObjVO> propertyObjVOs = materialVO.getPropertyObjs();
 		PropertyObjVO propertyObjVO = null;
@@ -104,7 +125,9 @@ public class MaterialServiceImpl implements MaterialService {
 		String urls[] = materialVO.getImgUrls();
 		Attachment attachment = null;
 		AttachmentObj attachmentObj = null;
+		// 删除所有的图片
 		attachmentObjService.deleteByParam(typeId, materialId);
+		
 		for(int i = 0, length = urls.length; i < length; i++) {
 			attachment = new Attachment();
 			attachment.setCon(con);
@@ -125,6 +148,37 @@ public class MaterialServiceImpl implements MaterialService {
 			attachmentObj.setObj_id(materialId);
 			attachmentObj.setAttachment_id(attachment.getId());
 			attachmentObjService.save(attachmentObj);
+		}
+		
+		String attachmentUrls[] = materialVO.getAttachmentUrls();
+		Const attachmentCon = constService.getByTypeAndCode("file", FileConst.MATERIAL_ATTACHMENT).get(0);
+		Integer attachmentTypeId = attachmentCon.getId();
+		Attachment attachmentFile = null;
+		AttachmentObj attachmentFileObj = null;
+		
+		// 删除所有的附件
+		attachmentObjService.deleteByParam(attachmentTypeId, materialId);
+		
+		for(int i = 0, length = attachmentUrls.length; i < length; i++) {
+			attachmentFile = new Attachment();
+			attachmentFile.setCon(attachmentCon);
+			attachmentFile.setCreate_date(now);
+			attachmentFile.setCreated_by(created_by);
+			attachmentFile.setIs_deleted("N");
+			attachmentFile.setPath(attachmentUrls[i]);
+			attachmentFile.setUpdate_date(now);
+			attachmentFile.setUpdated_by(created_by);
+			attachmentService.saveOrUpdate(attachmentFile);
+			
+			attachmentFileObj = new AttachmentObj();
+			attachmentFileObj.setType_id(attachmentCon.getId());
+			attachmentFileObj.setCreate_date(now);
+			attachmentFileObj.setUpdate_date(now);
+			attachmentFileObj.setCreated_by(created_by);
+			attachmentFileObj.setUpdated_by(created_by);
+			attachmentFileObj.setObj_id(materialId);
+			attachmentFileObj.setAttachment_id(attachmentFile.getId());
+			attachmentObjService.save(attachmentFileObj);
 		}
 	}
 

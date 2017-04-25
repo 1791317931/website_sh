@@ -84,18 +84,19 @@
 			</div>
 			<div class="title">材料自定义属性:</div>
 			<div class="material-property-container empty" data-empty="请添加材料属性" id="material-property-container"></div>
-			<div class="title">材料图片:</div>
-			<div class="img-container clearfix" id="img-container"></div>
-			<div class="mt20 text-center">
-				<button class="btn btn-danger btn-2" type="button" id="save-cancel">关闭</button>
-			</div>
-			<div class="title">材料附件:</div>
-			<div class="pv10">
-				<div class="attachment-container clearfix empty" id="attachment-container" data-empty="暂无附件"></div>
-				<div class="text-center pv5">
-					<button class="btn btn-primary btn-2" id="add-attachment">新增</button>
-				</div>
-			</div>
 		</form>
+		<div class="title">材料图片:</div>
+		<div class="img-container clearfix" id="img-container"></div>
+		<div class="title">材料附件:</div>
+		<div class="p10 attachment-container">
+			<div class="empty attachment-list clearfix" id="attachment-list" data-empty="暂无附件"></div>
+			<form class="hide" id="attachment-form" action="<%=basePath %>upload/attachment/download" method="post">
+				<input type="hidden" name="getRealName" value="true" />
+				<input type="hidden" name="filePath" id="filePath" />
+			</form>
+		</div>
+		<div class="mt20 text-center">
+			<button class="btn btn-danger btn-2" type="button" id="save-cancel">关闭</button>
+		</div>
 	</div>
 </div>

@@ -13,5 +13,7 @@ public interface MaterialService {
 	public Material getById(int id);
 	
 	public void saveOrUpdate(MaterialVO materialVO, int created_by);
+	
+	public void deleteById(int id);
 
 }

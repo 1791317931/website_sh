@@ -20,38 +20,24 @@ public class PropertyObjDaoImpl extends BaseDaoImpl<PropertyObj> implements Prop
 
 	@Override
 	public int countObj(Integer productId, Integer propertyId, Integer categoryId) {
-		String sql = "select count(*) from w_property_obj po";
-		String appendSql = "";
-		boolean flag = false;
+		String sql = "select count(*) from w_property_obj po where 1 = 1";
 		if(productId != null) {
-			appendSql += " po.obj_id = " + productId;
-			flag = true;
+			sql += " and po.obj_id = " + productId;
 		}
 		if(propertyId != null) {
-			if(flag) {
-				appendSql += " and";
-			}
-			appendSql += " po.property_id = " + propertyId;
-			flag = true;
+			sql += " and po.property_id = " + propertyId;
 		}
 		if(categoryId != null) {
-			if(flag) {
-				appendSql += " and";
-			}
-			appendSql += " po.category_id = " + categoryId;
-			flag = true;
-		}
-		if(flag) {
-			sql += " where" + appendSql;
+			sql += " and po.category_id = " + categoryId;
 		}
 		return Integer.parseInt(((SQLQuery) setParameter(getSession().createSQLQuery(sql))).uniqueResult() + "");
 		
 	}
 	
 	@Override
-	public void deleteByObjIdAndTypeId(Integer objId, int typeId) {
-		String sql = "delete from w_property_obj where obj_id = ? and type_id = ?";
-		sqlUpdate(sql, objId, typeId);
+	public void deleteByObjIdAndCategoryId(Integer objId, int categoryId) {
+		String sql = "delete from w_property_obj where obj_id = ? and category_id = ?";
+		sqlUpdate(sql, objId, categoryId);
 	}
 	
 	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value) {

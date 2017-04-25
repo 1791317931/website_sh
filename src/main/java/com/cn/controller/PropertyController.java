@@ -70,8 +70,8 @@ public class PropertyController extends BaseController {
 	
 	@RequestMapping(value = "/obj/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> deleteByProductId(int objId, int typeId) {
-		propertyObjService.deleteByObjIdAndTypeId(objId, typeId);
+	public Map<String, Object> deleteByProductId(int objId, int categoryId) {
+		propertyObjService.deleteByObjIdAndCategoryId(objId, categoryId);
 		
 		return getMap(null);
 	}

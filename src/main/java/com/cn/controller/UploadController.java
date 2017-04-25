@@ -83,12 +83,6 @@ public class UploadController extends BaseController {
 		fieldMaps.put("fileName", fileNameMap);
 	}
 	
-	// 使用sharedisk，就不使用servlet真实路径
-	public static String getFullPath(HttpServletRequest request, String filePath) {
-//		return request.getServletContext().getRealPath("/") + filePath;
-		return filePath;
-	}
-	
 	// 获取文件类型
 	public static String getType(MultipartFile file) {
 		String fileName = file.getOriginalFilename();
@@ -443,8 +437,7 @@ public class UploadController extends BaseController {
 
 		// --------------------------校验字段--------------------------
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
-		String savePath = FILE_PATH;
-		fieldMap.put("savePath", savePath);
+		fieldMap.put("savePath", FILE_PATH);
 		Map<String, Object> resultMap = validateFields(fieldMap);
 		
 		boolean success = (boolean) resultMap.get("success");
@@ -460,13 +453,12 @@ public class UploadController extends BaseController {
 		}
 		// --------------------------校验文件格式，不能是可执行文件-----------------------
 		
-		String fullPath = getFullPath(request, savePath);
 		// _xxx   保存真实文件名称，为了后续回显
 		String fileName = UUID.randomUUID() + "_" + getFileName(file);
 		
 		// 上传文件
 		try {
-			resultMap = ImageUtils.uploadFile(file, fullPath, fileName);
+			resultMap = ImageUtils.uploadFile(file, FILE_PATH, fileName);
 			resultMap.put("success", true);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -488,11 +480,13 @@ public class UploadController extends BaseController {
 	@RequestMapping(value="/attachment/upload/split", method = RequestMethod.POST)	
 	@ResponseBody
 	public Map<String, Object> uploadFileSplit(MultipartFile file, HttpServletRequest request,
-			@RequestParam(defaultValue = "upload/") String savePath,
-			String fileName, Integer index, Integer totalIndex, String uniqueFlag) {
+			String savePath, String fileName, Integer index, Integer totalIndex, String uniqueFlag) {
 
 		// --------------------------校验字段--------------------------
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
+		if (!StringUtils.isNotBlank(savePath)) {
+			savePath = FILE_PATH;
+		}
 		fieldMap.put("savePath", savePath);
 		Map<String, Object> resultMap = validateFields(fieldMap);
 		
@@ -509,14 +503,13 @@ public class UploadController extends BaseController {
 		}
 		// --------------------------校验文件格式，不能是可执行文件-----------------------
 		
-		String fullPath = getFullPath(request, savePath);
 		String type = getType(fileName);
 		// {uniqueFlag}_{真实文件名}_{index}   保存真实文件名称，为了后续回显
 		fileName = getFileName(fileName);
 		
 		// 上传文件
 		try {
-			resultMap = ImageUtils.uploadFile(file, fullPath, uniqueFlag, fileName, totalIndex, index, type);
+			resultMap = ImageUtils.uploadFile(file, FILE_PATH, uniqueFlag, fileName, totalIndex, index, type);
 		} catch (Exception e) {
 			e.printStackTrace();
 			resultMap.put("success", false);
@@ -526,7 +519,7 @@ public class UploadController extends BaseController {
 		return resultMap;
 	}
 	
-	@RequestMapping(value="/attachment/exist", method = RequestMethod.POST)
+	@RequestMapping(value="/attachment/exist")
 	@ResponseBody
 	public Map<String, Object> fileIsExists(HttpServletRequest request, String filePath) {
 		
@@ -535,7 +528,7 @@ public class UploadController extends BaseController {
 		String msg = "";
 		
 		try {
-			File file = new File(getFullPath(request, filePath));
+			File file = new File(FILE_PATH + filePath);
 			
 			// 校验文件是否存在
 			if(!file.exists()) {
@@ -568,7 +561,7 @@ public class UploadController extends BaseController {
 		
 		try {
 			filePath = URLDecoder.decode(filePath, "utf-8");
-			File file = new File(getFullPath(request, filePath));
+			File file = new File(FILE_PATH + filePath);
 			writeStream(response, request, file, getRealName);
 		} catch (Exception e) {
 			e.printStackTrace();

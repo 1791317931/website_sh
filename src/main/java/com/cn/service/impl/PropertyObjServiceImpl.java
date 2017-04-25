@@ -23,8 +23,8 @@ public class PropertyObjServiceImpl implements PropertyObjService {
 	}
 	
 	@Override
-	public void deleteByObjIdAndTypeId(Integer objId, int typeId) {
-		propertyObjDao.deleteByObjIdAndTypeId(objId, typeId);
+	public void deleteByObjIdAndCategoryId(Integer objId, int categoryId) {
+		propertyObjDao.deleteByObjIdAndCategoryId(objId, categoryId);
 	}
 	
 	@Override

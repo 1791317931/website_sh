@@ -2,6 +2,7 @@ package com.cn.service.impl;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -16,6 +17,7 @@ import com.cn.entity.Const;
 import com.cn.entity.Product;
 import com.cn.enums.FileConst;
 import com.cn.enums.ProductStatusConst;
+import com.cn.enums.PropertyConst;
 import com.cn.enums.ValidConst;
 import com.cn.service.AttachmentObjService;
 import com.cn.service.AttachmentService;
@@ -66,8 +68,9 @@ public class ProductServiceImpl implements ProductService {
 		Const con = conList.get(0);
 		attachmentObjService.deleteByParam(con.getId(), id);
 		
+		Map<String, Object> categoryMap = categoryService.getListByTypeCode(PropertyConst.TYPE, PropertyConst.PRODUCT).get(0);
 		// 删除相关属性
-		propertyObjService.deleteByObjIdAndTypeId(id, con.getId());
+		propertyObjService.deleteByObjIdAndCategoryId(id, Integer.parseInt(categoryMap.get("id") + ""));
 		
 		productDao.delete(id);
 	}
@@ -102,7 +105,7 @@ public class ProductServiceImpl implements ProductService {
 		// 获取商品图片对应的const
 		Const con = constService.getByTypeAndCode("file", FileConst.PRODUCT).get(0);
 		Integer typeId = con.getId();
-		propertyObjService.deleteByObjIdAndTypeId(productId, typeId);
+		propertyObjService.deleteByObjIdAndCategoryId(productId, categoryId);
 		
 		List<PropertyObjVO> propertyObjVOs = productVO.getPropertyObjs();
 		PropertyObjVO propertyObjVO = null;

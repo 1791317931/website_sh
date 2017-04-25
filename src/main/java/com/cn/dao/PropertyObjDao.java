@@ -9,7 +9,7 @@ public interface PropertyObjDao extends BaseDao<PropertyObj> {
 
 	public int countObj(Integer productId, Integer propertyId, Integer categoryId);
 	
-	public void deleteByObjIdAndTypeId(Integer objId, int typeId);
+	public void deleteByObjIdAndCategoryId(Integer objId, int categoryId);
 	
 	public void save(int created_by, Integer productId, Integer categoryId, Integer propertyId, String value);
 	

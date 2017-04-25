@@ -4,6 +4,7 @@ $(function() {
 	$materialModal = $('#material-modal'),
 	$propertyContainer = $('#material-property-container'),
 	$imgContainer = $('#img-container'),
+	$attachmentList = $('#attachment-list'),
 	// N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）
 	statusObj = {
 		N : '新增',
@@ -69,7 +70,8 @@ $(function() {
 		function renderForm(result) {
 			var data = result.data || {},
 			propertyHtml = '',
-			imgHtml = '';
+			imgHtml = '',
+			attachmentHtml = '';
 			
 			// 基本属性
 			$('#material-name').val(data.name);
@@ -104,6 +106,43 @@ $(function() {
 						+ '</div>';
 			}
 			$imgContainer.html(imgHtml);
+			
+			// 附件
+			var attachmentUrls = data.attachmentUrls,
+			length = attachmentUrls.length;
+			
+			if (length) {
+				attachmentHtml += '<div class="table">'
+									+ '<div class="table-row">'
+										+ '<div class="table-cell attachment-index">序号</div>'
+										+ '<div class="table-cell attachment-name">附件名称</div>'
+										+ '<div class="table-cell attachment-type">附件类型</div>'
+										+ '<div class="table-cell attachment-operation">操作</div>'
+								+ '</div>';
+			}
+			for (var  i = 0; i < length; i++) {
+				var url = attachmentUrls[i],
+				arr = url.substring(url.lastIndexOf('_') + 1).split('\.'),
+				name = arr[0],
+				type = arr[1];
+				attachmentHtml += '<div class="table-row">'
+									+ '<div class="table-cell">' + (i + 1) + '</div>'
+									+ '<div class="table-cell">'
+										+ '<p class="tf text-center" title="' + name + '">' + name + '</p>'
+									+ '</div>'
+									+ '<div class="table-cell">'
+										+ '<p class="tf text-center" title="' + type + '">' + type + '</p>'
+									+ '</div>'
+									+ '<div class="table-cell text-center">'
+										+ '<span class="for-edit download" data-url="' + url + '">下载</span>'
+									+ '</div>'
+								+ '</div>';
+			}
+			if (length) {
+				attachmentHtml += 	'</div>'
+								+ '</div>';
+			}
+			$attachmentList.html(attachmentHtml);
 		}
 		
 		$materialList.on('click', '.to-detail', function() {
@@ -155,7 +194,25 @@ $(function() {
 		$materialModal.ToggleModal($.noop, function() {
 			$('#readonly-form').get(0).reset();
 			$imgContainer.empty();
+			$attachmentList.empty();
 		});
 		
+		$attachmentList.on('click', '.download', function() {
+			var url = $(this).attr('data-url');
+			$.ajax({
+				url : base_url + 'upload/attachment/exist',
+				data : {
+					filePath : url
+				},
+				success : function(result) {
+					if (!result.success) {
+						ZUtil.error(result.msg);
+					} else {
+						$('#filePath').val(url);
+						$('#attachment-form').get(0).submit();
+					}
+				}
+			});
+		});
 	})();
 });
