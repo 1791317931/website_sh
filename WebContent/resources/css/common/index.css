@@ -550,6 +550,9 @@ input[readonly] {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+.page-bar .page-body .page-cell input[type="checkbox"] {
+	cursor: pointer;
+}
 .page-bar .page-body .page-head-cell {
 	font-weight: 700;
 }

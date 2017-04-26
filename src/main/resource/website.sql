@@ -52,6 +52,18 @@ insert into w_const(type, code, value, description, created_by, updated_by) valu
 insert into w_const(type, code, value, description, created_by, updated_by) values('property', 2, 'material', '商品材料属性', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 3, 'F', '审核失败', 1, 1);
 
+drop table if exists w_const_obj;
+create table w_const_obj (
+	id int primary key auto_increment,
+	obj_id int not null comment '对象id',
+	sort int comment '排序',
+	type_id int not null comment '类型id',
+	create_date datetime not null default now() comment '创建时间',
+	update_date datetime not null default now() comment '最后修改时间',
+	created_by int not null comment '创建人id',
+	updated_by int not null comment '最后修改人'
+) ENGINE = INNODB comment '对象中间表';
+
 drop table if exists w_user;
 create table w_user (
 	id int primary key auto_increment,
@@ -102,7 +114,6 @@ create table w_product (
 	id int primary key auto_increment,
 	name varchar(100) not null comment '商品名称',
 	category_id int not null comment '分类id',
-	type_id int comment '商品分类，可以为空',
 	code varchar(255) not null comment '商品编号',
 	is_valid char(1) not null default 'Y' comment '是否有效',
 	status varchar(10) not null default 'N' comment '状态：N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）',

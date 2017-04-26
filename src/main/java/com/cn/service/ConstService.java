@@ -17,5 +17,7 @@ public interface ConstService {
 	public Map<String, Object> deleteById(int id);
 	
 	public Map<String, Object> saveOrUpdate(Const con, int created_by);
+	
+	public List<Integer> getIdsByTypeId(int typeId);
 
 }

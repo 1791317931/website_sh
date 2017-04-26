@@ -59,7 +59,6 @@ public class ProductController extends BaseController {
 		return "user/products/shop_car";
 	}
 	
-	
 	/**
 	 * 商品首页配置
 	 * @return
@@ -71,10 +70,19 @@ public class ProductController extends BaseController {
 	
 	@RequestMapping(value = "/page/simple")
 	@ResponseBody
-	public Map<String, Object> getPage(int pageSize, int currentPage, String name, String code) {
-		Page page = productService.getSimplePageByParam(pageSize, currentPage, name, code);
+	public Map<String, Object> getPage(int pageSize, int currentPage,
+			String name, String code, String valid) {
+		Page page = productService.getSimplePageByParam(pageSize, currentPage, name, code, valid);
 		
 		return getMap(page);
+	}
+	
+	@RequestMapping(value = "/list/byTypeId")
+	@ResponseBody
+	public Map<String, Object> getPageByTypeId(int typeId) {
+		List<Product> list = productService.getListByTypeId(typeId);
+		
+		return getMap(list);
 	}
 	
 	/**

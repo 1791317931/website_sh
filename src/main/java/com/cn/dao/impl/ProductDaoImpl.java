@@ -1,8 +1,8 @@
 package com.cn.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Repository;
 
 import com.cn.base.BaseDaoImpl;
@@ -18,38 +18,35 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 	}
 	
 	@Override
-	public Page getSimplePageByParam(Page page, String name, String code) {
+	public Page getSimplePageByParam(Page page, String name, String code, String valid) {
 		String sql = "from Product wp where 1 = 1";
-		if(name != null && name.length() > 0) {
+		if (name != null && name.length() > 0) {
 			sql += " and wp.name like '%" + name + "%'";
 		}
-		if(code != null && code.length() > 0) {
+		if (code != null && code.length() > 0) {
 			sql += " and wp.code like '%" + code + "%'";
+		}
+		if (valid != null) {
+			sql += " and wp.is_valid = '" + valid + "'";
 		}
 		return getPageByQuery(sql, page);
 	}
 	
-	public List<Product> getListByTypeId(int typeId, String valid) {
-		String sql = "from Product wp where type_id = " + typeId;
-		if (StringUtils.isNotBlank(valid)) {
-			sql += " and wp.is_valid = '" + valid + "'";
+	public List<Product> getListByIds(List<Integer> ids) {
+		if (ids == null || ids.size() == 0) {
+			return new ArrayList<Product>();
 		}
+		String sql = "from Product wp where wp.id in (";
+		for (int i = 0, length = ids.size(); i < length; i++) {
+			int id = ids.get(i);
+			if (i == 0) {
+				sql += id;
+			} else {
+				sql += ", " + id;
+			}
+		}
+		sql += ") order by wp.update_date desc";
 		return getListByQuery(sql);
-	}
-	
-	@Override
-	public int countByTypeId(int typeId, String valid) {
-		String sql = "select count(1) from w_product wp where type_id = " + typeId;
-		if (StringUtils.isNotBlank(valid)) {
-			sql += " and wp.is_valid = '" + valid + "'";
-		}
-		return countBySQL(sql);
-	}
-	
-	@Override
-	public void deleteByTypeId(int typeId) {
-		String sql = "delete from w_product where type_id = " + typeId;
-		sqlUpdate(sql);
 	}
 
 }

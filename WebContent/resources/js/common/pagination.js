@@ -97,6 +97,7 @@ $.fn.extend({
 					
 					if(cell.checkbox) {
 						// checkbox优先
+						console.log(item);
 						fragment = '<input type="checkbox" value="' + (item[id] || '') + '" />';
 					} else if (cell.radio) {
 						// radio次之
@@ -239,30 +240,36 @@ $.fn.extend({
 		}
 		
 		// checkbox全选事件
-		$container.on('click', '.page-head-cell input[type="checkbox"]', function() {
-			var $checkbox = $(this),
-			$otherCheckboxs = $container.find('.page-content-cell input[type="checkbox"]');
-			
-			if($checkbox.prop('checked')) {
-				$otherCheckboxs.prop('checked', true);
-			} else {
-				$otherCheckboxs.prop('checked', false);
-			}
+		$container.off('click', '.page-head-cell input[type="checkbox"]')
+			.on('click', '.page-head-cell input[type="checkbox"]', function() {
+				var $checkbox = $(this),
+				$otherCheckboxs = $container.find('.page-content-cell input[type="checkbox"]');
+				
+				if($checkbox.prop('checked')) {
+					$otherCheckboxs.prop('checked', true);
+				} else {
+					$otherCheckboxs.prop('checked', false);
+				}
 		});
 		
-		$container.on('click', '.page-content-cell input[type="checkbox"]', function() {
-			var $checkboxs = $container.find('.page-content-cell input[type="checkbox"]:checked'),
-			$topCheckbox = $container.find('.page-head-cell input[type="checkbox"]');
-			
-			if(!$checkboxs.length) {
-				$topCheckbox.prop('checked', false);
-			}
+		$container.off('click', '.page-content-cell input[type="checkbox"]')
+			.on('click', '.page-content-cell input[type="checkbox"]', function() {
+				var $checkboxs = $container.find('.page-content-cell input[type="checkbox"]:checked'),
+				$topCheckbox = $container.find('.page-head-cell input[type="checkbox"]');
+				
+				if(!$checkboxs.length) {
+					$topCheckbox.prop('checked', false);
+				}
 		});
 		
 		$container.unbind('reload').bind('reload', function(e, param) {
 			param = param || {};
 			opt.data = $.extend(true, opt.data, param);
 			load();
+		});
+		
+		$container.bind('clear', function() {
+			$container.empty();
 		});
 		
 		load();

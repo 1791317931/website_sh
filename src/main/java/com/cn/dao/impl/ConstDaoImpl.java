@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.cn.base.BaseDaoImpl;
 import com.cn.dao.ConstDao;
 import com.cn.entity.Const;
+import com.cn.enums.ProductCategoryConst;
 import com.cn.vo.Page;
 
 @Repository(value = "constDao")
@@ -46,6 +47,26 @@ public class ConstDaoImpl extends BaseDaoImpl<Const> implements ConstDao {
 		}
 		sql += ")";
 		return getListByQuery(sql, type);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public List<Integer> getIdsByTypeId(int typeId) {
+		String sql = "select wp.id"
+				+ " from w_product wp"
+				+ " left join w_const_obj wco on wp.id = wco.obj_id"
+				+ " left join w_const wc on wco.type_id = wc.id"
+				+ " where wc.type = '" + ProductCategoryConst.TYPE + "'"
+				+ " and wc.id = " + typeId;
+		return getSession().createSQLQuery(sql).list();
+	}
+	
+	public int countByTypeId(int typeId) {
+		String sql = "select wco.id"
+				+ " from w_const_obj wco"
+				+ " left join w_const wc on wco.type_id = wc.id"
+				+ " where wc.type = '" + ProductCategoryConst.TYPE + "'"
+				+ " and wc.id = " + typeId;
+		return getSession().createSQLQuery(sql).list().size();
 	}
 
 }

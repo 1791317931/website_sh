@@ -14,4 +14,8 @@ public interface ConstDao extends BaseDao<Const> {
 	
 	public List<Const> getByType(String type, Integer code, String value);
 	
+	public List<Integer> getIdsByTypeId(int typeId);
+	
+	public int countByTypeId(int typeId);
+	
 }

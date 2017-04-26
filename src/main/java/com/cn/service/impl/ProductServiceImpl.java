@@ -52,9 +52,9 @@ public class ProductServiceImpl implements ProductService {
 	
 	@Override
 	public Page getSimplePageByParam(int pageSize, int currentPage, String name,
-			String code) {
+			String code, String valid) {
 		Page page = new Page(pageSize, currentPage);
-		return productDao.getSimplePageByParam(page, name, code);
+		return productDao.getSimplePageByParam(page, name, code, valid);
 	}
 	
 	public Product getDetail(int id) {
@@ -73,6 +73,12 @@ public class ProductServiceImpl implements ProductService {
 		propertyObjService.deleteByObjIdAndCategoryId(id, Integer.parseInt(categoryMap.get("id") + ""));
 		
 		productDao.delete(id);
+	}
+	
+	@Override
+	public List<Product> getListByTypeId(int typeId) {
+		List<Integer> ids = constService.getIdsByTypeId(typeId);
+		return productDao.getListByIds(ids);
 	}
 	
 	@Override
@@ -96,7 +102,8 @@ public class ProductServiceImpl implements ProductService {
 		product.setName(productVO.getName());
 		product.setPrice(productVO.getPrice());
 		product.setSpecial_price(productVO.getSpecialPrice());
-		product.setStatus(ProductStatusConst.NEW);
+		// 默认审核通过，可以改为NEW
+		product.setStatus(ProductStatusConst.PASS);
 		product.setCreated_by(created_by);
 		product.setUpdated_by(created_by);
 		productDao.save(product);

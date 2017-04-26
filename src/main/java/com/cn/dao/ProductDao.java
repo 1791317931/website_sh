@@ -8,12 +8,8 @@ import com.cn.vo.Page;
 
 public interface ProductDao extends BaseDao<Product> {
 
-	public Page getSimplePageByParam(Page page, String name, String code);
+	public Page getSimplePageByParam(Page page, String name, String code, String valid);
 	
-	public List<Product> getListByTypeId(int typeId, String valid);
-	
-	public int countByTypeId(int typeId, String valid);
-	
-	public void deleteByTypeId(int typeId);
+	public List<Product> getListByIds(List<Integer> ids);
 	
 }

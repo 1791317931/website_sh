@@ -13,7 +13,6 @@ import com.cn.dao.ConstDao;
 import com.cn.dao.ProductDao;
 import com.cn.entity.Const;
 import com.cn.enums.ProductCategoryConst;
-import com.cn.enums.ValidConst;
 import com.cn.service.ConstService;
 import com.cn.vo.Page;
 
@@ -52,7 +51,7 @@ public class ConstServiceImpl implements ConstService {
 		
 		// 如果是商品分类
 		if (ProductCategoryConst.TYPE.equals(type)) {
-			int count = productDao.getListByTypeId(id, ValidConst.VALID).size();
+			int count = constDao.countByTypeId(id);
 			if (count > 0) {
 				success = false;
 				msg = "该分类已经存在有效的商品，无法删除";
@@ -60,9 +59,6 @@ public class ConstServiceImpl implements ConstService {
 				result.put("msg", msg);
 				
 				return result;
-			} else {
-				// 先删除该分类的商品
-				productDao.deleteByTypeId(id);
 			}
 		}
 		
@@ -165,6 +161,11 @@ public class ConstServiceImpl implements ConstService {
 		result.put("msg", msg);
 		
 		return result;
+	}
+
+	@Override
+	public List<Integer> getIdsByTypeId(int typeId) {
+		return constDao.getIdsByTypeId(typeId);
 	}
 	
 }

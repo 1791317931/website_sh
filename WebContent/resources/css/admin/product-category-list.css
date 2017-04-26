@@ -1,0 +1,27 @@
+.category-container:empty {
+	min-height: 100px;
+}
+
+.product-list {
+	border: 1px solid #ccc;
+}
+
+.product-list:empty {
+	min-height: 80px;
+}
+
+.category-modal {
+	padding: 30px;
+	width: 80%;
+	height: 70%;
+	min-width: 800px;
+	min-height: 400px;
+}
+
+.product-modal {
+	padding: 30px;
+	width: 80%;
+	height: 70%;
+	min-width: 800px;
+	min-height: 400px;
+}
