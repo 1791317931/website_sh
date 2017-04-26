@@ -25,11 +25,6 @@ public class ConstController extends BaseController {
 		return "admin/consts/role";
 	}
 	
-	@RequestMapping(value = "/product")
-	public String productIndex() {
-		return "admin/consts/product";
-	}
-	
 	@RequestMapping(value = "/supply")
 	public String supply() {
 		return "admin/consts/supply";

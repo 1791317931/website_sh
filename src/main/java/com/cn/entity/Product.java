@@ -16,7 +16,7 @@ public class Product extends IdEntity {
 	private Category category;
 	
 	// 商品分类	热销、推荐...，可以为空
-	private Integer typeId;
+	private Integer type_id;
 	
 	private String name;
 	
@@ -101,12 +101,12 @@ public class Product extends IdEntity {
 		this.count = count;
 	}
 
-	public Integer getTypeId() {
-		return typeId;
+	public Integer getType_id() {
+		return type_id;
 	}
 
-	public void setTypeId(Integer typeId) {
-		this.typeId = typeId;
+	public void setType_id(Integer type_id) {
+		this.type_id = type_id;
 	}
 
 }

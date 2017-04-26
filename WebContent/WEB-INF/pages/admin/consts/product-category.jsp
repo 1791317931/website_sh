@@ -12,8 +12,8 @@
 </script>
 <link rel="stylesheet" href="<%=basePath %>resources/css/admin/product-category.css?<%=new Date().getTime()%>">
 <script src="<%=basePath%>resources/js/admin/const/product-category.js?<%=new Date().getTime()%>"></script>
-<div class="p10">
-	<div>
+<div>
+	<div class="p10">
 		<button class="btn btn-primary btn-2" id="add-product-category">新增</button>
 	</div>
 	<div class="empty product-category-list mt10" id="product-category-list" data-empty="暂无商品分类"></div>

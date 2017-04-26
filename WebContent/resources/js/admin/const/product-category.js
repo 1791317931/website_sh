@@ -60,8 +60,8 @@ $(function() {
 					id : id
 				},
 				success : function(result) {
-					if (!result.success) {
-						ZUtil.error(result.msg);
+					if (!result.data.success) {
+						ZUtil.error(result.data.msg);
 					} else {
 						ZUtil.success('数据删除成功');
 						$productCategoryList.trigger('reload');
@@ -125,8 +125,8 @@ $(function() {
 				data : data,
 				type : 'post',
 				success : function(result) {
-					if (!result.success) {
-						ZUtil.error(result.msg);
+					if (!result.data.success) {
+						ZUtil.error(result.data.msg);
 					} else {
 						ZUtil.success('数据' + (id ? '修改' : '添加') + '成功');
 						$productCategoryList.trigger('reload');

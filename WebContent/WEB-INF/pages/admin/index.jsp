@@ -99,7 +99,7 @@
 								<p data-url="attachment/banner/index">Banner配置</p>
 							</li>
 							<li>
-								<p data-url="product/category/index">商品配置</p>
+								<p data-url="product/admin/productCategory">商品配置</p>
 							</li>
 						</ul>
 					</li>

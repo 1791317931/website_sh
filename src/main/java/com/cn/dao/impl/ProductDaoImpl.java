@@ -30,20 +30,20 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 	}
 	
 	public List<Product> getListByTypeId(int typeId, String valid) {
-		String sql = "from Product wp where type_id = ?";
+		String sql = "from Product wp where type_id = " + typeId;
 		if (StringUtils.isNotBlank(valid)) {
 			sql += " and wp.is_valid = '" + valid + "'";
 		}
-		return getListByQuery(sql, typeId);
+		return getListByQuery(sql);
 	}
 	
 	@Override
 	public int countByTypeId(int typeId, String valid) {
-		String sql = "select count(1) from w_product wp where type_id = ?";
+		String sql = "select count(1) from w_product wp where type_id = " + typeId;
 		if (StringUtils.isNotBlank(valid)) {
 			sql += " and wp.is_valid = '" + valid + "'";
 		}
-		return countBySQL(sql, typeId);
+		return countBySQL(sql);
 	}
 	
 	@Override

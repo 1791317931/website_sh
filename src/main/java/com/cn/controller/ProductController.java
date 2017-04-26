@@ -59,6 +59,16 @@ public class ProductController extends BaseController {
 		return "user/products/shop_car";
 	}
 	
+	
+	/**
+	 * 商品首页配置
+	 * @return
+	 */
+	@RequestMapping(value = "/admin/productCategory")
+	public String productCategoryIndex() {
+		return "admin/products/product-category-list";
+	}
+	
 	@RequestMapping(value = "/page/simple")
 	@ResponseBody
 	public Map<String, Object> getPage(int pageSize, int currentPage, String name, String code) {

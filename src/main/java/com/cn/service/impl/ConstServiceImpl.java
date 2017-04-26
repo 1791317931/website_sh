@@ -52,7 +52,7 @@ public class ConstServiceImpl implements ConstService {
 		
 		// 如果是商品分类
 		if (ProductCategoryConst.TYPE.equals(type)) {
-			int count = productDao.countByTypeId(id, ValidConst.VALID);
+			int count = productDao.getListByTypeId(id, ValidConst.VALID).size();
 			if (count > 0) {
 				success = false;
 				msg = "该分类已经存在有效的商品，无法删除";
