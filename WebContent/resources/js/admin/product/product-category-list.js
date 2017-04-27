@@ -2,11 +2,16 @@ $(function() {
 	
 	var $categoryContainer = $('#category-container'),
 	$categorys = $('#categorys'),
+	$categorysList = $('#categorys-list'),
 	categorys = [],
 	$search = $('#search'),
 	$edit = $('#edit'),
 	$categoryModal = $('#category-modal'),
-	$selectProductList = $('#select-product-list');
+	$selectProductList = $('#select-product-list'),
+	$productModal = $('#product-modal'),
+	$PList = $('#p-list'),
+	$productListSure = $('#product-list-sure'),
+	$productListCancel = $('#product-list-cancel');
 	
 	function getProducts(typeObjs) {
 		// 每次都要清空$categoryContainer
@@ -54,6 +59,7 @@ $(function() {
 				}
 				
 				$categorys.append(options);
+				$categorysList.html(options);
 				getProducts(categorys);
 			}
 		});
@@ -61,52 +67,64 @@ $(function() {
 	
 	(function() {
 		$categoryModal.ToggleModal($.noop, function() {
-			/*$('#category-name').html('');
-			$('#typeId').val('');
-			$selectProductList.trigger('clear');*/
+			$('#category-form').get(0).reset();
+			$selectProductList.trigger('clear');
 		});
 		
 		$edit.bind('click', function() {
 			$categoryModal.trigger('show');
-			/*var id = $categorys.val();
-			if (!id) {
-				ZUtil.error('请选择商品分类');
-			} else {
-				var $option = $categorys.find('option:selected');
-				$('#category-name').html($option.html());
-				$('#typeId').val(id);
-				$categoryModal.trigger('show');
-				$selectProductList.pagination({
-					url : base_url + 'product/page/simple',
-					data : {
-						valid : 'Y'
-					},
-					columns : [{
-						id : 'id',
-						checkbox : true,
-						width : '5%'
-					}, {
-						id : 'name',
-						title : '商品名称',
-						width : '30%'
-					}, {
-						id : 'price',
-						title : '价格（￥）',
-						width : '15%'
-					}, {
-						id : 'count',
-						title : '库存',
-						width : '20%',
-					}, {
-						id : 'update_date',
-						title : '最后修改日期',
-						width : '30%'
-					}],
-					callback : function(list) {
-//						var 
-					}
-				});
-			}*/
 		});
+		
+		$('#save-sure').bind('click', function() {
+			
+		});
+		
+		$('#save-cancel').bind('click', function() {
+			$categoryModal.trigger('hide');
+		});
+		
+		$productModal.ToggleModal(function() {
+			$PList.pagination({
+				url : base_url + 'product/page/simple',
+				data : {
+					valid : 'Y'
+				},
+				columns : [{
+					id : 'id',
+					checkbox : true,
+					width : '5%'
+				}, {
+					id : 'name',
+					title : '商品名称',
+					width : '30%'
+				}, {
+					id : 'price',
+					title : '价格（￥）',
+					width : '15%'
+				}, {
+					id : 'count',
+					title : '库存',
+					width : '20%',
+				}, {
+					id : 'update_date',
+					title : '最后修改日期',
+					width : '30%'
+				}],
+				callback : function(list) {
+					// 标记已经选择的商品
+				}
+			});
+		});
+		
+		// 确定选择的商品
+		$productListSure.bind('click', function() {
+			
+		});
+		
+		$productListCancel.bind('click', function() {
+			$productModal.trigger('hide');
+			$PList.trigger('clear');
+		});
+		
 	})();
 });

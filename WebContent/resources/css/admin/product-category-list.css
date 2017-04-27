@@ -10,18 +10,10 @@
 	min-height: 80px;
 }
 
-.category-modal {
+.category-modal, .product-modal {
 	padding: 30px;
 	width: 80%;
 	height: 70%;
 	min-width: 800px;
-	min-height: 400px;
-}
-
-.product-modal {
-	padding: 30px;
-	width: 80%;
-	height: 70%;
-	min-width: 800px;
-	min-height: 400px;
+	min-height: 500px;
 }
