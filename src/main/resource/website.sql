@@ -41,6 +41,7 @@ insert into w_const(type, code, value, description, created_by, updated_by) valu
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_type', 4, 'user', '普通用户', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 1, 'N', '新建', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 2, 'P', '审核通过', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 3, 'F', '审核失败', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('sex', 1, 'man', '男', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('sex', 2, 'woman', '女', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', 1, 'material', '材料图片', 1, 1);
@@ -50,7 +51,6 @@ insert into w_const(type, code, value, description, created_by, updated_by) valu
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', 5, 'material_attachment', '材料附件', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('property', 1, 'product', '商品属性', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('property', 2, 'material', '商品材料属性', 1, 1);
-insert into w_const(type, code, value, description, created_by, updated_by) values('user_status', 3, 'F', '审核失败', 1, 1);
 
 drop table if exists w_const_obj;
 create table w_const_obj (

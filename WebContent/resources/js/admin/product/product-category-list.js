@@ -3,9 +3,9 @@ $(function() {
 	var $categoryContainer = $('#category-container'),
 	$categorys = $('#categorys'),
 	$categorysList = $('#categorys-list'),
-	categorys = [],
 	$search = $('#search'),
 	$edit = $('#edit'),
+	$chooseProduct = $('#choose-product'),
 	$categoryModal = $('#category-modal'),
 	$selectProductList = $('#select-product-list'),
 	$productModal = $('#product-modal'),
@@ -48,8 +48,8 @@ $(function() {
 				type : 'product_category'
 			},
 			success : function(result) {
-				categorys = result.data || [];
-				var options = '';
+				var categorys = result.data || [],
+				options = '';
 				
 				for (var i = 0, length = categorys.length; i < length; i++) {
 					var category = categorys[i],
@@ -73,6 +73,10 @@ $(function() {
 		
 		$edit.bind('click', function() {
 			$categoryModal.trigger('show');
+		});
+		
+		$chooseProduct.bind('click', function() {
+			$productModal.trigger('show');
 		});
 		
 		$('#save-sure').bind('click', function() {

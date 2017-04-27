@@ -256,7 +256,7 @@ $(function() {
 		$imageListModal.on('dblclick', '.server-image', function() {
 			var $this = $(this);
 			$('.source-image').trigger('change', {
-				prefix : base_url,
+				prefix : base_img,
 				path : $this.find('img').attr('data-url')
 			});
 			$imageListModal.trigger('hide');

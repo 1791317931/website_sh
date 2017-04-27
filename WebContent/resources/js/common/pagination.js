@@ -97,7 +97,6 @@ $.fn.extend({
 					
 					if(cell.checkbox) {
 						// checkbox优先
-						console.log(item);
 						fragment = '<input type="checkbox" value="' + (item[id] || '') + '" />';
 					} else if (cell.radio) {
 						// radio次之

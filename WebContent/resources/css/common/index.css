@@ -225,7 +225,6 @@ li {list-style: none;}
 /* btn 默认4个文字 */
 .btn {
 	font-size: 16px;
-	font-weight: 600;
     color: white;
     background-color: #ABBAC3;
     border: 1px solid #ABBAC3;
@@ -415,10 +414,17 @@ select:hover {border: 1px solid #00BCD4;}
     padding: 0 5px;
     border-radius: 3px;
     border: 1px solid #ccc;
+    transition: border-color .3s linear;
+}
+.form-control > input[type="text"]:hover,
+.form-control > input[type="password"]:hover,
+.form-control > select:hover {
+	border-color: #00a4ff;
 }
 .form-control > select {
 	width: 100%;
 	box-sizing: border-box;
+	transition: border-color .3s linear;
 }
 input[readonly] {
 	background: #eee;

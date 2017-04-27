@@ -37,13 +37,17 @@
 	border: 1px solid #ccc;
 }
 
+.menu > li {
+	background: #37a7f2;
+}
+
 .menu p {
 	line-height: 26px;
 	padding-left: 15px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
-    color: #888;
+    color: #fff;
 }
 
 .sub-menu {
@@ -80,7 +84,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    background: rgba(0, 0, 0, .1);
+    background: rgba(255, 255, 255, .1);
     z-index: 9999;
 }
 

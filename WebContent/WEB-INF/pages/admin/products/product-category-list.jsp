@@ -31,7 +31,7 @@
 	<div class="z-modal-body category-modal">
 		<div class="clearfix">
 			<form id="category-form">
-				<div class="form-group">
+				<div class="form-group col-3">
 					<label>商品分类:</label>
 					<div class="form-control">
 						<select id="categorys-list"></select>
