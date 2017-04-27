@@ -315,22 +315,21 @@ public class UploadController extends BaseController {
 	 */
 	@RequestMapping(value = "/save_cut_from_server", method = RequestMethod.POST)	
 	@ResponseBody
-	public Map<String, Object> cutAndSaveFromServer(HttpServletRequest request, String imgPath,
+	public Map<String, Object> cutAndSaveFromServer(HttpServletRequest request,
+			@RequestParam(defaultValue = "") String imgPath,
 			int fw, int fh, int x, int y, int w, int h,
 			@RequestParam(required = true, defaultValue = "true") boolean resizable,
 			@RequestParam(required = true, defaultValue = "true") boolean cutable,
 			@RequestParam(defaultValue = "image/jpg,image/jpeg,image/png", required = false) String accept) throws Exception {
 		
-		String basePath = IMAGE_PATH;
-		String realPath = request.getServletContext().getRealPath("/");
 		// 保存路径
-		String savePath = realPath + basePath;
+		String savePath = IMAGE_PATH;
 		// 文件名
 		String fileName = UUID.randomUUID() + "";
 		
 		Map<String, Object> map = new HashMap<String, Object>();
 		String msg = "";
-		String imgUrl = realPath + imgPath;
+		String imgUrl = IMAGE_PATH + imgPath;
 		
 		// ----------------------校验字段-----------------------------
 		Map<String, Object> fieldMap = new HashMap<String, Object>();
@@ -374,7 +373,7 @@ public class UploadController extends BaseController {
 		Map<String, Object> fileMap = new HashMap<String, Object>();
 		fileMap.put("savePath", savePath);
 		fileMap.put("fileName", fileName);
-		fileMap.put("fullPath", realPath + imgPath);
+		fileMap.put("fullPath", imgUrl);
 		fileMap.put("type", getType(imgPath));
 		
 		// 缩放

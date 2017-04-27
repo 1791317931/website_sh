@@ -51,7 +51,7 @@
 	<div class="z-modal-body product-modal">
 		<div class="empty p-list" id="p-list" data-empty="暂无商品"></div>
 		<div class="text-center mt20">
-			<button class="btn btn-primary btn-2" id="product-list-sure">关闭</button>
+			<button class="btn btn-primary btn-2" id="product-list-sure">确定</button>
 			<button class="btn btn-danger btn-2 ml20" id="product-list-cancel">关闭</button>
 		</div>
 	</div>

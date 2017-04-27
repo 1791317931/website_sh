@@ -1,5 +1,6 @@
 package com.cn.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
@@ -77,12 +79,21 @@ public class ProductController extends BaseController {
 		return getMap(page);
 	}
 	
+	@RequestMapping(value = "/list/byParam")
+	@ResponseBody
+	public Map<String, Object> getPageByTypeId(int typeId, 
+			@RequestParam(required = false, value = "ids[]") Integer ids[]) {
+		if (ids != null && ids.length > 0) {
+			return getMap(productService.getListByIds(Arrays.asList(ids)));
+		} else {
+			return getMap(productService.getListByTypeId(typeId));
+		}
+	}
+	
 	@RequestMapping(value = "/list/byTypeId")
 	@ResponseBody
-	public Map<String, Object> getPageByTypeId(int typeId) {
-		List<Product> list = productService.getListByTypeId(typeId);
-		
-		return getMap(list);
+	public Map<String, Object> getListByTypeId(int typeId) {
+		return getMap(productService.getListByTypeId(typeId));
 	}
 	
 	/**

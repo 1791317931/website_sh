@@ -542,6 +542,9 @@ input[readonly] {
 .page-bar .page-body .page-body-content-row:nth-child(even) {
 	background: #eee;
 }
+.page-bar .page-body .page-body-content-row.active {
+	background: #00ffc4 !important;
+}
 .page-bar .page-body .page-body-content-row:hover {
 	background: #eee;
 }

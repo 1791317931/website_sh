@@ -21,3 +21,7 @@
 .select-product-list:empty {
 	min-height: 350px;
 }
+
+.p-list .page-body-content-row {
+	cursor: pointer;
+}

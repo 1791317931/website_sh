@@ -19,4 +19,6 @@ public interface ProductService {
 	
 	public List<Product> getListByTypeId(int typeId);
 	
+	public List<Product> getListByIds(List<Integer> ids);
+	
 }

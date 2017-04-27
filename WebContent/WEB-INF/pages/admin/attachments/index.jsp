@@ -24,6 +24,8 @@
 		<button class="btn btn-primary ml20" id="add-img">点击添加图片</button>
 	</div>
 	<div class="mt20 empty attachment_list clearfix" id="attachment_list" data-empty="暂无图片"></div>
+	<div class="loading hide">数据加载中...</div>
+	<div class="no-more hide">没有更多数据了</div>
 	<div class="z-modal hide" id="clip-modal">
 		<div class="z-modal-body clip-image-container">
 			<div class="clearfix p10">

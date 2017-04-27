@@ -8,8 +8,17 @@ $.fn.extend({
 				pageSize : 10,
 				currentPage : 1
 			},
+			// 默认是分页
+			pagination : true,
+			// 默认不支持row单击事件
+			rowClick : false,
+			// 每次点击.page-button触发
+			beforeChangePage : $.noop,
 			callback : $.noop
-		}, opt);
+		}, opt),
+		pagination = opt.pagination,
+		rowClick = opt.rowClick,
+		beforeChangePage = opt.beforeChangePage;
 		
 		$container.empty();
 		
@@ -48,7 +57,7 @@ $.fn.extend({
 				// checkbox为主
 				if(checkbox) {
 					html += '<div class="page-head-cell page-cell ' + (className) + '" ' + (width ? 'style="width:' + width + '"' : '') + '>'
-							+ '<input type="checkbox" />'
+							+ '<input class="item-checkbox" type="checkbox" />'
 						+ '</div>';
 				} else {
 					html += '<div class="page-head-cell page-cell ' + (className) + '" ' + (width ? 'style="width:' + width + '"' : '') + '>'
@@ -71,14 +80,16 @@ $.fn.extend({
 			$container.on('click', '.page-button', function() {
 				var $this = $(this),
 				index = $this.attr('data-index');
+				if ($this.hasClass('active')) {
+					return false;
+				}
+				beforeChangePage(index);
 				load(index);
 			});
 		}
 		
-		function renderData(data) {
-			data = data.data,
-			list = data.list || [],
-			columns = opt.columns || []
+		function renderData(list) {
+			var columns = opt.columns || [];
 			$pageBodyContent = $container.find('.page-body-content');
 			html = '';
 			
@@ -97,7 +108,7 @@ $.fn.extend({
 					
 					if(cell.checkbox) {
 						// checkbox优先
-						fragment = '<input type="checkbox" value="' + (item[id] || '') + '" />';
+						fragment = '<input class="item-checkbox" type="checkbox" value="' + (item[id] || '') + '" />';
 					} else if (cell.radio) {
 						// radio次之
 						fragment = '<input type="radio" />';
@@ -227,8 +238,14 @@ $.fn.extend({
 				},
 				success : function(data) {
 					$container.find('.page-loading').addClass('hide');
-					renderData(data);
-					generatePaginationBar(data);
+					// 分页
+					if (pagination) {
+						renderData(data.data.list || []);
+						generatePaginationBar(data);
+					} else {
+						// list
+						renderData(data.data);
+					}
 					// 执行回调
 					opt.callback(data.data);
 				},
@@ -245,21 +262,47 @@ $.fn.extend({
 				$otherCheckboxs = $container.find('.page-content-cell input[type="checkbox"]');
 				
 				if($checkbox.prop('checked')) {
-					$otherCheckboxs.prop('checked', true);
+					$otherCheckboxs.prop('checked', true).closest('.page-body-content-row').addClass('active');
 				} else {
-					$otherCheckboxs.prop('checked', false);
+					$otherCheckboxs.prop('checked', false).closest('.page-body-content-row').removeClass('active');
 				}
 		});
 		
 		$container.off('click', '.page-content-cell input[type="checkbox"]')
 			.on('click', '.page-content-cell input[type="checkbox"]', function() {
 				var $checkboxs = $container.find('.page-content-cell input[type="checkbox"]:checked'),
-				$topCheckbox = $container.find('.page-head-cell input[type="checkbox"]');
+				$topCheckbox = $container.find('.page-head-cell input[type="checkbox"]'),
+				$this = $(this);
+				
+				if ($this.prop('checked')) {
+					$this.closest('.page-body-content-row').addClass('active');
+				} else {
+					$this.closest('.page-body-content-row').removeClass('active');
+				}
 				
 				if(!$checkboxs.length) {
 					$topCheckbox.prop('checked', false);
 				}
 		});
+		
+		// 是否支持点击.page-body-content-row
+		if (rowClick) {
+			$container.off('click', '.page-body-content-row').on('click', '.page-body-content-row', function(e) {
+				var $target = $(e.target),
+				$this = $(this);
+				// 事件源不是checkbox
+				if (!$target.hasClass('.item-checkbox')) {
+					var $checkbox = $this.find('.item-checkbox');
+					if ($checkbox.prop('checked')) {
+						$this.removeClass('active');
+						$checkbox.prop('checked', false)
+					} else {
+						$this.addClass('active');
+						$checkbox.prop('checked', true);
+					}
+				}
+			});
+		}
 		
 		$container.unbind('reload').bind('reload', function(e, param) {
 			param = param || {};

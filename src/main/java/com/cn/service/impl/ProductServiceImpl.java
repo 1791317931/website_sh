@@ -78,6 +78,11 @@ public class ProductServiceImpl implements ProductService {
 	@Override
 	public List<Product> getListByTypeId(int typeId) {
 		List<Integer> ids = constService.getIdsByTypeId(typeId);
+		return getListByIds(ids);
+	}
+	
+	@Override
+	public List<Product> getListByIds(List<Integer> ids) {
 		return productDao.getListByIds(ids);
 	}
 	
