@@ -414,7 +414,6 @@ select:hover {border: 1px solid #00BCD4;}
     padding: 0 5px;
     border-radius: 3px;
     border: 1px solid #ccc;
-    transition: border-color .3s linear;
 }
 .form-control > input[type="text"]:hover,
 .form-control > input[type="password"]:hover,
@@ -424,7 +423,6 @@ select:hover {border: 1px solid #00BCD4;}
 .form-control > select {
 	width: 100%;
 	box-sizing: border-box;
-	transition: border-color .3s linear;
 }
 input[readonly] {
 	background: #eee;

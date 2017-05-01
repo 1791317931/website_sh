@@ -1,6 +1,8 @@
 $(function() {
 	
-	var $productList = $('#product-list'),
+	var $searchName = $('#search-name'),
+	$searchCode = $('#search-code'),
+	$productList = $('#product-list'),
 	$productModal = $('#product-modal'),
 	$propertyContainer = $('#product-property-container'),
 	$imgContainer = $('#img-container'),
@@ -57,6 +59,15 @@ $(function() {
 
 	// bind
 	(function() {
+		$('#search-product').bind('click', function() {
+			var name = $searchName.val(),
+			code = $searchCode.val();
+			$productList.trigger('reload', {
+				name : name,
+				code : code
+			});
+		});
+		
 		$('#add-product').bind('click', function() {
 			$.ajax({
 				url : base_url + 'product/admin/toEdit',

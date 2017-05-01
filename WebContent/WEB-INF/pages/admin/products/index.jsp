@@ -27,7 +27,8 @@
 				<input type="text" placeholder="请输入商品编号" id="search-code" />
 			</div>
 		</div>
-		<button class="btn btn-primary ml20" id="add-product">添加商品</button>
+		<button class="btn btn-primary ml20 btn-2" id="search-product">查询</button>
+		<button class="btn btn-danger ml20" id="add-product">添加商品</button>
 	</div>
 	<div class="product-list empty mt10" id="product-list" data-empty="暂无数据"></div>
 </div>

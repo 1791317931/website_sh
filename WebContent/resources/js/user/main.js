@@ -1,7 +1,8 @@
 $(function() {
 
 	var $banner = $('#banner'),
-	$bannerFooter = $('#banner-footer');
+	$bannerFooter = $('#banner-footer'),
+	$productList = $('#product-list');
 	
 	// 设置banner
 	(function() {
@@ -54,6 +55,70 @@ $(function() {
 				}
 			}
 		});
+		
+		function renderContainer($container, typeId) {
+			$.ajax({
+				url : base_url + 'product/list/byParam',
+				data : {
+					typeId : typeId
+				},
+				success : function(result) {
+					var list = result.data || [],
+					html = '';
+					for (var i = 0, length = list.length; i < length; i++) {
+						var product = list[i],
+						id = product.id,
+						name = product.name,
+						count = product.count,
+						price = product.price,
+						urls = product.imgUrls || [];
+						html += '<div class="product-item">'
+								+ '<a href="' + base_url + 'product/user/index?id=' + id + '">'
+									+ '<img src="' + base_img + urls[0] + '" />'
+								+ '</a>'
+								+ '<div class="p5 product-desc">'
+									+ '<p class="tf product-name">' + name + '</p>'
+									+ '<div class="clearfix product-extral">'
+										+ '<span class="pull-left tf col-6">库存:' + count + '</span>'
+										+ '<span class="pull-right text-right tf col-6 product-price">' + price + '(￥)</span>'
+									+ '</div>'
+								+ '</div>'
+							+ '</div>';
+					}
+					$container.append(html);
+				}
+			});
+			
+		}
+		
+		function getProducts(typeObjs) {
+			for (var i = 0, length = typeObjs.length; i < length; i++) {
+				var obj = typeObjs[i],
+				id = obj.id,
+				name = obj.value,
+				html = '<div class="mb30">'
+						+ '<h4 class="mb10 title">' + name + '</h4>'
+						+ '<div class="product-category clearfix"></div>'
+					+ '</div>';
+				
+				$productList.append(html);
+				var $productContainer = $productList.find('.product-category:last-child');
+				renderContainer($productContainer, id);
+			}
+		}
+		
+		$.ajax({
+			url : base_url + 'const/list',
+			data : {
+				type : 'product_category'
+			},
+			success : function(result) {
+				var categorys = result.data || [];
+				
+				getProducts(categorys);
+			}
+		});
+		
 	})();
 	
 });

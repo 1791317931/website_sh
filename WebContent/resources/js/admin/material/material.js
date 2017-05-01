@@ -1,6 +1,8 @@
 $(function() {
 	
-	var $materialList = $('#material-list'),
+	var $searchName = $('#search-name'),
+	$searchCode = $('#search-code'),
+	$materialList = $('#material-list'),
 	$materialModal = $('#material-modal'),
 	$propertyContainer = $('#material-property-container'),
 	$imgContainer = $('#img-container'),
@@ -58,6 +60,15 @@ $(function() {
 
 	// bind
 	(function() {
+		$('#search-material').bind('click', function() {
+			var name = $searchName.val(),
+			code = $searchCode.val();
+			$materialList.trigger('reload', {
+				name : name,
+				code : code
+			});
+		});
+		
 		$('#add-material').bind('click', function() {
 			$.ajax({
 				url : base_url + 'material/admin/toEdit',

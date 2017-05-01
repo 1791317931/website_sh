@@ -114,7 +114,7 @@ $.fn.extend({
 						fragment = '<input type="radio" />';
 					} else if(typeof render === 'function') {
 						// function第三
-						fragment = render(item, item[id] || '');
+						fragment = render(item, item[id] || '', i + 1);
 					} else {
 						// 最后才是通过id解析
 						fragment = item[id] || '';
@@ -291,11 +291,11 @@ $.fn.extend({
 				var $target = $(e.target),
 				$this = $(this);
 				// 事件源不是checkbox
-				if (!$target.hasClass('.item-checkbox')) {
+				if (!$target.hasClass('item-checkbox')) {
 					var $checkbox = $this.find('.item-checkbox');
 					if ($checkbox.prop('checked')) {
 						$this.removeClass('active');
-						$checkbox.prop('checked', false)
+						$checkbox.prop('checked', false);
 					} else {
 						$this.addClass('active');
 						$checkbox.prop('checked', true);

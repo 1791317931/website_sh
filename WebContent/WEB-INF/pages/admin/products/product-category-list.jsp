@@ -22,8 +22,8 @@
 				</select>
 			</div>
 		</div>
-		<button class="btn btn-danger btn-2 ml20" id="search">查询</button>
-		<button class="btn btn-primary btn-2 ml20" id="edit">设置</button>
+		<button class="btn btn-primary btn-2 ml20" id="search">查询</button>
+		<button class="btn btn-danger btn-2 ml20" id="edit">设置</button>
 	</div>
 	<div class="empty category-container" id="category-container" data-empty="暂无商品分类"></div>
 </div>

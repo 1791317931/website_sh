@@ -2,10 +2,6 @@
 	min-height: 100px;
 }
 
-.product-list {
-	border: 1px solid #ccc;
-}
-
 .product-list:empty {
 	min-height: 80px;
 }
@@ -24,4 +20,21 @@
 
 .p-list .page-body-content-row {
 	cursor: pointer;
+}
+
+.sort {
+	width: 70px;
+    height: 100%;
+    border: 1px solid transparent;
+    text-align: center;
+    padding: 5px;
+    background: transparent;
+}
+
+.sort:focus {
+    border-color: #ccc;
+}
+
+.title {
+	padding: 10px;
 }

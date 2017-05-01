@@ -102,7 +102,7 @@ public class MaterialServiceImpl implements MaterialService {
 		material.setName(materialVO.getName());
 		material.setPrice(materialVO.getPrice());
 		material.setSpecial_price(materialVO.getSpecialPrice());
-		material.setStatus(MaterialStatusConst.NEW);
+		material.setStatus(MaterialStatusConst.PASS);
 		material.setCreated_by(created_by);
 		material.setUpdated_by(created_by);
 		materialDao.save(material);

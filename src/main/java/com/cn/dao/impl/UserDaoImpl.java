@@ -38,7 +38,7 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		String sql = "select *"
 					+ " from w_user wu where 1 = 1";
 		if (StringUtils.isNotBlank(username)) {
-			sql += " and wu.username liek '%" + username + "%'";
+			sql += " and wu.username like '%" + username + "%'";
 		}
 		if (StringUtils.isNotBlank(phone)) {
 			sql += " and wu.phone like '%" + phone + "%'";

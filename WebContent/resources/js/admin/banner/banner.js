@@ -74,6 +74,7 @@ $(function() {
 		
 		$bannerModal.ClipImage({
 			fullscreenContainer : $bannerModal,
+			fixed : false,
 			saveCallback : function(data) {
 				$.ajax({
 					url : base_url + 'attachment/saveOrUpdate',

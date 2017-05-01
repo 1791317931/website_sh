@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -20,8 +21,10 @@ import com.cn.entity.Product;
 import com.cn.enums.FileConst;
 import com.cn.enums.PropertyConst;
 import com.cn.service.AttachmentObjService;
+import com.cn.service.ConstObjService;
 import com.cn.service.ProductService;
 import com.cn.service.PropertyObjService;
+import com.cn.vo.ConstObjVO;
 import com.cn.vo.Page;
 import com.cn.vo.ProductVO;
 import com.cn.vo.PropertyObjVO;
@@ -38,6 +41,9 @@ public class ProductController extends BaseController {
 
 	@Resource(name = "propertyObjService")
 	private PropertyObjService propertyObjService;
+	
+	@Resource(name = "constObjService")
+	private ConstObjService constObjService;
 
 	@RequestMapping(value = "/admin/index")
 	public String index() {
@@ -79,21 +85,24 @@ public class ProductController extends BaseController {
 		return getMap(page);
 	}
 	
+	/**
+	 * 通过typeId或ids获取商品
+	 * @param typeId
+	 * @param ids
+	 * @return
+	 */
 	@RequestMapping(value = "/list/byParam")
 	@ResponseBody
-	public Map<String, Object> getPageByTypeId(int typeId, 
+	public Map<String, Object> getListByTypeId(Integer typeId, 
 			@RequestParam(required = false, value = "ids[]") Integer ids[]) {
-		if (ids != null && ids.length > 0) {
+		if (typeId == null || ids != null) {
+			if (ids == null) {
+				ids = new Integer[0];
+			}
 			return getMap(productService.getListByIds(Arrays.asList(ids)));
 		} else {
 			return getMap(productService.getListByTypeId(typeId));
 		}
-	}
-	
-	@RequestMapping(value = "/list/byTypeId")
-	@ResponseBody
-	public Map<String, Object> getListByTypeId(int typeId) {
-		return getMap(productService.getListByTypeId(typeId));
 	}
 	
 	/**
@@ -117,6 +126,16 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(@RequestBody ProductVO productVO) {
 		productService.saveOrUpdate(productVO, created_by);
+		
+		return getMap(null);
+	}
+	
+	// 保存商品列表 const--type-->product_category
+	@RequestMapping(value = "/saveOrUpdate/byTypeId/{typeId}", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> saveOrUpdateByTypeId(@RequestBody List<ConstObjVO> vos,
+			@PathVariable(value = "typeId") int typeId) {
+		constObjService.batchSave(typeId, vos, created_by);
 		
 		return getMap(null);
 	}

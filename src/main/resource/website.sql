@@ -56,8 +56,8 @@ drop table if exists w_const_obj;
 create table w_const_obj (
 	id int primary key auto_increment,
 	obj_id int not null comment '对象id',
-	sort int comment '排序',
 	type_id int not null comment '类型id',
+	sort int comment '排序',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
 	created_by int not null comment '创建人id',

@@ -16,6 +16,8 @@ public class ConstObj extends IdEntity {
 	private Const con;
 	
 	private Integer obj_id;
+	
+	private Integer sort;
 
 	@ManyToOne
 	@JoinColumn(name = "type_id")
@@ -33,6 +35,14 @@ public class ConstObj extends IdEntity {
 
 	public void setObj_id(Integer obj_id) {
 		this.obj_id = obj_id;
+	}
+
+	public Integer getSort() {
+		return sort;
+	}
+
+	public void setSort(Integer sort) {
+		this.sort = sort;
 	}
 	
 }

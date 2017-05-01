@@ -1,5 +1,6 @@
 package com.cn.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +26,7 @@ import com.cn.service.CategoryService;
 import com.cn.service.ConstService;
 import com.cn.service.ProductService;
 import com.cn.service.PropertyObjService;
+import com.cn.vo.ConstProductVO;
 import com.cn.vo.Page;
 import com.cn.vo.ProductVO;
 import com.cn.vo.PropertyObjVO;
@@ -76,9 +78,9 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<Product> getListByTypeId(int typeId) {
-		List<Integer> ids = constService.getIdsByTypeId(typeId);
-		return getListByIds(ids);
+	public List<ConstProductVO> getListByTypeId(int typeId) {
+		List<Object[]> list = productDao.getListByTypeId(typeId);
+		return transformTo(list);
 	}
 	
 	@Override
@@ -153,6 +155,40 @@ public class ProductServiceImpl implements ProductService {
 			attachmentObj.setAttachment_id(attachment.getId());
 			attachmentObjService.save(attachmentObj);
 		}
+	}
+	
+	public static List<ConstProductVO> transformTo(List<Object[]> list) {
+		List<ConstProductVO> vos = new ArrayList<ConstProductVO>();
+		ConstProductVO vo = null;
+		Integer id = null;
+		List<String> urls = null;
+		for (int i = 0, length = list.size(); i < length; i++) {
+			Object[] objs = list.get(i);
+			Integer productId = Integer.parseInt(objs[0] + "");
+			if (!productId.equals(id)) {
+				id = productId;
+				vo = new ConstProductVO();
+				urls = new ArrayList<String>();
+				vo.setId(id);
+				vo.setName(objs[1] + "");
+				vo.setCount(Integer.parseInt(objs[2] + ""));
+				vo.setPrice(Double.parseDouble(objs[3] + ""));
+				vo.setSort(Integer.parseInt(objs[4] + ""));
+				vo.setImgUrls(urls);
+			}
+			urls.add(objs[5] + "");
+			// 最后一个
+			if (i == length - 1) {
+				vos.add(vo);
+			} else {
+				// 当前id与下一个row中id不相同
+				if (!productId.equals(Integer.parseInt(list.get(i + 1)[0] + ""))) {
+					vos.add(vo);
+				}
+			}
+		}
+		
+		return vos;
 	}
 
 }

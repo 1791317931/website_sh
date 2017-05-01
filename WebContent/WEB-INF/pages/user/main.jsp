@@ -25,44 +25,7 @@
 			<div class="banner-body clearfix" id="banner"></div>
 			<div class="banner-footer text-center" id="banner-footer"></div>
 		</div>
-		<div class="product-list pt20 pb20 empty">
-			<div class="clearfix mb30">
-				<h4 class="mb10 product-category">
-					推荐商品
-				</h4>
-				<div class="product-item">
-					<a href="<%=basePath%>product/user/index?id=1">
-						<img src="<%=basePath %>resources/imgs/1.jpg" />
-					</a>
-				</div>
-				<div class="product-item">
-					<img src="<%=basePath %>resources/imgs/2.jpg" />
-				</div>
-				<div class="product-item">
-					<img src="<%=basePath %>resources/imgs/3.jpg" />
-				</div>
-				<div class="product-item">
-					<img src="<%=basePath %>resources/imgs/4.jpg" />
-				</div>
-				<div class="product-item">
-					<img src="<%=basePath %>resources/imgs/5.jpg" />
-				</div>
-			</div>
-			<div class="clearfix mb20">
-				<h4 class="mb10 product-category">
-					推荐商品1
-				</h4>
-				<div class="product-item">
-					<img src="<%=basePath %>resources/imgs/6.jpg" />
-				</div>
-				<div class="product-item">
-					<img src="<%=basePath %>resources/imgs/7.jpg" />
-				</div>
-				<div class="product-item">
-					<img src="<%=basePath %>resources/imgs/8.jpg" />
-				</div>
-			</div>
-		</div>
+		<div class="product-list pv20 empty" id="product-list"></div>
 	</div>
 	<jsp:include page="../decorators/footer.jsp" />
 </body>

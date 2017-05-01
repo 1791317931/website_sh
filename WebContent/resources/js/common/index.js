@@ -2961,21 +2961,21 @@
 			}
 			showCallback = showCallback || $.noop;
 			hideCallback = hideCallback || $.noop;
-			$this.bind(eventObj.transitionEvent.end, function() {
+			$this.bind(eventObj.transitionEvent.end, function(e) {
 				if($this.hasClass('state-show')) {
-					showCallback();
+					showCallback(e);
 				} else {
 					$this.addClass('hide');
-					hideCallback();
+					hideCallback(e);
 				}
-			}).bind('show', function() {
+			}).bind('show', function(e) {
 				$this.removeClass('hide').addClass('state-show');
 				setTimeout(function() {
 					$this.css({
 						opacity : 1
 					});
 				});
-			}).bind('hide', function() {
+			}).bind('hide', function(e) {
 				$this.removeClass('state-show').css({
 					opacity : 0
 				});
@@ -2987,7 +2987,7 @@
 			})
 			
 			if(altKey != false) {
-				$(document.body).bind('keydown', function(e) {
+				$(document).bind('keydown', function(e) {
 					// 只针对当前显示的modal
 					if($this.hasClass('state-show')) {
 						// ESC

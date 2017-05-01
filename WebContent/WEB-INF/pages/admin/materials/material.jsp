@@ -27,7 +27,8 @@
 				<input type="text" placeholder="请输入材料编号" id="search-code" />
 			</div>
 		</div>
-		<button class="btn btn-primary ml20" id="add-material">添加材料</button>
+		<button class="btn btn-primary btn-2 ml20" id="search-material">查询</button>
+		<button class="btn btn-danger ml20" id="add-material">添加材料</button>
 	</div>
 	<div class="material-list empty mt10" id="material-list" data-empty="暂无数据"></div>
 </div>
