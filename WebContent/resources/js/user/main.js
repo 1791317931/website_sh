@@ -73,7 +73,7 @@ $(function() {
 						price = product.price,
 						urls = product.imgUrls || [];
 						html += '<div class="product-item">'
-								+ '<a href="' + base_url + 'product/user/index?id=' + id + '">'
+								+ '<a href="' + base_url + 'product/user/detail?id=' + id + '">'
 									+ '<img src="' + base_img + urls[0] + '" />'
 								+ '</a>'
 								+ '<div class="p5 product-desc">'
@@ -98,7 +98,7 @@ $(function() {
 				name = obj.value,
 				html = '<div class="mb30">'
 						+ '<h4 class="mb10 title">' + name + '</h4>'
-						+ '<div class="product-category clearfix"></div>'
+						+ '<div class="product-category empty clearfix" data-empty="暂无商品"></div>'
 					+ '</div>';
 				
 				$productList.append(html);

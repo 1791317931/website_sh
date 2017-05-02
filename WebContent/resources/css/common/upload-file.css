@@ -18,6 +18,7 @@
 .z-buttons[multiple="true"] {width: 256px;}
 .z-upload {margin-left: 5px; display: none;}
 .z-buttons[multiple="true"] .z-upload {display: inline-block;}
+.z-buttons button {border-radius: 0;}
 .z-upload-delete {margin: 0 0 0 5px;}
 .z-upload-rows .z-upload-row:first-child .z-upload-delete {
 	display: none;
@@ -101,6 +102,10 @@
     left: 0;
 	background-image: url("data:image/svg+xml;charset=utf8,\
 					%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 15 33' %3E\
-						%3Cpath d='M 0 0 L 5 0, 15 16.5, 5 33, 0 33, 10 16.5 z' fill='rgba(242, 187, 70, .4)' /%3E\
+						%3Cpath d='M 0 0 L 5 0, 15 16.5, 5 33, 0 33, 10 16.5 z' fill='rgba(255, 125, 0, .4)' /%3E\
 					%3C/svg%3E");
+}
+.z-upload-add {
+	padding-left: 20px;
+	padding-right: 20px;
 }

@@ -56,10 +56,10 @@ public class ProductController extends BaseController {
 		return "admin/products/edit";
 	}
 	
-	@RequestMapping(value = "/user/index")
+	@RequestMapping(value = "/user/detail")
 	public String toDetail(Integer id, ModelMap map) {
 		map.put("id", id);
-		return "user/products/index";
+		return "user/products/detail";
 	}
 	
 	@RequestMapping(value = "/user/shopcar")

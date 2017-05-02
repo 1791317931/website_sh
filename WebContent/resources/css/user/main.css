@@ -98,3 +98,7 @@
 .product-price {
 	color: #ff7d00;
 }
+
+.product-category:empty {
+	min-height: 50px;
+}

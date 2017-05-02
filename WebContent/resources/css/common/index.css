@@ -453,9 +453,11 @@ input[readonly] {
 	vertical-align: middle;
 	height: 100%;
 }
+/* 默认:emtpy时，高度100px */
 .empty:empty {
 	display: table;
 	width: 100%;
+	min-height: 100px;
 }
 .empty:empty:before {
 	content: attr(data-empty);

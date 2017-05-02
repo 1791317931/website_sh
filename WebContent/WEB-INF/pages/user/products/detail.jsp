@@ -16,12 +16,13 @@
 		var base_url = '<%=basePath%>';
 	</script>
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/horizontal-slide.css?<%=new Date().getTime()%>">
-	<link rel="stylesheet" href="<%=basePath%>resources/css/user/product.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath%>resources/css/user/product-detail.css?<%=new Date().getTime()%>">
 	
 </head>
 <body>
 	<jsp:include page="../../decorators/header.jsp" />
 	<div class="standard mh500 mt20">
+		<input type="hidden" id="product-id" value="${id}" />
 		<div class="table wp100 bg-white p15">
 			<div class="table-cell w420">
 				<img class="product-detail" src="<%=basePath %>resources/imgs/5.jpg" />
@@ -29,10 +30,13 @@
 			</div>
 			<div class="table-cell vt">
 				<div class="pl10">
-					<h2 class="cr">商品名称</h2>
-					<div class="cg prop-r">
-						<div>
-							价格：<span class="cr">1234（￥）</span>
+					<h2 class="cr center" id="product-name"></h2>
+					<div class="cg p10">
+						<div class="form-group col-6">
+							<label class="label-4">价格:</label>
+							<div class="form-control">
+								<span class="cr" id="product-price"></span>
+							</div>
 						</div>
 						<div>
 							尺寸：<span>中等</span>
@@ -69,5 +73,5 @@
 	</div>
 	<jsp:include page="../../decorators/footer.jsp" />
 </body>
-	<script src="<%=basePath %>resources/js/user/product.js?<%=new Date().getTime()%>"></script>
+	<script src="<%=basePath %>resources/js/user/product-detail.js?<%=new Date().getTime()%>"></script>
 </html>

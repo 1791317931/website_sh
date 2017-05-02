@@ -3018,7 +3018,10 @@
 		 * 2016-12-8
 		 * 1、$container.data('uploading')	将组建上传状态暴露给外部
 		 * 2017-2-24
-		 * 2、文件分片上传
+		 * 1、文件分片上传
+		 * 2017年5月2日09:13:11
+		 * fixed bug
+		 * 1、当上传的文件太小，约等于0KB时，进度条会超过100%，使用progress = Math.min(Math.round(loaded / size * 100), 100)取最小值
 		 */
 		UploadFile : function(opt) {
 			var $container = this,
@@ -3143,7 +3146,7 @@
 								+ '<div class="z-progress-bar" tip="' + tip + '"></div>'
 							+ '</div>'
 							+ '<div class="z-upload-cell z-buttons" multiple="' + multiple + '">'
-								+ '<button type="button" class="btn btn-primary btn-sm z-select-button br0">'
+								+ '<button type="button" class="btn btn-primary btn-sm z-select-button">'
 									+ (type == 'video' ? '选择视频' : '上传文件')
 								+ '</button>'
 								+ '<button class="btn btn-primary btn-sm z-upload">'
@@ -3156,7 +3159,7 @@
 						+ '</div>',
 				html = '<div class="z-upload-rows">' + row + '</div>'
 					+ '<div class="z-upload-operations hide">'
-						+ '<button class="btn btn-primary z-upload-add">'
+						+ '<button class="btn btn-primary z-upload-add br0 btn-sm">'
 							+ '新增'
 						+ '</button>'
 					+ '</div>';
@@ -3469,7 +3472,7 @@
 				    	now = new Date().getTime(),
 				    	distance = now - prev;
 						
-						var progress = Math.round(loaded / size * 100);
+						var progress = Math.min(Math.round(loaded / size * 100), 100);
 						// 每次更新的时间间隔 >= speedUpdateInterval，或者上传完毕
 						if(distance >= speedUpdateInterval || progress == 100) {
 							var speed = ZUtil.translateByte((loaded - load) / distance * 1000);
