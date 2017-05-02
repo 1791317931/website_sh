@@ -457,7 +457,7 @@ input[readonly] {
 .empty:empty {
 	display: table;
 	width: 100%;
-	min-height: 100px;
+	min-height: 80px;
 }
 .empty:empty:before {
 	content: attr(data-empty);

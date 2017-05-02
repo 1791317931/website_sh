@@ -1621,12 +1621,16 @@
 				renderCallback : function() {},
 				closeCallback : function() {}
 		   });
+		   2017年5月2日22:27:53
+		   1、新增参数slideDistance
 		 */
 		HorizontalSlide : function(opt) {
 			var $this = this,
 			param = {
 				// 模式	normal、modal(默认)
 				mode : 'modal',
+				// 每次滑动时单位距离，该值为空时，取.slider-item的width
+				slideDistance : null,
 				// 是否支持模态框动画	默认true
 				isAnimation : true,
 				// 显示关闭按钮
@@ -1651,6 +1655,7 @@
 			param = $.extend(true, param, opt);
 			var mode = param.mode,
 			isAnimation = param.isAnimation,
+			slideDistance = param.slideDistance,
 			showClose = param.showClose,
 			showArrow = param.showArrow,
 			showFooter = param.showFooter,
@@ -1814,7 +1819,7 @@
 							if(showFooter) {
 								$footerItems.removeClass('on').eq(index).addClass('on');
 							}
-							translateX = 'translateX(-' + (index * width) + 'px)';
+							translateX = 'translateX(-' + (index * (slideDistance || width)) + 'px)';
 							$sliderContent.css({
 								'transform' : translateX,
 								'-webkit-transform' : translateX,

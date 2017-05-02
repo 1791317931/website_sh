@@ -23,8 +23,17 @@
 
 .slider-header {display: none;}
 
+.horizontal-slider {
+	width: 370px;
+}
+
 .slider-body .slider-content .slider-item {
-	width: 80px;
+	width: 75px;
+	padding-right: 5px;
+}
+
+.horizontal-slider .slider-item:last-child {
+	padding-right: 0;
 }
 
 .slider-item img {
@@ -36,7 +45,7 @@
 .product-scroll .triangle-left {
 	height: 60px;
     margin-top: -30px;
-    left: -25px;
+    left: -20px;
 }
 
 .product-scroll .triangle-left .triangle-first {
@@ -54,7 +63,7 @@
 .product-scroll .triangle-right {
 	height: 60px;
     margin-top: -30px;
-    right: -25px;
+    right: -20px;
 }
 
 .product-scroll .triangle-right .triangle-first {
@@ -100,4 +109,10 @@
 
 .content-item.active {
 	display: block;
+}
+
+.property-container {
+	padding: 10px;
+	color: #888;
+	font-weight: 600;
 }
