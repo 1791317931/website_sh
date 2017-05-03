@@ -797,14 +797,9 @@ public class ImageUtils {
 		//比IO流的方式速度要快些
 		file.transferTo(localFile);
 		
-		result.put("type", type);
-		result.put("savePath", savePath);
-		
 		if(index.intValue() == totalIndex.intValue()) {
 			result = mergeFile(savePath, uniqueFlag, fileName, type, totalIndex, result);
 		} else {
-			result.put("fullPath", filePath);
-			result.put("fileName", fileName);
 			result.put("success", true);
 		}
 		
@@ -872,8 +867,7 @@ public class ImageUtils {
 		result.put("success", success);
 		result.put("end", true);
 		if(success) {
-			result.put("fullPath", path + "." + type);
-			result.put("fileName", fileName);
+			result.put("path", uniqueFlag + "_" + fileName + "." + type);
 		}
 		
 		return result;

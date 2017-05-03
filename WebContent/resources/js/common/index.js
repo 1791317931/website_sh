@@ -3523,7 +3523,7 @@
 					
 					// 是否分片上传
 					if(splitUpload) {
-						// 每次上传1M
+						// 每次上传splitSize M
 						var totalIndex = Math.ceil(size / splitSize),
 						start = 0,
 						end = 0,
