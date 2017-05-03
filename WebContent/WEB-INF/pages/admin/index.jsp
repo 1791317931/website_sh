@@ -38,6 +38,65 @@
 	
 </head>
 <body>
+	<div class="z-modal hide" id="regist-modal">
+		<div class="z-modal-body regist-modal">
+			<div class="clearfix">
+				<div class="form-group">
+					<label class="label-3 text-right">用户名:</label>
+					<div class="form-control r10">
+						<input type="text" id="username" />
+					</div>
+					<span class="must">*</span>
+				</div>
+				<div class="form-group">
+					<label class="label-3 text-right">手机号:</label>
+					<div class="form-control r10">
+						<input type="text" id="phone" />
+					</div>
+					<span class="must">*</span>
+				</div>
+				<div class="form-group">
+					<label class="label-3 text-right">密码:</label>
+					<div class="form-control r10">
+						<input type="password" id="password" />
+					</div>
+					<span class="must">*</span>
+				</div>
+				<div class="form-group text-center mt30">
+					<button class="btn btn-primary btn-half" id="regist-sure">注册</button>
+					<button class="btn btn-primary btn-half ml10" id="regist-cancel">取消</button>
+				</div>
+				<div class="text-right mt10">
+				<span class="for-edit" id="to-login">已经有系统账号?去登录</span>
+			</div>
+			</div>
+		</div>
+	</div>
+	<div class="z-modal hide" id="login-container">
+		<div class="z-modal-body login-container">
+			<div class="clearfix">
+				<div class="form-group">
+					<label class="label-3 text-right">手机号:</label>
+					<div class="form-control">
+						<input type="text" id="login-phone" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="label-3 text-right">密码:</label>
+					<div class="form-control">
+						<input type="password" id="login-password" />
+					</div>
+				</div>
+				<div class="form-group text-center mt30">
+					<button class="btn btn-primary btn-half" id="login-sure">登录</button>
+					<button class="btn btn-primary btn-half ml10" id="login-cancel">取消</button>
+				</div>
+			</div>
+			<div class="text-right mt10">
+				<span class="for-edit" id="to-regist">还没有系统账号?去注册</span>
+			</div>
+		</div>
+	</div>
 	<div class="nav-head">
 		<div class="pull-right nav-container">
 			<span><a href="<%=basePath%>main/index">首页</a></span>

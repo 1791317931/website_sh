@@ -56,13 +56,13 @@
   </servlet-mapping>
   
   <!-- <filter>
-  	<filter-name>sitemesh</filter-name>
-  	<filter-class>com.opensymphony.sitemesh.webapp.SiteMeshFilter</filter-class>
+  	<filter-name>loginFilter</filter-name>
+  	<filter-class>com.cn.filter.LoginFilter</filter-class>
   </filter>
   
   <filter-mapping>
-  	<filter-name>sitemesh</filter-name>
-  	<url-pattern>/*</url-pattern>
+  	<filter-name>loginFilter</filter-name>
+  	<url-pattern>/admin/index</url-pattern>
   </filter-mapping> -->
   
 </web-app>

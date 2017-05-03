@@ -14,14 +14,9 @@ public class IndexController extends BaseController {
 		return "user/main";
 	}
 	
-	@RequestMapping(value = "/toRegist")
-	public String toRegist() {
-		return "users/regist";
-	}
-	
 	@RequestMapping(value = "/toLogin")
 	public String toLogin() {
-		return "users/login";
+		return "user/login";
 	}
 	
 }
