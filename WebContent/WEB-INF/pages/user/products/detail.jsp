@@ -25,34 +25,30 @@
 		<input type="hidden" id="product-id" value="${id}" />
 		<div class="table wp100 bg-white p15">
 			<div class="table-cell w420">
-				<img class="product-detail" src="<%=basePath %>resources/imgs/5.jpg" />
+				<img class="product-detail" />
 				<div class="product-scroll mt15 relative"></div>
 			</div>
 			<div class="table-cell vt">
 				<div class="pl10">
 					<h2 class="cr center" id="product-name"></h2>
-					<div class="cg p10">
+					<div class="property-container clearfix" id="property-container">
 						<div class="form-group col-6">
 							<label class="label-4">价格:</label>
 							<div class="form-control">
 								<span class="cr" id="product-price"></span>
 							</div>
 						</div>
-						<div>
-							尺寸：<span>中等</span>
-						</div>
-						<div>
-							颜色：<span>天蓝</span>
-						</div>
-						<div>
-							备注：<span>灯，照明用品，泛指可以照亮的用具。人类远古时代用火把照明，后来有了蜡烛和油灯。在古时“烛”是一种由易燃材料制成的火把，
-							用于执持的已被点燃的火把，称之为烛；放在地上的用来点燃的成堆细草和树枝叫做燎，燎置于门外的称大烛，门内的则称庭燎。</span>
-						</div>
-						<div class="text-center pt20">
-							<button class="btn btn-danger">加入购物车</button>
-							<!-- <button class="btn btn-danger ml10">立即购买</button> -->
+						<div class="form-group col-6">
+							<label class="label-4">数量:</label>
+							<div class="form-control">
+								<span class="cr" id="product-count"></span>
+							</div>
 						</div>
 					</div>
+				</div>
+				<div class="text-center pt20">
+					<button class="btn btn-danger">加入购物车</button>
+					<button class="btn btn-danger ml10">立即购买</button>
 				</div>
 			</div>
 		</div>
