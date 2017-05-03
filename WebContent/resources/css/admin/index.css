@@ -1,3 +1,21 @@
+/* --------------------regist modal、login modal---------------------- */
+.regist-modal {
+	width: 500px;
+    height: 350px;
+    padding: 50px 70px 30px;
+    box-sizing: border-box;
+}
+.login-container {
+	width: 500px;
+	height: 300px;
+	padding: 50px 70px 30px;
+    box-sizing: border-box;
+}
+.btn-half {
+	padding: 8px 18%;
+}
+/* --------------------regist modal、login modal---------------------- */
+
 .nav-head {
 	height: 30px;
     background: rgba(150, 173, 168, 0.2);
