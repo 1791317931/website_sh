@@ -102,6 +102,7 @@ public class ProductServiceImpl implements ProductService {
 		}
 		product.setCategory(category);
 		product.setCount(productVO.getCount());
+		product.setDescription(productVO.getDescription());
 		Date now = new Date();
 		product.setCreate_date(now);
 		product.setUpdate_date(now);

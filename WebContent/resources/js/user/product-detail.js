@@ -72,6 +72,26 @@ $(function() {
 	})();
 	
 	(function() {
+		$('#add-shopcar').bind('click', function() {
+			if (!id) {
+				$('.to-login').click();
+				return false;
+			}
+			
+			$.ajax({
+				url : base_url + 'shopcar/add',
+				data : {
+					product_id : productId,
+					count : 1
+				},
+				type : 'post',
+				success : function(result) {
+					ZUtil.success('添加成功');
+				}
+			});
+			
+		});
+		
 		$('.nav-container > div').bind('click', function() {
 			var $this = $(this);
 			if($this.hasClass('active')) {
@@ -81,6 +101,9 @@ $(function() {
 			$('.content-item').removeClass('active');
 			$('.content-item[data-id="' + $this.attr('data-id') + '"]').addClass('active');
 		});
+		
+		// TODO
+		
 	})();
 	
 });

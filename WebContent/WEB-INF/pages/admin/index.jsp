@@ -24,8 +24,9 @@
 		role = '${user.con.code}';
 	</script>
 	<link rel="stylesheet" href="<%=basePath %>resources/css/common/index.css?<%=new Date().getTime()%>">
-	<link rel="stylesheet" href="<%=basePath %>resources/css/common/message-tip.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath %>resources/css/common/clip-image.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath %>resources/css/common/message-tip.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath %>resources/css/common/record.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath %>resources/css/common/upload-file.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath %>resources/css/admin/index.css?<%=new Date().getTime()%>">
 	
@@ -67,8 +68,8 @@
 					<button class="btn btn-primary btn-half ml10" id="regist-cancel">取消</button>
 				</div>
 				<div class="text-right mt10">
-				<span class="for-edit" id="to-login">已经有系统账号?去登录</span>
-			</div>
+					<span class="for-edit" id="to-login">已经有系统账号?去登录</span>
+				</div>
 			</div>
 		</div>
 	</div>

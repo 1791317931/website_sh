@@ -23,7 +23,7 @@
 	<jsp:include page="../../decorators/header.jsp" />
 	<div class="standard mh500 mt20">
 		<input type="hidden" id="product-id" value="${id}" />
-		<div class="table wp100 bg-white p15">
+		<div class="table wp100 bg-white">
 			<div class="table-cell w420">
 				<img class="product-detail" />
 				<div class="product-scroll mt15 relative"></div>
@@ -46,9 +46,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="text-center pt20">
-					<button class="btn btn-danger">加入购物车</button>
-					<button class="btn btn-danger ml10">立即购买</button>
+				<div class="text-center pt30">
+					<button class="btn btn-danger" id="add-shopcar">加入购物车</button>
+					<!-- <button class="btn btn-danger ml10">立即购买</button> -->
 				</div>
 			</div>
 		</div>

@@ -47,7 +47,7 @@ body {
 /* --------------------regist modal、login modal---------------------- */
 .regist-modal {
 	width: 500px;
-    height: 400px;
+    height: 350px;
     padding: 50px 70px 30px;
 }
 .login-container {

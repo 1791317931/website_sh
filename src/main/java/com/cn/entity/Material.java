@@ -24,6 +24,8 @@ public class Material extends IdEntity {
 	// 状态：N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）
 	private String status;
 	
+	private String description;
+	
 	private double price;
 	
 	// 特价
@@ -95,6 +97,14 @@ public class Material extends IdEntity {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 	
 }

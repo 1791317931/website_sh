@@ -22,6 +22,8 @@ public class MaterialVO extends IdEntity {
 	
 	private int count;
 	
+	private String description;
+	
 	private Integer categoryId;
 	
 	private String categoryName;
@@ -88,6 +90,14 @@ public class MaterialVO extends IdEntity {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public Integer getCategoryId() {

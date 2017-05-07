@@ -84,8 +84,8 @@ public class UserController extends BaseController {
 			Const con = list.get(0);
 			user.setCon(con);
 			
-			user.setCreated_by(created_by);
-			user.setUpdated_by(created_by);
+			user.setCreated_by(getUserId());
+			user.setUpdated_by(getUserId());
 			Date now = new Date();
 			user.setCreate_date(now);
 			user.setUpdate_date(now);

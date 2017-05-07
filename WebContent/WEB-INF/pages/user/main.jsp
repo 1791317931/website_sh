@@ -15,7 +15,6 @@
 	<script type="text/javascript">
 		var base_url = '<%=basePath%>';
 	</script>
-	<link rel="stylesheet" href="<%=basePath%>resources/css/common/horizontal-slide.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath%>resources/css/user/main.css?<%=new Date().getTime()%>">
 </head>
 <body>

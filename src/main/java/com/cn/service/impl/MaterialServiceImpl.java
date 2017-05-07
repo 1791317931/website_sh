@@ -95,6 +95,7 @@ public class MaterialServiceImpl implements MaterialService {
 		}
 		material.setCategory(category);
 		material.setCount(materialVO.getCount());
+		material.setDescription(materialVO.getDescription());
 		Date now = new Date();
 		material.setCreate_date(now);
 		material.setUpdate_date(now);

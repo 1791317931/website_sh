@@ -20,10 +20,10 @@
 </head>
 <body>
 	<jsp:include page="../../decorators/header.jsp" />
-	<div class="standard mh500 mt20 container p10">
-		<table class="wp100 bbg" border="0" cellpadding="0" cellspacing="0">
+	<div class="standard mh500 mt20 container">
+		<table class="table-head wp100" border="1" cellpadding="0" cellspacing="0">
 			<tr class="cg">
-				<td class="w50" align="center">
+				<td class="w30" align="center">
 					<input class="check-all" type="checkbox" />
 				</td>
 				<td class="w250">商品</td>
@@ -34,9 +34,9 @@
 				<td class="w100">操作</td>
 			</tr>
 		</table>
-		<div class="product-list empty mh100 table" data-empty="暂无数据"></div>
+		<div class="product-list empty table" data-empty="暂无数据"></div>
 		<div class="clearfix mt20">
-			<button class="btn btn-danger">结算</button>
+			<button class="btn btn-danger btn-2">结算</button>
 			<div class="pull-right pt10 pb10 f20">
 				<span>总计：</span><span class="cr">12345</span>
 			</div>
@@ -44,6 +44,5 @@
 	</div>
 	<jsp:include page="../../decorators/footer.jsp" />
 </body>
-	<script src="<%=basePath %>resources/js/common/pagination.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/user/shop-car.js?<%=new Date().getTime()%>"></script>
 </html>

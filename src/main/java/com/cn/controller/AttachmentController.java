@@ -83,7 +83,7 @@ public class AttachmentController extends BaseController {
 	@RequestMapping(value = "/logo/enable")
 	@ResponseBody
 	public Map<String, Object> endableLogo(int attachmentId) {
-		attachmentObjService.enableLogo(attachmentId, created_by);
+		attachmentObjService.enableLogo(attachmentId, getUserId());
 		return getMap(null);
 	}
 	
@@ -119,7 +119,7 @@ public class AttachmentController extends BaseController {
 	@RequestMapping(value = "/banner/saveOrUpdate")
 	@ResponseBody
 	public Map<String, Object> saveOrUpdateBanner(int attachmentId, Integer sort) {
-		Map<String, Object> result = attachmentObjService.enableBanner(attachmentId, created_by, sort);
+		Map<String, Object> result = attachmentObjService.enableBanner(attachmentId, getUserId(), sort);
 		return getMap(result);
 	}
 	
@@ -142,12 +142,12 @@ public class AttachmentController extends BaseController {
 	public Map<String, Object> saveOrUpdate(Attachment attachment, Integer typeId) {
 		Date now = new Date();
 		attachment.setUpdate_date(now);
-		attachment.setUpdated_by(created_by);
+		attachment.setUpdated_by(getUserId());
 		if(attachment.getId() == null) {
 			Const con = constService.getById(typeId);
 			attachment.setCon(con);
 			attachment.setCreate_date(now);
-			attachment.setCreated_by(created_by);
+			attachment.setCreated_by(getUserId());
 			attachment.setIs_deleted("N");
 		}
 		attachmentService.saveOrUpdate(attachment);
@@ -157,7 +157,7 @@ public class AttachmentController extends BaseController {
 	@RequestMapping(value = "/batchSave", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> batchSave(@RequestParam(value = "urls[]") String urls[], String type, int code) {
-		List<Integer> ids = attachmentService.batchSave(urls, type, code, created_by);
+		List<Integer> ids = attachmentService.batchSave(urls, type, code, getUserId());
 		return getMap(ids);
 	}
 	

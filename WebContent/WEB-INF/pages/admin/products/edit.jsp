@@ -69,6 +69,12 @@
 			</div>
 		</div>
 		<button class="btn btn-primary ml30" id="select-category">选择属性分类</button>
+		<div class="form-group h160">
+			<label class="label-5">商品描述:</label>
+			<div class="form-control r10">
+				<textarea class="description" id="product-description"></textarea>
+			</div>
+		</div>
 	</div>
 	<div class="title">商品自定义属性:</div>
 	<div class="product-property-container empty" data-empty="请添加商品属性" id="product-property-container"></div>

@@ -51,7 +51,7 @@ public class CategoryController extends BaseController {
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(CategoryVO categoryVO) {
-		return categoryService.saveOrUpdate(getMap(null), categoryVO, created_by);
+		return categoryService.saveOrUpdate(getMap(null), categoryVO, getUserId());
 	}
 	
 	@RequestMapping(value = "/property/delete", method = RequestMethod.POST)

@@ -28,6 +28,10 @@ $(function() {
 			$('#material-special-price').val(data.specialPrice);
 			$('#material-is-valid').val(data.status);
 			$('#material-count').val(data.count);
+			var $description = $('#material-description');
+			$description.val(data.description || '');
+			$description.focus();
+			$description.blur();
 			$('#material-category').val(data.categoryName).attr('data-id', data.categoryId);
 			
 			// 自定义属性
@@ -104,6 +108,10 @@ $(function() {
 	(function() {
 		$('#select-category').bind('click', function() {
 			$categoryModal.trigger('show');
+		});
+
+		$('#material-description').Record({
+			length : 255
 		});
 		
 		$categoryModal.ToggleModal(function() {
@@ -310,7 +318,7 @@ $(function() {
 		
 		function validate(data) {
 			if (!data.name) {
-				ZUtil.error('商品属性必填');
+				ZUtil.error('材料属性必填');
 				return false;
 			}
 			
@@ -336,22 +344,30 @@ $(function() {
 			var count = data.count,
 			countReg = /^([1-9]\d*)|0$/;
 			if (!count) {
-				ZUtil.error('商品库存必填');
+				ZUtil.error('材料库存必填');
 				return false;
 			} else if (!countReg.test(count)) {
-				ZUtil.error('商品库存只能大于或等于0的整数');
+				ZUtil.error('材料库存只能大于或等于0的整数');
 				return false;
 			}
+			
+			var description = data.description;
+			if (description.length > 255) {
+				ZUtil.error('材料描述最多255个字符');
+				return false;
+			}
+			
 			return true;
 		}
 		
-		// 保存商品
+		// 保存材料
 		$('#saveOrUpdate').bind('click', function() {
 			var materialId = $('#material-id').val(),
 			materialName = $.trim($('#material-name').val()),
 			price = $.trim($('#material-price').val()),
 			specialPrice = $.trim($('#material-special-price').val()),
 			count = $.trim($('#material-count').val()),
+			description = $.trim($('#material-description').val()),
 			categoryId = $('#material-category').attr('data-id'),
 			$propertyInputs = $materialPropertyContainer.find('input'),
 			$imgs = $('#img-container .image-item img'),
@@ -364,6 +380,7 @@ $(function() {
 				price : price,
 				specialPrice : specialPrice,
 				count : count,
+				description : description,
 				categoryId : categoryId
 			};
 			

@@ -406,7 +406,9 @@ select:hover {border: 1px solid #00BCD4;}
     left: 92px;
     right: 0;
 }
-.form-control > input[type="text"], .form-control > input[type="password"] {
+.form-control > input[type="text"],
+.form-control > input[type="password"],
+.form-control > textarea {
 	width: 100%;
 	line-height: 30px;
     box-sizing: border-box;

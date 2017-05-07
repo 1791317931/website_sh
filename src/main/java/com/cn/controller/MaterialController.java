@@ -94,7 +94,7 @@ public class MaterialController extends BaseController {
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(@RequestBody MaterialVO MaterialVO) {
-		materialService.saveOrUpdate(MaterialVO, created_by);
+		materialService.saveOrUpdate(MaterialVO, getUserId());
 		
 		return getMap(null);
 	}
@@ -114,6 +114,7 @@ public class MaterialController extends BaseController {
 		vo.setIsValid(material.getIs_valid());
 		vo.setName(material.getName());
 		vo.setPrice(material.getPrice());
+		vo.setDescription(material.getDescription());
 		vo.setSpecialPrice(material.getSpecial_price());
 		vo.setStatus(material.getStatus());
 		String urls[] = imgUrls.toArray(new String[imgUrls.size()]);

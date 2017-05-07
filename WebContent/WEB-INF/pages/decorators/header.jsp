@@ -25,8 +25,10 @@
 	</script>
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/index.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/message-tip.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath%>resources/css/common/horizontal-slide.css?<%=new Date().getTime()%>">
 	<script src="<%=basePath %>resources/js/common/jquery.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/common/index.js?<%=new Date().getTime()%>"></script>
+	<script src="<%=basePath %>resources/js/common/pagination.js?<%=new Date().getTime()%>"></script>
 	<link rel="stylesheet" href="<%=basePath%>resources/css/decorators/decorator.css?<%=new Date().getTime()%>">
 
 </head>
@@ -36,7 +38,7 @@
 			<div class="pull-right option-container mt6 hide">
 				<span><a href="<%=basePath%>main/index">首页</a></span>
 				<span><a class="to-manage" href="<%=basePath%>admin/index">管理</a></span>
-				<span><a class="to-shopCar" href="<%=basePath%>product/user/shopcar">进入购物车</a></span>
+				<span><a class="to-shopCar" href="<%=basePath%>shopcar/index">进入购物车</a></span>
 				<span><a class="to-login" href="javascript:">登录</a></span>
 				<span><a class="to-regist" href="javascript:">注册</a></span>
 				<span><span class="welcome-container">${user.username}</span>，您好</span>
@@ -77,6 +79,9 @@
 					<button class="btn btn-primary btn-half" id="regist-sure">注册</button>
 					<button class="btn btn-primary btn-half ml10" id="regist-cancel">关闭</button>
 				</div>
+				<div class="text-right mt10">
+					<span class="for-edit" id="to-login">已经有系统账号?去登录</span>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -98,6 +103,9 @@
 				<div class="form-group text-center mt30">
 					<button class="btn btn-primary btn-half" id="login-sure">登录</button>
 					<button class="btn btn-primary btn-half ml10" id="login-cancel">关闭</button>
+				</div>
+				<div class="text-right mt10">
+					<span class="for-edit" id="to-regist">还没有系统账号?去注册</span>
 				</div>
 			</div>
 		</div>

@@ -67,7 +67,7 @@ public class ConstController extends BaseController {
 	@RequestMapping(value = "/saveOrUpdate")
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(Const con) {
-		Map<String, Object> result = constService.saveOrUpdate(con, created_by);
+		Map<String, Object> result = constService.saveOrUpdate(con, getUserId());
 		
 		return getMap(result);
 	}

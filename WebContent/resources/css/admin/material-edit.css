@@ -1,3 +1,4 @@
+.h160 {height: 160px;}
 .lh36 {line-height: 36px;}
 
 .material-list:empty {
@@ -142,4 +143,10 @@
 .upload-file-container {
 	padding: 10px;
 	border: 1px solid #ccc;
+}
+
+.description {
+	height: 150px;
+	padding: 5px !important;
+	line-height: 20px !important;;
 }

@@ -29,6 +29,8 @@ public class Product extends IdEntity {
 	// 库存
 	private Integer count;
 	
+	private String description;
+	
 	// 特价
 	private double special_price;
 
@@ -70,6 +72,14 @@ public class Product extends IdEntity {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	public double getSpecial_price() {

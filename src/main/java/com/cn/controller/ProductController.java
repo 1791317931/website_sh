@@ -62,11 +62,6 @@ public class ProductController extends BaseController {
 		return "user/products/detail";
 	}
 	
-	@RequestMapping(value = "/user/shopcar")
-	public String toShopCar() {
-		return "user/products/shop_car";
-	}
-	
 	/**
 	 * 商品首页配置
 	 * @return
@@ -125,7 +120,7 @@ public class ProductController extends BaseController {
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(@RequestBody ProductVO productVO) {
-		productService.saveOrUpdate(productVO, created_by);
+		productService.saveOrUpdate(productVO, getUserId());
 		
 		return getMap(null);
 	}
@@ -135,7 +130,7 @@ public class ProductController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> saveOrUpdateByTypeId(@RequestBody List<ConstObjVO> vos,
 			@PathVariable(value = "typeId") int typeId) {
-		constObjService.batchSave(typeId, vos, created_by);
+		constObjService.batchSave(typeId, vos, getUserId());
 		
 		return getMap(null);
 	}
@@ -167,6 +162,7 @@ public class ProductController extends BaseController {
 		vo.setIsValid(product.getIs_valid());
 		vo.setName(product.getName());
 		vo.setPrice(product.getPrice());
+		vo.setDescription(product.getDescription());
 		vo.setSpecialPrice(product.getSpecial_price());
 		vo.setStatus(product.getStatus());
 		String urls[] = imgUrls.toArray(new String[imgUrls.size()]);

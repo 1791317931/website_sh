@@ -1,7 +1,7 @@
 .mh500 {min-height: 500px;}
 .mh100 {min-height: 100px;}
 .w20 {width: 20px;}
-.w50 {width: 50px;}
+.w30 {width: 30px;}
 .w100 {width: 100px;}
 .w110 {width: 110px !important;}
 .w130 {width: 130px;}
@@ -18,8 +18,6 @@
 
 .cg {color: #888;}
 .cr {color: red;}
-
-.bbg {border-bottom: 1px solid #ccc;}
 
 .product-list .table-row > .table-cell {
 	border-bottom: 1px solid #ccc;
@@ -39,3 +37,8 @@
 }
 
 .f20 {font-size: 20px;}
+
+.table-head {
+	background: #eee;
+	height: 30px;
+}

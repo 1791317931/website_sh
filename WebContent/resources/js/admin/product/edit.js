@@ -27,6 +27,10 @@ $(function() {
 			$('#product-special-price').val(data.specialPrice);
 			$('#product-is-valid').val(data.status);
 			$('#product-count').val(data.count);
+			var $description = $('#product-description');
+			$description.val(data.description || '');
+			$description.focus();
+			$description.blur();
 			$('#product-category').val(data.categoryName).attr('data-id', data.categoryId);
 			
 			// 自定义属性
@@ -75,6 +79,10 @@ $(function() {
 	(function() {
 		$('#select-category').bind('click', function() {
 			$categoryModal.trigger('show');
+		});
+		
+		$('#product-description').Record({
+			length : 255
 		});
 		
 		$categoryModal.ToggleModal(function() {
@@ -313,6 +321,12 @@ $(function() {
 				ZUtil.error('商品库存只能大于或等于0的整数');
 				return false;
 			}
+			
+			var description = data.description;
+			if (description.length > 255) {
+				ZUtil.error('商品描述最多255个字符');
+				return false;
+			}
 			return true;
 		}
 		
@@ -323,6 +337,7 @@ $(function() {
 			price = $.trim($('#product-price').val()),
 			specialPrice = $.trim($('#product-special-price').val()),
 			count = $.trim($('#product-count').val()),
+			description = $.trim($('#product-description').val()),
 			categoryId = $('#product-category').attr('data-id'),
 			$propertyInputs = $productPropertyContainer.find('input'),
 			$imgs = $('#img-container .image-item img'),
@@ -333,6 +348,7 @@ $(function() {
 				price : price,
 				specialPrice : specialPrice,
 				count : count,
+				description : description,
 				categoryId : categoryId
 			};
 			

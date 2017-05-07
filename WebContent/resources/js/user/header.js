@@ -3,7 +3,8 @@
 	var $toRegist = $('.to-regist'),
 	$registModal = $('#regist-modal'),
 	$registSure = $('#regist-sure'),
-	$registCancel = $('#regist-cancel');
+	$registCancel = $('#regist-cancel'),
+	$toLogin = $('#to-login');
 	
 	if ($toRegist.length) {
 		$registModal.ToggleModal($.noop, function() {
@@ -79,6 +80,11 @@
 		$registCancel.bind('click', function() {
 			$registModal.trigger('hide');
 		});
+		
+		$toLogin.bind('click', function() {
+			$registModal.trigger('hide');
+			$('#login-container').trigger('show');
+		});
 	} else {
 		$registModal.remove();
 	}
@@ -89,7 +95,8 @@
 	var $toLogin = $('.to-login'),
 	$loginContainer = $('#login-container'),
 	$loginSure = $('#login-sure'),
-	$loginCancel = $('#login-cancel');
+	$loginCancel = $('#login-cancel'),
+	$toRegist = $('#to-regist');
 	
 	if ($toLogin.length) {
 		$loginContainer.ToggleModal($.noop, function() {
@@ -144,6 +151,11 @@
 		
 		$loginCancel.bind('click', function() {
 			$loginContainer.trigger('hide');
+		});
+		
+		$toRegist.bind('click', function() {
+			$loginContainer.trigger('hide');
+			$('#regist-modal').trigger('show');
 		});
 	} else {
 		$loginContainer.remove();

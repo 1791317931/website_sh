@@ -119,6 +119,7 @@ create table w_product (
 	status varchar(10) not null default 'N' comment '状态：N（新增）、P（审核通过）、F（审核失败）、S（特价处理中）',
 	price double not null comment '价格',
 	count int not null default 0 comment '库存',
+	description varchar(255) commnet '描述',
 	special_price double not null comment '特价',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
@@ -137,11 +138,24 @@ create table w_material (
 	price double not null comment '价格',
 	special_price double not null comment '特价',
 	count int not null comment '库存',
+	description varchar(255) commnet '描述',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
 	created_by int not null comment '创建人id',
 	updated_by int not null comment '最后修改人'
 ) ENGINE = INNODB comment '材料表';
+
+drop table if exists w_shopcar;
+create table w_shopcar (
+	id int primary key auto_increment,
+	product_id int not null,
+	user_id int not null,
+	count int not null,
+	create_date datetime not null default now() comment '创建时间',
+	update_date datetime not null default now() comment '最后修改时间',
+	created_by int not null comment '创建人id',
+	updated_by int not null comment '最后修改人'
+) ENGINE = INNODB comment '购物车';
 
 drop table if exists w_category;
 create table w_category (
