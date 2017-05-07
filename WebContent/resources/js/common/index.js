@@ -3020,13 +3020,20 @@
 		 * 
 		 * xhr.abort()中止请求
 		 * 新增特性：
+		 * 
 		 * 2016-12-8
 		 * 1、$container.data('uploading')	将组建上传状态暴露给外部
+		 * 
 		 * 2017-2-24
 		 * 1、文件分片上传
+		 * 
 		 * 2017年5月2日09:13:11
 		 * fixed bug
 		 * 1、当上传的文件太小，约等于0KB时，进度条会超过100%，使用progress = Math.min(Math.round(loaded / size * 100), 100)取最小值
+		 * 
+		 * 2017年5月4日08:35:11
+		 * 1、新增注释formData['delete'](fileName);必须执行的原因
+		 * 2、切片时，e.loaded相应处理
 		 */
 		UploadFile : function(opt) {
 			var $container = this,
@@ -3471,15 +3478,28 @@
 					
 					xhr.addEventListener('error', uploadError, false);
 					xhr.upload.addEventListener('progress', function(e) {
-						// 不管分几次上传，只要是同一个xhr，e.loaded就会继续增加
-						var loaded = e.loaded,
-				    	// 当前时间戳
-				    	now = new Date().getTime(),
-				    	distance = now - prev;
+						// e.loaded是本次请求已经上传的文件大小
+						var loaded,
+						// 当前时间戳
+						now = new Date().getTime(),
+						distance = now - prev;
+						if (splitUpload) {
+							/**
+							 * 如果是分片上传，e.loaded是每次的file.slice(start, end)，理论上就是每份文件切片大小
+							 * 而不会像整体文件上传一样,e.loaded是从0慢慢增长到file.size
+							 * 需要加上load才是已经上传的文件大小
+							 */
+							loaded = e.loaded + load;
+						} else {
+							loaded = e.loaded;
+						}
 						
 						var progress = Math.min(Math.round(loaded / size * 100), 100);
-						// 每次更新的时间间隔 >= speedUpdateInterval，或者上传完毕
-						if(distance >= speedUpdateInterval || progress == 100) {
+						/**
+						 * 每次更新的时间间隔 >= speedUpdateInterval
+						 * 或者上传完毕（如果是分片上传，那么e.loaded >= splitSize也意味着当前分片文件上传完成）
+						 */
+						if(distance >= speedUpdateInterval || (progress == 100 || (splitUpload && e.loaded >= splitSize))) {
 							var speed = ZUtil.translateByte((loaded - load) / distance * 1000);
 							$speed.html('速度：' + speed + '/s');
 							prev = now;
@@ -3552,6 +3572,12 @@
 						
 						formData['delete']('index');
 						formData.append('index', ++index);
+						/**
+						 * formData['delete'](fileName);
+						 * formData不执行delete删除相同参数时，append进来相同的参数是无效的，也就是说每次提交的都是第一次append进来的值
+						 * 为了保证上传最新的Blob，需要先delete掉上一次的Blob，然后加入当前Blob
+						 */
+						formData['delete'](fileName);
 						formData.append(fileName, file.slice(start, end));
 						xhr.send(formData);
 					}
