@@ -2956,6 +2956,9 @@
 		 * 绑定modal的show、hide事件
 		 * altKey	是否允许按ESC键控制modal隐藏	默认true
 		 * $container.trigger('show');
+		 * 
+		 * 2017年5月8日14:10:13
+		 * 1、transitionend判断事件源是否是本身
 		 */
 		ToggleModal : function(showCallback, hideCallback, altKey) {
 			var $this = this;
@@ -2967,11 +2970,14 @@
 			showCallback = showCallback || $.noop;
 			hideCallback = hideCallback || $.noop;
 			$this.bind(eventObj.transitionEvent.end, function(e) {
-				if($this.hasClass('state-show')) {
-					showCallback(e);
-				} else {
-					$this.addClass('hide');
-					hideCallback(e);
+				// 事件源必须是本身，因为.z-modal内部的dom也可能有transitionend事件，导致冒泡
+				if ($(e.target).hasClass('z-modal')) {
+					if($this.hasClass('state-show')) {
+						showCallback(e);
+					} else {
+						$this.addClass('hide');
+						hideCallback(e);
+					}
 				}
 			}).bind('show', function(e) {
 				$this.removeClass('hide').addClass('state-show');
@@ -2989,7 +2995,7 @@
 				if(e.target == $this[0]) {
 					$this.trigger('hide');
 				}
-			})
+			});
 			
 			if(altKey != false) {
 				$(document).bind('keydown', function(e) {
