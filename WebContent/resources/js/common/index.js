@@ -1,4 +1,5 @@
 (function() {
+	
 	window.base_img = '/sharedisk/img/';
 	window.base_file = '/sharedisk/file/';
 	
