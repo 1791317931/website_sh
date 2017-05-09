@@ -23,6 +23,10 @@
 	border-bottom: 1px solid #ccc;
 }
 
+.product-name {
+	word-break: break-all;
+}
+
 .product_count {
 	width: 70px;
 	height: 30px;

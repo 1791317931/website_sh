@@ -28,7 +28,7 @@
 }
 
 .slider-body .slider-content .slider-item {
-	width: 75px;
+	width: 75px !important;
 	padding-right: 5px;
 }
 

@@ -62,6 +62,13 @@ public class ProductController extends BaseController {
 		return "user/products/detail";
 	}
 	
+	// 搜索页
+	@RequestMapping(value = "/search")
+	public String toSearch(@RequestParam(defaultValue = "") String name, ModelMap map) {
+		map.put("name", name);
+		return "user/products/search";
+	}
+	
 	/**
 	 * 商品首页配置
 	 * @return

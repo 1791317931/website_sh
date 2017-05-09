@@ -164,7 +164,9 @@
 
 // 初始化顶部
 (function() {
-	var $optionContainer = $('.option-container');
+	var $optionContainer = $('.option-container'),
+	$productNameSearch = $('#product-name-search'),
+	$searchProduct = $('.search-product');
 	
 	// 已登录
 	if (id) {
@@ -181,6 +183,18 @@
 		$('.to-logout').parent('span').remove();
 	}
 	$optionContainer.removeClass('hide');
+	
+	// 搜索商品
+	$productNameSearch.bind('keydown', function(e) {
+		if (e.keyCode == 13) {
+			$searchProduct.click();
+		}
+	});
+	
+	$searchProduct.bind('click', function() {
+		location.href = base_url + 'product/search?name=' + $.trim($productNameSearch.val());
+	});
+	
 })();
 
 // 加载LOGO

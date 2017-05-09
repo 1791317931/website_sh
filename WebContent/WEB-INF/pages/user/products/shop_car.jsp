@@ -21,7 +21,7 @@
 <body>
 	<jsp:include page="../../decorators/header.jsp" />
 	<div class="standard mh500 mt20 container">
-		<table class="table-head wp100" border="1" cellpadding="0" cellspacing="0">
+		<table class="table-head wp100" border="0" cellpadding="0" cellspacing="0">
 			<tr class="cg">
 				<td class="w30" align="center">
 					<input class="check-all" type="checkbox" />
@@ -35,10 +35,11 @@
 			</tr>
 		</table>
 		<div class="product-list empty table" data-empty="暂无数据"></div>
-		<div class="clearfix mt20">
-			<button class="btn btn-danger btn-2">结算</button>
+		<div class="clearfix mt20 ph10">
+			<button class="btn btn-danger btn-2" id="delete-shopcar">删除</button>
+			<button class="btn btn-danger ml20 btn-2">结算</button>
 			<div class="pull-right pt10 pb10 f20">
-				<span>总计：</span><span class="cr">12345</span>
+				<span>总计：</span><span class="cr total"></span><span class="cr">（￥）</span>
 			</div>
 		</div>
 	</div>

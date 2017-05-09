@@ -1,5 +1,7 @@
 package com.cn.vo;
 
+import java.util.List;
+
 import com.cn.base.IdEntity;
 
 public class ShopCarVO extends IdEntity {
@@ -15,6 +17,8 @@ public class ShopCarVO extends IdEntity {
 	private int count;
 	
 	private String description;
+	
+	private List<String> imgUrls;
 	
 	public int getProductId() {
 		return productId;
@@ -54,6 +58,14 @@ public class ShopCarVO extends IdEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public List<String> getImgUrls() {
+		return imgUrls;
+	}
+
+	public void setImgUrls(List<String> imgUrls) {
+		this.imgUrls = imgUrls;
 	}
 	
 }

@@ -6,6 +6,9 @@ body {
 	box-sizing: border-box;
 }
 
+.h80 {height: 80px;}
+.mt24 {margin-top: 24px;}
+
 .header {
 	height: 30px;
 	background: #ddd;
@@ -14,6 +17,14 @@ body {
 .w1200 {
 	width: 1200px;
 	margin: auto;
+}
+
+.search-product {
+	margin-top: 28px;
+    padding: 6px 10px;
+}
+.product-name-search {
+	border-radius: 3px 0 0 3px !important;
 }
 
 .mt6 {margin-top: 6px;}

@@ -1,5 +1,6 @@
 package com.cn.controller;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -8,6 +9,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
@@ -42,8 +44,8 @@ public class ShopCarController extends BaseController {
 	// 通过id删除购物车
 	@RequestMapping(value = "/delete/byIds", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> deleteByIds(List<Integer> ids) {
-		shopCarService.batchDelete(ids);
+	public Map<String, Object> deleteByIds(@RequestParam(value = "ids[]") Integer ids[]) {
+		shopCarService.batchDelete(Arrays.asList(ids));
 		return getMap(null);
 	}
 	

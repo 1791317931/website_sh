@@ -10,6 +10,8 @@ import org.springframework.stereotype.Service;
 
 import com.cn.dao.ShopCarDao;
 import com.cn.entity.ShopCar;
+import com.cn.enums.FileConst;
+import com.cn.service.AttachmentService;
 import com.cn.service.ShopCarService;
 import com.cn.vo.ShopCarVO;
 
@@ -18,6 +20,9 @@ public class ShopCarServiceImpl implements ShopCarService {
 	
 	@Resource(name = "shopCarDao")
 	private ShopCarDao shopCarDao;
+	
+	@Resource(name = "attachmentService")
+	private AttachmentService attachmentService;
 	
 	@Override
 	public void add(ShopCar shopCar, int userId) {
@@ -70,20 +75,23 @@ public class ShopCarServiceImpl implements ShopCarService {
 		return transformTo(list);
 	}
 	
-	public static List<ShopCarVO> transformTo(List<Object[]> list) {
+	public List<ShopCarVO> transformTo(List<Object[]> list) {
 		List<ShopCarVO> vos =  new ArrayList<ShopCarVO>();
 		
 		for (int i = 0, length = list.size(); i < length; i++) {
 			Object[] objs = list.get(i);
 			ShopCarVO vo = new ShopCarVO();
 			vo.setId(Integer.parseInt(objs[0] + ""));
-			vo.setProductId(Integer.parseInt(objs[1] + ""));
+			int productId = Integer.parseInt(objs[1] + "");
+			vo.setProductId(productId);
 			vo.setName(objs[2] + "");
 			if (objs[3] != null) {
 				vo.setDescription(objs[3] + "");
 			}
 			vo.setCount(Integer.parseInt(objs[4] + ""));
 			vo.setPrice(Double.parseDouble(objs[5] + ""));
+			List<String> imgUrls = attachmentService.getUrlsByObjIdAndCode(productId, FileConst.PRODUCT, "wao.id");
+			vo.setImgUrls(imgUrls);
 			vos.add(vo);
 		}
 		

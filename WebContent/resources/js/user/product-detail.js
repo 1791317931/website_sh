@@ -20,6 +20,7 @@ $(function() {
 				sliderBody : html,
 				showArrow : true,
 				showClose : false,
+				showFooter : false,
 				clickCallback : function(index, length) {
 					if (length - index == LENGTH) {
 						$('.triangle-right').addClass('disabled');

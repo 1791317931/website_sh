@@ -46,10 +46,16 @@
 			</div>
 		</div>
 	</div>
-	<div class="head-nav">
-		<a href="<%=basePath%>main/index">
+	<div class="head-nav clearfix">
+		<a class="pull-left h80" href="<%=basePath%>main/index">
 			<img class="logo" />
 		</a>
+		<button class="pull-right btn search-product">搜索</button>
+		<div class="pull-right form-group col-3 mt24">
+			<div class="form-control">
+				<input class="product-name-search" type="text" id="product-name-search" placeholder="请输入商品名称" />
+			</div>
+		</div>
 	</div>
 	<div class="z-modal hide" id="regist-modal">
 		<div class="z-modal-body regist-modal">
