@@ -1238,7 +1238,7 @@
 						height = image.height,
 						percentSourceW = width / sourceContainerWidth,
 						percentSourceH = height / sourceContainerHeight;
-						// 图片超出container尺寸，需要缩放
+						// 图片超出container尺寸，需要缩放，使大的那条边刚好显示完
 						if(percentSourceW > 1 || percentSourceH > 1) {
 							if(percentSourceW > percentSourceH) {
 								/**

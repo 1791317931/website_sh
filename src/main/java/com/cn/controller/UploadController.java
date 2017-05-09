@@ -265,7 +265,7 @@ public class UploadController extends BaseController {
 		// 校验文件类型是否合法
 		if (valid) {
 			// 1、首先上传图片
-			Map<String, Object> fileMap = ImageUtils.uploadImage(file, savePath, IMAGE_PATH, fileName, fw, fh);
+			Map<String, Object> fileMap = ImageUtils.uploadImage(file, savePath, IMAGE_PATH, fileName);
 			
 			// 2、校验已经上传图片是否合法：P过的图片保存为jpg格式时，默认的模式是CMYK模式（注意，这是给印刷机用的）。在图像-->模式中改为RGB模式才是显示器用的
 			boolean isRGB = ImageUtils.isRGB((String) fileMap.get("fullPath"));

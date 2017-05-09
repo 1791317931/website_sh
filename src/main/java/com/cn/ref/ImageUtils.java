@@ -631,13 +631,11 @@ public class ImageUtils {
 	 * @param savePath
 	 * @param basePath
 	 * @param fileName
-	 * @param fw
-	 * @param fh
 	 * @return
 	 * @throws Exception
 	 */
 	public static Map<String, Object> uploadImage(MultipartFile file, 
-			String savePath, String basePath, String fileName, int fw, int fh) throws Exception {
+			String savePath, String basePath, String fileName) throws Exception {
 		
 		String srcPath = savePath + "src/";
 		String type = getType(file);
