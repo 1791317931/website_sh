@@ -54,8 +54,6 @@ public class ConstController extends BaseController {
 		return getMap(list.get(0));
 	}
 	
-	
-	
 	@RequestMapping(value = "/delete")
 	@ResponseBody
 	public Map<String, Object> deleteById(int id) {

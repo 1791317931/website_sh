@@ -158,6 +158,35 @@ public class ProductServiceImpl implements ProductService {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
+	@Override
+	public Page getPageByParam(int pageSize, int currentPage, String name,
+			Double minPrice, Double maxPrice, Integer categoryId) {
+		Page page = new Page(pageSize, currentPage);
+		page = productDao.getPageByParam(page, name, minPrice, maxPrice, categoryId);
+		List<Product> list = page.getList();
+		List<ProductVO> vos = new ArrayList<ProductVO>();
+		for (int i = 0, length = list.size(); i < length; i++) {
+			Product product = list.get(i);
+			List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(product.getId(), FileConst.PRODUCT, null);
+			vos.add(transformToProductVO(product, imgUrls));
+		}
+		page.setList(vos);
+		
+		return page;
+	}
+	
+	public static ProductVO transformToProductVO(Product product, List<String> imgUrls) {
+		ProductVO vo = new ProductVO();
+		vo.setCategoryId(product.getCategory().getId());
+		vo.setDescription(product.getDescription());
+		vo.setId(product.getId());
+		vo.setImgUrls(imgUrls.toArray(new String[imgUrls.size()]));
+		vo.setName(product.getName());
+		vo.setPrice(product.getPrice());
+		return vo;
+	}
+	
 	public static List<ConstProductVO> transformTo(List<Object[]> list) {
 		List<ConstProductVO> vos = new ArrayList<ConstProductVO>();
 		ConstProductVO vo = null;

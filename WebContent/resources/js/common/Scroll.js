@@ -68,6 +68,8 @@
 				$noMore.addClass('hide');
 			} else if (totalCount) {
 				$this.siblings('.no-more').removeClass('hide');
+			} else {
+				$noMore.addClass('hide');
 			}
 		}
 		function beforeSend() {
@@ -78,7 +80,7 @@
 		}
 		function success(data) {
 			data = typeof data == 'string' && JSON.parse(data) || data;
-			callback && typeof callback === 'function' && callback(data);
+			typeof callback === 'function' && callback(data);
 			setState(data);
 		}
 		/**

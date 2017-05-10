@@ -1,0 +1,40 @@
+.mh500 {min-height: 500px;}
+
+.condition-container {
+	border: 1px solid #ff7d00;
+}
+
+.category-container {
+	padding: 20px 10px;
+}
+
+.category-container label {
+	padding: 5px 10px;
+    font-size: 16px;
+    color: #0072ff;
+    cursor: pointer;
+    background: #eee;
+    margin-left: 10px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    transition: border-color .3s linear
+}
+
+.category-container label:first-child {
+	margin-left: 0;
+}
+
+.category-container label:hover, .category-container label.active {
+	border-color: #ff7d00;
+}
+
+.price-label {
+	line-height: 26px;
+	font-size: 14px;
+}
+
+.price-text {
+	width: 60px;
+	height: 26px;
+	padding: 0 5px;
+}

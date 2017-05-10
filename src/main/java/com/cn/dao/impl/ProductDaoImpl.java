@@ -71,5 +71,24 @@ public class ProductDaoImpl extends BaseDaoImpl<Product> implements ProductDao {
 					+ " order by wco.sort";
 		return getSession().createSQLQuery(sql).list();
 	}
+	
+	@Override
+	public Page getPageByParam(Page page, String name, Double minPrice,
+			Double maxPrice, Integer categoryId) {
+		String sql = "from Product wp where 1 = 1";
+		if (name != null && name.length() > 0) {
+			sql += " and wp.name like '%" + name + "%'";
+		}
+		if (minPrice != null) {
+			sql += " and wp.price >= '" + minPrice + "'";
+		}
+		if (maxPrice != null) {
+			sql += " and wp.price <= '" + maxPrice + "'";
+		}
+		if (categoryId != null) {
+			sql += " and wp.category.id = " + categoryId;
+		}
+		return getPageByQuery(sql, page);
+	}
 
 }

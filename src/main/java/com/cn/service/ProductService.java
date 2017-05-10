@@ -22,4 +22,7 @@ public interface ProductService {
 	
 	public List<Product> getListByIds(List<Integer> ids);
 	
+	public Page getPageByParam(int pageSize, int currentPage, String name, Double minPrice,
+			Double maxPrice, Integer categoryId);
+	
 }

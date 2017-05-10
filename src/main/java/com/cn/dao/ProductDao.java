@@ -14,4 +14,6 @@ public interface ProductDao extends BaseDao<Product> {
 	
 	public List<Object[]> getListByTypeId(int typeId);
 	
+	public Page getPageByParam(Page page, String name, Double minPrice, Double maxPrice, Integer categoryId);
+	
 }

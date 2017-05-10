@@ -108,6 +108,18 @@ public class ProductController extends BaseController {
 	}
 	
 	/**
+	 * 通过条件查询商品
+	 * @return
+	 */
+	@RequestMapping(value = "/page/byParam", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> getPageByParam(int pageSize, int currentPage, String name,
+			Double minPrice, Double maxPrice, Integer categoryId) {
+		Page page = productService.getPageByParam(pageSize, currentPage, name, minPrice, maxPrice, categoryId);
+		return getMap(page);
+	}
+	
+	/**
 	 * 获取商品详情
 	 * @param id
 	 * @return
