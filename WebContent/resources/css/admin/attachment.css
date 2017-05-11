@@ -5,6 +5,7 @@
 .lh24 {line-height: 24px;}
 .lh36 {line-height: 36px;}
 .lh40 {line-height: 40px;}
+.red {color: red;}
 
 .attachment_list:empty {
 	min-height: 100px;
@@ -34,7 +35,7 @@
 }
 
 .img-item:hover {
-	border-color: #00ffc4;
+	border-color: #ff7d00;
 }
 
 .attachment_list .img-item:nth-child(4n) {
@@ -49,6 +50,7 @@
 
 .img-desc {
 	height: 48px;
+	padding: 0 5px;
 }
 
 .operation {

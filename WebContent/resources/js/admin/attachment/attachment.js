@@ -57,7 +57,7 @@ $(function() {
 				html += '<div class="pull-left relative img-item">'
 						+ '<img class="src-img" src="' + base_img + item.path + '" />'
 						+ '<div class="img-desc">'
-							+ '<div class="lh24">所属分类:<span class="ml5">' + item.con.description + '</span></div>'
+							+ '<div class="lh24">所属分类:<span class="ml5 red">' + item.con.description + '</span></div>'
 							+ '<div class="lh24">更新时间:<span class="ml5">' + item.update_date + '</span></div>'
 						+ '</div>'
 						+ '<div class="absolute operation pointer hide">删除图片</div>'

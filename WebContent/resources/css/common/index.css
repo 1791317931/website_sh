@@ -4,18 +4,11 @@
 	box-sizing: content-box;
 	-webkit-box-sizing: content-box;
 	-moz-box-sizing: content-box;
+	font-family: 微软雅黑;
 }
 
 body {
 	-webkit-font-smoothing: antialiased;
-}
-
-a:visited {
-	font-family: 微软雅黑;
-}
-
-a:link {
-	font-family: 微软雅黑;
 }
 
 a:hover {

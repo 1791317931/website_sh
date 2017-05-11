@@ -3035,6 +3035,10 @@
 		 * 2017年5月4日08:35:11
 		 * 1、新增注释formData['delete'](fileName);必须执行的原因
 		 * 2、切片时，e.loaded相应处理
+		 * 
+		 * 2017年5月11日11:32:52
+		 * 1、新增文件回显功能，$container.trigger('show-list', param)，
+		 * param结构: {urls : []}
 		 */
 		UploadFile : function(opt) {
 			var $container = this,
@@ -3363,6 +3367,39 @@
 					} else {
 						// 如果是单文件上传，点击保存按钮时先上传文件，然后执行回调
 						$rows.find('.z-upload').click();
+					}
+				});
+				
+				// 从服务器那边回显信息
+				$container.bind('show-list', function(e, param) {
+					param = param || {};
+					urls = param.urls || [];
+					
+					for (var i = 0, length = urls.length; i < length; i++) {
+						var url = urls[i],
+						arr = url.substring(url.lastIndexOf('_') + 1).split('\.'),
+						name = arr[0],
+						type = arr[1],
+						fileUpload = {
+							path : url
+						},
+						innerHtml;
+						
+						// 第二个文件开始点击"新增"按钮
+						if (i) {
+							$add.click();
+						}
+						var $row = $rows.find('.z-upload-row:last-child');
+						// 将"上传"按钮的.btn-primary干掉
+						$row.find('.z-upload').removeClass('btn-primary');
+						$row.data('file', fileUpload);
+						
+						innerHtml = '<div class="z-file-name z-upload-cell">'+ name + '.' + type + '</div>'
+								+ '<div class="z-upload-progress z-upload-cell">进度：100%</div>'
+								+ '<div class="z-upload-speed z-upload-cell">速度：0KB/s</div>'
+								+ '<div class="z-upload-progress-linear" style="width: 100%;"></div>';
+						
+						$row.find('.z-progress-bar').html(innerHtml);
 					}
 				});
 				

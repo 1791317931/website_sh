@@ -63,32 +63,9 @@ $(function() {
 			$imgContainer.prepend(imgHtml);
 			
 			// 附件
-			var $rowDivs = $uploadFileContainer.find('.z-upload-rows'),
-			attachmentUrls = data.attachmentUrls,
-			$addButton = $uploadFileContainer.find('.z-upload-add');
-			for (var i = 0, length = attachmentUrls.length; i < length; i++) {
-				var url = attachmentUrls[i],
-				arr = url.substring(url.lastIndexOf('_') + 1).split('\.'),
-				name = arr[0],
-				type = arr[1],
-				fileUpload = {
-					path : url
-				},
-				innerHtml;
-				if (i) {
-					$addButton.click();
-				}
-				var $row = $rowDivs.find('.z-upload-row:last-child');
-				$row.data('file', fileUpload);
-				
-				innerHtml = '<div class="z-file-name z-upload-cell">'+ name + '.' + type + '</div>'
-						+ '<div class="z-upload-progress z-upload-cell">进度：100%</div>'
-						+ '<div class="z-upload-speed z-upload-cell"></div>'
-						+ '<div class="z-upload-progress-linear" style="width: 100%;"></div>';
-				
-				$row.find('.z-progress-bar').html(innerHtml);
-			}
-			
+			$uploadFileContainer.trigger('show-list', {
+				urls : data.attachmentUrls
+			});
 		}
 		
 		if (id) {
