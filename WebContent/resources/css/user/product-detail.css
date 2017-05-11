@@ -95,7 +95,7 @@
 
 .nav-container > div.active {
 	font-weight: 600;
-	border-bottom: 1px solid red;
+	border-bottom: 3px solid red;
 }
 
 .content-item-container {
@@ -115,4 +115,8 @@
 	padding: 10px;
 	color: #888;
 	font-weight: 600;
+}
+
+.similar-product .product-item:nth-child(5n + 1) {
+	margin-left: 0;
 }

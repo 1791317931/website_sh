@@ -107,7 +107,7 @@
 	</div>
 	<div class="main-body">
 		<div class="common-body clearfix table">
-			<div class="menu-container table-cell vt">
+			<div class="menu-container table-cell vt container-box">
 				<ul class="menu">
 					<li>
 						<p>基础数据</p>
@@ -165,7 +165,7 @@
 					</li>
 				</ul>
 			</div>
-			<div class="content-container table-cell vt">
+			<div class="content-container table-cell vt container-box">
 				<div class="content-body" id="content-body"></div>
 			</div>
 		</div>

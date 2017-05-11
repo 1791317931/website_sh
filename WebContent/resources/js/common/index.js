@@ -3038,7 +3038,7 @@
 		 * 
 		 * 2017年5月11日11:32:52
 		 * 1、新增文件回显功能，$container.trigger('show-list', param)，
-		 * param结构: {urls : []}
+		 * param结构: {urls : [String, String...]}
 		 */
 		UploadFile : function(opt) {
 			var $container = this,

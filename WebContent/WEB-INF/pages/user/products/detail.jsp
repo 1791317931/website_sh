@@ -51,17 +51,19 @@
 				</div>
 			</div>
 		</div>
-		<div class="mt20 mb20">
+		<div class="mt20 mb20 container-box">
 			<div class="clearfix nav-container">
 				<div class="active" data-id="comment">相关评论</div>
 				<div data-id="product">相关商品</div>
 			</div>
-			<div class="p10 content-item-container">
+			<div class="content-item-container">
 				<div class="content-item active" data-id="comment">
 					相关评论内容
 				</div>
 				<div class="content-item" data-id="product">
-					相关商品内容
+					<div class="similar-product empty clearfix" data-empty="暂无同款商品"></div>
+					<div class="loading hide">数据加载中...</div>
+ 			 		<div class="no-more hide">没有更多数据了</div>
 				</div>
 			</div>
 		</div>
