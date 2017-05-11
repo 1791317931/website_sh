@@ -206,3 +206,15 @@ create table w_property_obj (
 	created_by int not null comment '创建人id',
 	updated_by int not null comment '最后修改人'
 ) ENGINE = INNODB comment '实体属性中间表';
+
+drop table if exists w_comment;
+create table w_comment (
+	id int primary key auto_increment,
+	note varchar(1000) not null comment '评论内容',
+	product_id int not null,
+	apply_to int comment '回复某条评论id',
+	create_date datetime not null default now() comment '创建时间',
+	update_date datetime not null default now() comment '最后修改时间',
+	created_by int not null comment '创建人id',
+	updated_by int not null comment '最后修改人'
+) ENGINE = INNODB comment '评论表';
