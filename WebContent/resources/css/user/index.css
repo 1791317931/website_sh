@@ -12,6 +12,10 @@
     color: #888;
 }
 
+.menu-container li:last-child {
+	border-bottom: 0;
+}
+
 .menu-container li p {
 	font-size: 14px;
     padding-left: 5px;
@@ -19,6 +23,15 @@
 
 .menu-container li.active, .menu-container li:hover {
 	color: #111;
+	font-weight: 600;
+}
+
+.content-body .item {
+	display: none;
+}
+
+.content-body .item.active {
+	display: block;
 }
 
 .user-img {
@@ -53,3 +66,7 @@
 	padding: 5px;
 }
 
+.head-img-modal {
+	width: 830px;
+    height: 530px;
+}

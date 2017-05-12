@@ -137,6 +137,17 @@ public class AttachmentController extends BaseController {
 		return getMap(result);
 	}
 	
+	/**
+	 * 编辑用户头像
+	 * @return
+	 */
+	@RequestMapping(value = "/user/saveOrUpdate")
+	@ResponseBody
+	public Map<String, Object> saveOrUpdateUserImg(String url) {
+		attachmentObjService.saveUserImg(url, getUserId());
+		return getMap(null);
+	}
+	
 	@RequestMapping(value = "/saveOrUpdate", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> saveOrUpdate(Attachment attachment, Integer typeId) {

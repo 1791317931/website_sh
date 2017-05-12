@@ -44,8 +44,43 @@ public class UserServiceImpl implements UserService {
 	}
 	
 	@Override
-	public void saveOrUpdate(User user) {
-		userDao.save(user);
+	public Map<String, Object> saveOrUpdate(User user) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("success", true);
+		
+		User oldUser = userDao.get(user.getId());
+		String phone = user.getPhone();
+		// 如果手机号有改动，要校验是否重复
+		if (!phone.equals(oldUser.getPhone())) {
+			if (userDao.countByUsernameOrPhone(ValidConst.VALID, "", phone) > 0) {
+				result.put("success", false);
+				result.put("msg", "该手机号已存在");
+				return result;
+			}
+		}
+		if (StringUtils.isNotBlank(phone)) {
+			oldUser.setPhone(phone);
+		}
+		String username = user.getUsername();
+		if (StringUtils.isNotBlank(username)) {
+			oldUser.setUsername(username);
+		}
+		String real_name = user.getReal_name();
+		if (StringUtils.isNotBlank(real_name)) {
+			oldUser.setReal_name(real_name);
+		}
+		Integer age = user.getAge();
+		if (age != null) {
+			oldUser.setAge(age);
+		}
+		String sex = user.getSex();
+		if (StringUtils.isNotBlank(sex)) {
+			oldUser.setSex(sex);
+		}
+		
+		userDao.save(oldUser);
+		
+		return result;
 	}
 
 	@Override

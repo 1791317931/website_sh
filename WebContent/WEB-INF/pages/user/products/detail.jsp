@@ -53,7 +53,7 @@
 		</div>
 		<div class="mt20 mb20 container-box">
 			<div class="clearfix nav-container">
-				<div class="active" data-id="comment">相关评论</div>
+				<div data-id="comment">相关评论</div>
 				<div data-id="product">相关商品</div>
 			</div>
 			<div class="content-item-container">

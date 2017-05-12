@@ -19,4 +19,6 @@ public class FileConst {
 	// 材料附件
 	public static final int MATERIAL_ATTACHMENT = 5;
 	
+	public static final int USER = 6;
+	
 }

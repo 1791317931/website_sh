@@ -13,7 +13,7 @@ public interface UserService {
 	
 	public int countByUsernameOrPhone(String valid, String username, String phone);
 	
-	public void saveOrUpdate(User user);
+	public Map<String, Object> saveOrUpdate(User user);
 	
 	/**
 	 * 优先修改状态

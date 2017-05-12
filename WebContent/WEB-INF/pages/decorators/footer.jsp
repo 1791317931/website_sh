@@ -19,9 +19,7 @@
 </head>
 <body>
 	<div class="footer">
-		<div class="w1200 clearfix">
-		
-		</div>
+		<div class="w1200 clearfix"></div>
 	</div>
 </body>
 </html>

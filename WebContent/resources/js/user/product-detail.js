@@ -138,7 +138,7 @@ $(function() {
 			if (dataId == 'product') {
 				loadSimilarProduct();
 			} else if (dataId == 'comment') {
-				
+				loadComments();
 			}
 		});
 		
@@ -153,12 +153,17 @@ $(function() {
 				type : 'post',
 				success : function(result) {
 					ZUtil.success('评论保存成功');
-					
+					loadComments();
 				}
 			});
 		}
 		
 		$addComment.bind('click', function() {
+			if (!id) {
+				ZUtil.error('请登录后再评论');
+				return false;
+			}
+			
 			var comment = $.trim($comment.val());
 			if (!comment) {
 				ZUtil.error('内容不能为空');
@@ -178,6 +183,8 @@ $(function() {
 		$clearComment.bind('click', function() {
 			$comment.val('');
 		});
+		
+		$('.nav-container div[data-id="comment"]').click();
 		
 	})();
 	

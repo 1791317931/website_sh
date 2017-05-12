@@ -85,8 +85,6 @@
 			$registModal.trigger('hide');
 			$('#login-container').trigger('show');
 		});
-	} else {
-		$registModal.remove();
 	}
 })();
 
@@ -157,8 +155,6 @@
 			$loginContainer.trigger('hide');
 			$('#regist-modal').trigger('show');
 		});
-	} else {
-		$loginContainer.remove();
 	}
 })();
 

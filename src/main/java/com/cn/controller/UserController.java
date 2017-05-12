@@ -149,6 +149,13 @@ public class UserController extends BaseController {
 		User user = userService.getById(id);
 		return getMap(user);
 	}
+	
+	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateInfo(User user) {
+		Map<String, Object> result = userService.saveOrUpdate(user);
+		return getMap(result);
+	}
 
 	/**
 	 * 查询用户列表

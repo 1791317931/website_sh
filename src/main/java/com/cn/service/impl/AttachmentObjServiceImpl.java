@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.cn.dao.AttachmentDao;
 import com.cn.dao.AttachmentObjDao;
+import com.cn.entity.Attachment;
 import com.cn.entity.AttachmentObj;
 import com.cn.entity.Const;
 import com.cn.enums.FileConst;
@@ -184,6 +185,32 @@ public class AttachmentObjServiceImpl implements AttachmentObjService {
 		result.put("success", success);
 		result.put("msg", msg);
 		return result;
+	}
+	
+	@Override
+	public void saveUserImg(String url, int created_by) {
+		Const con = constService.getByTypeAndCode(FileConst.TYPE, FileConst.USER, "user").get(0);
+		
+		Date now = new Date();
+		Attachment attachment = new Attachment();
+		attachment.setCon(con);
+		attachment.setCreate_date(now);
+		attachment.setUpdate_date(now);
+		attachment.setCreated_by(created_by);
+		attachment.setUpdated_by(created_by);
+		attachment.setIs_deleted("N");
+		attachment.setPath(url);
+		attachmentDao.save(attachment);
+		
+		AttachmentObj obj = new AttachmentObj();
+		obj.setAttachment_id(attachment.getId());
+		obj.setCreate_date(now);
+		obj.setUpdate_date(now);
+		obj.setCreated_by(created_by);
+		obj.setUpdated_by(created_by);
+		obj.setObj_id(created_by);
+		obj.setType_id(con.getId());
+		attachmentObjDao.save(obj);
 	}
 	
 }

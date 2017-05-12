@@ -34,4 +34,6 @@ public interface AttachmentObjService {
 	
 	public Map<String, Object> deleteBannerByAttachmentId(int attachmentId);
 	
+	public void saveUserImg(String url, int created_by);
+	
 }
