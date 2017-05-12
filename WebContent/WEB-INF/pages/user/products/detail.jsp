@@ -57,8 +57,19 @@
 				<div data-id="product">相关商品</div>
 			</div>
 			<div class="content-item-container">
-				<div class="content-item active" data-id="comment">
-					相关评论内容
+				<div class="content-item p10 active" data-id="comment">
+					<div>
+						<div class="textarea-record">
+							<textarea id="comment" placeholder="请输入您的评论"></textarea>
+						</div>
+						<div class="mt10 pull-right">
+							<button class="btn btn-primary btn-2" id="add-comment">保存</button>
+							<button class="btn btn-danger btn-2 ml20" id="clear-comment">清空</button>
+						</div>
+					</div>
+					<div class="comment-list empty" data-empty="暂无评论"></div>
+					<div class="loading hide">数据加载中...</div>
+ 			 		<div class="no-more hide">没有更多数据了</div>
 				</div>
 				<div class="content-item" data-id="product">
 					<div class="similar-product empty clearfix" data-empty="暂无同款商品"></div>

@@ -36,6 +36,7 @@
 	<script src="<%=basePath %>resources/js/common/Scroll.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/common/pagination.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/admin/index.js?<%=new Date().getTime()%>"></script>
+	<script src="<%=basePath %>resources/js/common/common.js?<%=new Date().getTime()%>"></script>
 	
 </head>
 <body>

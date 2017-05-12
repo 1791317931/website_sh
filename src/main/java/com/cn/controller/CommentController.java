@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cn.base.BaseController;
@@ -25,14 +26,14 @@ public class CommentController extends BaseController {
 		return null;
 	}
 	
-	@RequestMapping(value = "/delete/byId")
+	@RequestMapping(value = "/delete/byId", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deleteById(int id) {
 		Map<String, Object> result = commentService.deleteById(id);
 		return getMap(result);
 	}
 	
-	@RequestMapping(value = "/save")
+	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> addComment(Comment comment) {
 		commentService.addComment(comment, getUserId());

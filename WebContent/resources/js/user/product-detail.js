@@ -4,8 +4,26 @@ $(function() {
 	$productDetail = $('.product-detail'),
 	$similarProduct = $('.similar-product'),
 	categoryId,
+	$comment = $('#comment'),
+	$addComment = $('#add-comment'),
+	$clearComment = $('#clear-comment'),
+	$commentList = $('.comment-list'),
 	// .horizontal-slider只能显示5个图片
 	LENGTH = 5;
+	
+	function loadComments() {
+		$commentList.empty();
+		
+		$commentList.Scroll({
+			url : base_url + 'comment/page/byProductId',
+			data : {
+				productId : productId
+			},
+			success : function(result) {
+				
+			}
+		});
+	}
 	
 	(function() {
 		function renderImages(imgUrls) {
@@ -16,6 +34,7 @@ $(function() {
 						+ '<img src="' + base_img + img + '" />'
 					+ '</div>';
 			}
+			
 			$('.product-scroll').HorizontalSlide({
 				mode : 'normal',
 				slideDistance : 75,
@@ -97,38 +116,11 @@ $(function() {
 		});
 		
 		function loadSimilarProduct() {
-			$similarProduct.empty();
-			$similarProduct.Scroll({
-				url : base_url + 'product/page/byParam',
+			loadList({
 				data : {
 					categoryId : categoryId
 				},
-				type : 'post',
-				success : function(result) {
-					var list = result.data.list || [],
-					html = '';
-					for (var i = 0, length = list.length; i < length; i++) {
-						var product = list[i],
-						id = product.id,
-						name = product.name,
-						count = product.count,
-						price = product.price,
-						urls = product.imgUrls || [];
-						html += '<div class="product-item">'
-								+ '<a href="' + base_url + 'product/user/detail?id=' + id + '" target="_blank">'
-									+ '<img src="' + base_img + urls[0] + '" />'
-								+ '</a>'
-								+ '<div class="p5 product-desc">'
-									+ '<p class="tf product-name">' + name + '</p>'
-									+ '<div class="clearfix product-extral">'
-										+ '<span class="pull-left tf col-6">库存:' + count + '</span>'
-										+ '<span class="pull-right text-right tf col-6 product-price">' + price + '(￥)</span>'
-									+ '</div>'
-								+ '</div>'
-							+ '</div>';
-					}
-					$similarProduct.append(html);
-				}
+				container : $similarProduct
 			});
 		}
 		
@@ -149,6 +141,44 @@ $(function() {
 				
 			}
 		});
+		
+		$comment.Record({
+			length : 1000
+		});
+		
+		function addComment(data) {
+			$.ajax({
+				url : base_url + 'comment/save',
+				data : data,
+				type : 'post',
+				success : function(result) {
+					ZUtil.success('评论保存成功');
+					
+				}
+			});
+		}
+		
+		$addComment.bind('click', function() {
+			var comment = $.trim($comment.val());
+			if (!comment) {
+				ZUtil.error('内容不能为空');
+				return false;
+			} else if (comment.length > 1000) {
+				ZUtil.error('内容最多1000个字符');
+				return false;
+			}
+			var data = {
+				note : comment,
+				product_id : productId
+			};
+			
+			addComment(data);
+		});
+		
+		$clearComment.bind('click', function() {
+			$comment.val('');
+		});
+		
 	})();
 	
 });

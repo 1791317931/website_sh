@@ -1,12 +1,16 @@
 /* TextArea Record */
 .textarea-record {
 	position: relative;
-	display: inline-block;
+}
+
+.textarea-record textarea {
+	width: 100%;
+    height: 100px;
 }
 
 .length-container {
 	position: absolute;
-	right: 2px;
+	right: 5px;
 	bottom: 5px;
 	color: #aaa;
 	background-color: #fff;

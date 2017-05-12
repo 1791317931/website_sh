@@ -24,12 +24,14 @@
 		role = '${user.con.code}';
 	</script>
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/index.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath%>resources/css/common/record.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/message-tip.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/horizontal-slide.css?<%=new Date().getTime()%>">
 	<script src="<%=basePath %>resources/js/common/jquery.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/common/index.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/common/Scroll.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/common/pagination.js?<%=new Date().getTime()%>"></script>
+	<script src="<%=basePath %>resources/js/common/common.js?<%=new Date().getTime()%>"></script>
 	<link rel="stylesheet" href="<%=basePath%>resources/css/decorators/decorator.css?<%=new Date().getTime()%>">
 
 </head>
