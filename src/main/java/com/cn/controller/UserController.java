@@ -122,6 +122,14 @@ public class UserController extends BaseController {
 		return getMap(null);
 	}
 	
+	// 校验旧密码是否正确
+	@RequestMapping(value = "/valid/password")
+	@ResponseBody
+	public Map<String, Object> validPassword(int id , String password) {
+		boolean valid = userService.validPassword(id, password);
+		return getMap(valid);
+	}
+	
 	/**
 	 * 修改用户状态，需要校验权限
 	 * @param id
@@ -154,6 +162,10 @@ public class UserController extends BaseController {
 	@ResponseBody
 	public Map<String, Object> updateInfo(User user) {
 		Map<String, Object> result = userService.saveOrUpdate(user);
+		// 重新登录
+		user = userService.getById(user.getId());
+		setAttribute("user", user);
+		
 		return getMap(result);
 	}
 

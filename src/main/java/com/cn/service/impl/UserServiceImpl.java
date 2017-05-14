@@ -126,4 +126,10 @@ public class UserServiceImpl implements UserService {
 		userDao.updateByParam(id, map);
 	}
 	
+	@Override
+	public boolean validPassword(int id, String password) {
+		password = MD5Util.EncoderPwdByMd5AndApacheBase64(password);
+		return userDao.countByIdAndPassword(id, password, "P") > 0;
+	}
+	
 }

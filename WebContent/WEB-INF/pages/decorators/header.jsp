@@ -28,6 +28,8 @@
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/message-tip.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/horizontal-slide.css?<%=new Date().getTime()%>">
 	<link rel="stylesheet" href="<%=basePath%>resources/css/common/clip-image.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath%>resources/css/common/progress-bar.css?<%=new Date().getTime()%>">
+	<link rel="stylesheet" href="<%=basePath%>resources/css/common/green/progress-bar.css?<%=new Date().getTime()%>">
 	<script src="<%=basePath %>resources/js/common/jquery.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/common/index.js?<%=new Date().getTime()%>"></script>
 	<script src="<%=basePath %>resources/js/common/Scroll.js?<%=new Date().getTime()%>"></script>

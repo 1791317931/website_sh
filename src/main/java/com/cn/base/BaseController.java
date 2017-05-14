@@ -30,6 +30,11 @@ public class BaseController {
 		}
 	}
 	
+	public void setAttribute(String key, Object value) {
+		HttpSession session = getSession();
+		session.setAttribute(key, value);
+	}
+	
 	public Map<String, Object> getMap(Object obj) {
 		Map<String, Object> map = new HashMap<String, Object>();
 		

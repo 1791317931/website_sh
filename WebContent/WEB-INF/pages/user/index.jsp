@@ -89,7 +89,47 @@
 				</div>
 			</div>
 			<div class="item" data-type="password-edit">
-				password-edit
+				<div class="clearfix pl30">
+					<label class="pull-left lh40">修改密码:</label>
+					<div class="password-progress pull-left ml10"></div>
+				</div>
+				<div class="clearfix col-4 update-password-container">
+					<div class="old-password-container">
+						<div class="form-group">
+							<label class="label-4">原密码:</label>
+							<div class="form-control r10">
+								<input type="password" id="old-password" />
+							</div>
+							<span class="must">*</span>
+						</div>
+						<div class="form-group mt30">
+							<label class="label-4">&nbsp;</label>
+							<button class="btn btn-primary btn-2" id="old-password-sure">确定</button>
+							<button class="btn btn-danger btn-2 ml20" id="old-password-clear">清空</button>
+						</div>
+					</div>
+					<div class="new-password-container hide">
+						<div class="form-group">
+							<label class="label-4">新密码:</label>
+							<div class="form-control r10">
+								<input type="password" id="new-password" />
+							</div>
+							<span class="must">*</span>
+						</div>
+						<div class="form-group">
+							<label class="label-4">确认密码:</label>
+							<div class="form-control r10">
+								<input type="password" id="new-same-password" />
+							</div>
+							<span class="must">*</span>
+						</div>
+						<div class="form-group mt30">
+							<label class="label-4">&nbsp;</label>
+							<button class="btn btn-primary btn-2" id="new-password-sure">确定</button>
+							<button class="btn btn-danger btn-2 ml20" id="new-password-clear">清空</button>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

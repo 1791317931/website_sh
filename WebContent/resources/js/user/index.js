@@ -8,7 +8,14 @@ $(function() {
 	$headImgModal = $('#head-img-modal'),
 	$lis = $('.menu li'),
 	$items = $('.content-body .item'),
-	$userForm = $('#userForm');
+	$userForm = $('#userForm'),
+	$updatePasswordContainer = $('.update-password-container'),
+	$passwordProgress = $('.password-progress'),
+	$oldPassword = $('#old-password'),
+	$newPassword = $('#new-password'),
+	$newSamePassword = $('#new-same-password'),
+	$oldPasswordContainer = $('.old-password-container'),
+	$newPasswordContainer = $('.new-password-container');
 	
 	function renderInfo(data) {
 		$('#name').val(data.username || '');
@@ -62,8 +69,9 @@ $(function() {
 			
 			if (type == 'user-info') {
 				getUser();
+			} else if (type == 'password-edit') {
+				$updatePasswordContainer.trigger('init');
 			}
-			
 		});
 		
 		$headImgModal.ToggleModal();
@@ -162,6 +170,86 @@ $(function() {
 		
 		$('#update-info-clear').bind('click', function() {
 			$userForm.get(0).reset();
+		});
+		
+		$updatePasswordContainer.bind('init', function() {
+			$oldPasswordContainer.removeClass('hide');
+			$newPasswordContainer.addClass('hide');
+			$passwordProgress.trigger('toStep', 1);
+			$oldPassword.val('');
+			$newPassword.val('');
+			$newSamePassword.val('');
+		});
+		
+		$passwordProgress.ProgressBar({
+			data : [1, 2, 3]
+		});
+		
+		$('#old-password-sure').bind('click', function() {
+			var password = $.trim($oldPassword.val()),
+			length = password.length;
+			if (length < 6) {
+				ZUtil.error('密码最少6个字符');
+				return false;
+			} else if (length > 12) {
+				ZUtil.error('密码最多12个字符');
+				return false;
+			}
+			
+			$.ajax({
+				url : base_url + 'user/valid/password',
+				data : {
+					id : id,
+					password : password
+				},
+				success : function(result) {
+					if (result.data) {
+						$passwordProgress.trigger('toStep', 2);
+						$oldPasswordContainer.addClass('hide');
+						$newPasswordContainer.removeClass('hide');
+					} else {
+						ZUtil.error('原密码不正确，请重新输入');
+					}
+				}
+			});
+			
+		});
+		
+		$('#old-password-clear').bind('click', function() {
+			$oldPassword.val('');
+		});
+		
+		$('#new-password-sure').bind('click', function() {
+			var password = $.trim($newPassword.val()),
+			samePassword = $.trim($newSamePassword.val());
+			if (password.length < 6) {
+				ZUtil.error('密码最少6个字符');
+				return false;
+			} else if (password.length > 12) {
+				ZUtil.error('密码最多12个字符');
+				return false;
+			} else if (password != samePassword) {
+				ZUtil.error('两次密码不一致');
+				return false;
+			}
+			$.ajax({
+				url : base_url + 'user/updatePassword',
+				type : 'post',
+				data : {
+					id : id,
+					password : password
+				},
+				success : function(result) {
+					ZUtil.success('密码修改成功');
+					$passwordProgress.trigger('toStep', 3);
+				}
+			});
+			
+		});
+		
+		$('#new-password-clear').bind('click', function() {
+			$newPassword.val('');
+			$newSamePassword.val('');
 		});
 		
 		$lis.eq(0).click();

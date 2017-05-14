@@ -18,4 +18,6 @@ public interface UserDao extends BaseDao<User> {
 	
 	public void updateByParam(int id, Map<String, Object> map);
 	
+	public int countByIdAndPassword(int id, String password, String status);
+	
 }

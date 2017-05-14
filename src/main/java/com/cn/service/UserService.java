@@ -29,4 +29,6 @@ public interface UserService {
 	
 	public void updatePassword(int id, String password);
 	
+	public boolean validPassword(int id, String password);
+	
 }

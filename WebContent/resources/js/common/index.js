@@ -2103,7 +2103,8 @@
 			$('#next').bind('click', function() {
 				$progress.trigger('nextStep');
 			});
-			$('.progress').trigger('toStep', 4);
+			// 第index个node，从1开始
+			$('.progress').trigger('toStep', index);
 		 */
 		ProgressBar : function(opt) {
 			var $progresses = this,
@@ -2176,8 +2177,7 @@
 				}).bind('toStep', function(e, end) {
 					end = Math.max(0, end);
 					end = Math.min(end, length);
-					if(end >=0 && end <= length) {
-						// 这里已经触发一次事件了，所以减一
+					if(end >= 0 && end <= length) {
 						count = Math.abs(end - to) - 1;
 						/**
 						 * 这里一定要添加setTimeout，否则可能无法触发transitionend
@@ -2186,7 +2186,7 @@
 						 * 所以在开始触发transition之前确认事件源本身可见（当然其所有父级元素也可见）
 						 * 如果页面一加载完成或者事件源本身刚由不可见变为可见就触发transition动画时，一定要造成一点点阻塞，setTimeout是最好的选择，
 						 * 或者$(dom).css('width)也可以造成阻塞，但是如$(dom).attr('name')此类的操作不会造成阻塞，
-						 * 有此可见获取dom的css属性比获取其它属性更耗费性能
+						 * 由此可见获取dom的css属性比获取其它属性更耗费性能
 						 */
 						setTimeout(function() {
 							if(end > to) {

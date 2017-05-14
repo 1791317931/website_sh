@@ -73,5 +73,13 @@ public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 		sql += " where id = " + id;
 		sqlUpdate(sql);
 	}
+	
+	@Override
+	public int countByIdAndPassword(int id, String password, String status) {
+		String sql = "select count(1) from w_user wu where wu.id = " + id
+					+ " and wu.password = '" + password + "'"
+					+ " and wu.status = '" + status + "'";
+		return countBySQL(sql);
+	}
 
 }
