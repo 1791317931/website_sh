@@ -1,3 +1,4 @@
+.mh100 {min-height: 100px;}
 .mh500 {min-height: 500px;}
 
 .cr {color: red;}
@@ -119,4 +120,21 @@
 
 .similar-product .product-item:nth-child(5n + 1) {
 	margin-left: 0;
+}
+
+.comment-item {
+	margin-top: 20px;
+	border-radius: 3px;
+	border: 1px solid #ff7d00;
+}
+
+.table-cell-l {
+	width: 120px;
+	padding: 5px;
+	border-right: 1px solid #ff7d00;
+}
+
+.user-img {
+	width: 100px;
+	height: 100px;
 }

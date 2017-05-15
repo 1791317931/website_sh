@@ -6,6 +6,10 @@ public class CommentVO extends IdEntity {
 
 	private static final long serialVersionUID = 7541290742727130853L;
 
+	private String username;
+	
+	private String headUrl;
+	
 	private String note;
 	
 	private int productId;
@@ -20,10 +24,26 @@ public class CommentVO extends IdEntity {
 	private String applyUsername;
 	
 	// 头像
-	private String applyUserUrl;
+	private String applyHeadUrl;
 	
 	// 被评论的内容
 	private String applyNote;
+	
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getHeadUrl() {
+		return headUrl;
+	}
+
+	public void setHeadUrl(String headUrl) {
+		this.headUrl = headUrl;
+	}
 
 	public String getNote() {
 		return note;
@@ -73,12 +93,12 @@ public class CommentVO extends IdEntity {
 		this.applyUsername = applyUsername;
 	}
 
-	public String getApplyUserUrl() {
-		return applyUserUrl;
+	public String getApplyHeadUrl() {
+		return applyHeadUrl;
 	}
 
-	public void setApplyUserUrl(String applyUserUrl) {
-		this.applyUserUrl = applyUserUrl;
+	public void setApplyHeadUrl(String applyHeadUrl) {
+		this.applyHeadUrl = applyHeadUrl;
 	}
 
 	public String getApplyNote() {

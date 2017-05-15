@@ -20,7 +20,32 @@ $(function() {
 				productId : productId
 			},
 			success : function(result) {
+				var html = '',
+				list = result.data.list || [];
+				for (var i = 0, length = list.length; i < length; i++) {
+					var comment = list[i],
+					headUrl = comment.headUrl,
+					username = comment.username;
+					
+					headUrl = headUrl && (base_img + headUrl) || (base_url + 'resources/imgs/1.jpg');
+					
+					html = '<div class="table comment-item">'
+							+ '<div class="table-cell table-cell-l vt">'
+								+ '<p class="tf cr" title="' + username + '">' + username + '</p>'
+								+ '<div class="text-center mt5">'
+									+ '<img class="user-img" src="' + headUrl + '" />'
+								+ '</div>'
+							+ '</div>'
+							+ '<div class="table-cell vt text-left p5">'
+								+ '<p class="text-break mh100">' + (comment.note || '').replace('<', '&lt;').replace('>', '&gt;') + '</p>'
+								+ '<div class="text-right">'
+									+ '<span>评论时间:</span><span class="ml5">' + comment.create_date + '</span>'
+								+ '</div>'
+							+ '</div>'
+						+ '</div>';
+				}
 				
+				$commentList.append(html);
 			}
 		});
 	}

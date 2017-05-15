@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.cn.base.BaseController;
 import com.cn.entity.Comment;
 import com.cn.service.CommentService;
+import com.cn.vo.Page;
 
 @Controller
 @RequestMapping(value = "/comment")
@@ -23,7 +24,8 @@ public class CommentController extends BaseController {
 	@RequestMapping(value = "/page/byProductId")
 	@ResponseBody
 	public Map<String, Object> getPageByProductId(int pageSize, int currentPage, int productId) {
-		return null;
+		Page page = commentService.getPageByProductId(pageSize, currentPage, productId);
+		return getMap(page);
 	}
 	
 	@RequestMapping(value = "/delete/byId", method = RequestMethod.POST)

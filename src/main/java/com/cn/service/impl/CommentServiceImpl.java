@@ -1,7 +1,9 @@
 package com.cn.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 import com.cn.dao.CommentDao;
 import com.cn.entity.Comment;
 import com.cn.service.CommentService;
+import com.cn.vo.CommentVO;
 import com.cn.vo.Page;
 
 @Service(value = "commentService")
@@ -22,7 +25,9 @@ public class CommentServiceImpl implements CommentService {
 	@Override
 	public Page getPageByProductId(int pageSize, int currentPage, int productId) {
 		Page page = new Page(pageSize, currentPage);
-		return commentDao.getPageByProductId(page, productId);
+		page = commentDao.getPageByProductId(page, productId);
+		transformTo(page);
+		return page;
 	}
 
 	@Override
@@ -48,6 +53,28 @@ public class CommentServiceImpl implements CommentService {
 		comment.setCreated_by(userId);
 		comment.setUpdated_by(userId);
 		commentDao.save(comment);
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static void transformTo(Page page) {
+		List<Object[]> list = page.getList();
+		List<CommentVO> vos = new ArrayList<CommentVO>();
+		CommentVO vo = null;
+		for (int i = 0, length = list.size(); i < length; i++) {
+			vo = new CommentVO();
+			Object[] objs = list.get(i);
+			vo.setId(Integer.parseInt(objs[0] + ""));
+			vo.setNote(objs[1] + "");
+			vo.setCreated_by(Integer.parseInt(objs[2] + ""));
+			vo.setUsername(objs[3] + "");
+			vo.setProductId(Integer.parseInt(objs[4] + ""));
+			vo.setCreate_date((Date) objs[5]);
+			vo.setHeadUrl(objs[6] + "");
+			
+			vos.add(vo);
+		}
+		
+		page.setList(vos);
 	}
 	
 }
