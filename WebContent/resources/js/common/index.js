@@ -1680,7 +1680,7 @@
 									+ '<div class="slider-content clearfix">' + sliderBody + '</div>'
 								+ '</div>'
 								+ (showFooter ? '<div class="slider-footer"><div class="footer-content clearfix"><div class="footer-content-body"></div></div></div>' : '')
-								+ '<div class="slider-close' + (showClose ? '' : ' hide') + '"></div>'
+								+ (showClose ? '<div class="slider-close"></div>' : '')
 								+ '<div class="triangle-left' + (!showArrow ? ' hide' : '') + '">'
 									+ '<div class="triangle-first"></div>'
 									+ '<div class="triangle-second"></div>'

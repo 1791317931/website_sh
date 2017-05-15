@@ -36,3 +36,7 @@ function loadList(param) {
 	$container.empty();
 	$container.Scroll(opt);
 }
+
+var ImageObj = {
+	user : base_url + 'resources/imgs/default_user.jpg'
+};

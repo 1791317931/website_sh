@@ -27,7 +27,7 @@ $(function() {
 					headUrl = comment.headUrl,
 					username = comment.username;
 					
-					headUrl = headUrl && (base_img + headUrl) || (base_url + 'resources/imgs/1.jpg');
+					headUrl = headUrl && (base_img + headUrl) || (ImageObj.user);
 					
 					html = '<div class="table comment-item">'
 							+ '<div class="table-cell table-cell-l vt">'
