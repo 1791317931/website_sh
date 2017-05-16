@@ -48,7 +48,19 @@ public class UserServiceImpl implements UserService {
 		Map<String, Object> result = new HashMap<String, Object>();
 		result.put("success", true);
 		
-		User oldUser = userDao.get(user.getId());
+		userDao.save(user);
+		
+		return result;
+	}
+	
+	@Override
+	public Map<String, Object> updateInfo(User user) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("success", true);
+		
+		Integer userId = user.getId();
+		User oldUser = userDao.get(userId);
+		
 		String phone = user.getPhone();
 		// 如果手机号有改动，要校验是否重复
 		if (!phone.equals(oldUser.getPhone())) {

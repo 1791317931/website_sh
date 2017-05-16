@@ -15,6 +15,8 @@ public interface UserService {
 	
 	public Map<String, Object> saveOrUpdate(User user);
 	
+	public Map<String, Object> updateInfo(User user);
+	
 	/**
 	 * 优先修改状态
 	 * @param id

@@ -81,6 +81,12 @@
 			</div>
 			<span class="must">*</span>
 		</div>
+		<div class="form-group">
+			<label class="label-3 text-right">角色:</label>
+			<div class="form-control r10">
+				<select id="add-role"></select>
+			</div>
+		</div>
 		<div class="form-group text-center mt30">
 			<button class="btn btn-primary btn-2" id="add-user-sure">添加</button>
 			<button class="btn btn-danger btn-2 ml20" id="add-user-cancel">取消</button>

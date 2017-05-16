@@ -19,6 +19,7 @@ $(function() {
 	$addUsername = $('#add-username'),
 	$addPhone = $('#add-phone'),
 	$addPassword = $('#add-password'),
+	$addRole = $('#add-role'),
 	$passwordModal = $('#password-modal'),
 	$updatePassword = $('#update-password');
 	
@@ -44,6 +45,8 @@ $(function() {
 					if (type == 'user_status') {
 						statusList = list;
 						$statusSelect.html(html);
+					} else {
+						$addRole.html(html);
 					}
 				}
 			});
@@ -125,7 +128,8 @@ $(function() {
 		function regist() {
 			var username = $addUsername.val(),
 			phone = $addPhone.val(),
-			password = $addPassword.val();
+			password = $addPassword.val(),
+			roleId = $addRole.val();
 			
 			if (!username) {
 				ZUtil.error('用户名不能为空');

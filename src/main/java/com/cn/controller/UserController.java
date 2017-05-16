@@ -65,7 +65,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> regist(HttpServletRequest request, 
+	public Map<String, Object> regist(HttpServletRequest request, Integer typeId,
 			String username, String phone, String password,
 			@RequestParam(defaultValue = "true") boolean login) {
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -161,7 +161,10 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> updateInfo(User user) {
-		Map<String, Object> result = userService.saveOrUpdate(user);
+		user.setUpdated_by(getUserId());
+		user.setUpdate_date(new Date());
+		
+		Map<String, Object> result = userService.updateInfo(user);
 		// 重新登录
 		user = userService.getById(user.getId());
 		setAttribute("user", user);
