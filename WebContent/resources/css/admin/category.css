@@ -26,12 +26,6 @@
 	right: 10px !important;
 }
 
-.must {
-	position: absolute;
-	right: 0;
-	color: red;
-}
-
 .form-close {
 	width: 16px;
     height: 100%;

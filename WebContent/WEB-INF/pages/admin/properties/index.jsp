@@ -30,15 +30,15 @@
 								<input type="text" id="name" name="name" placeholder="请输入属性名称" />
 							</div>
 						</div>
-						<div class="form-group mt10">
+						<div class="form-group">
 							<label>属性分类:</label>
 							<div class="form-control">
 								<select name="category-list" id="category-list"></select>
 							</div>
 						</div>
-						<div class="form-group mt10">
+						<div class="form-group">
 							<label class="pull-left">是否必填:</label>
-							<div class="pull-left ml10">
+							<div class="pull-left ml15">
 								<label class="radio-item" for="value3">
 									<div class="table-cell">
 										<input type="radio" id="value3" value="Y" name="is_must" checked/>

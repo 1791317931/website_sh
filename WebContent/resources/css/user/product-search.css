@@ -11,13 +11,12 @@
 .category-container label {
 	padding: 5px 10px;
     font-size: 16px;
-    color: #0072ff;
+    color: #fff;
     cursor: pointer;
-    background: #eee;
+    background: #bbb;
     margin-left: 10px;
-    font-weight: 600;
     border: 2px solid transparent;
-    transition: border-color .3s linear
+    transition: border-color .2s linear
 }
 
 .category-container label:first-child {
@@ -26,6 +25,7 @@
 
 .category-container label:hover, .category-container label.active {
 	border-color: #ff7d00;
+	color: #f00;
 }
 
 .price-label {

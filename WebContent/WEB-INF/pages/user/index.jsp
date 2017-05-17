@@ -22,7 +22,7 @@
 	<div class="standard clearfix mb20">
 		<div class="menu-container">
 			<div class="relative user-img-container pointer">
-				<img class="user-img" src="<%=basePath %>resources/imgs/logo.jpg" />
+				<img class="user-img" />
 				<p class="edit-img">编辑</p>
 			</div>
 			<ul class="menu">
@@ -32,12 +32,6 @@
 				<li data-type="password-edit">
 					<p>密码修改</p>
 				</li>
-				<!-- <li data-type="owned-product-list">
-					<p>已购买商品</p>
-				</li>
-				<li data-type="receive-list">
-					<p>收货地址编辑</p>
-				</li> -->
 			</ul>
 		</div>
 		<div class="content-body p30">

@@ -25,6 +25,7 @@ import com.cn.service.ConstService;
 import com.cn.service.UserService;
 import com.cn.util.MD5Util;
 import com.cn.vo.Page;
+import com.cn.vo.UserVO;
 
 @Controller
 @RequestMapping(value = "/user")
@@ -65,7 +66,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> regist(HttpServletRequest request, Integer typeId,
+	public Map<String, Object> regist(HttpServletRequest request, Integer roleId,
 			String username, String phone, String password,
 			@RequestParam(defaultValue = "true") boolean login) {
 		Map<String, Object> result = new HashMap<String, Object>();
@@ -80,8 +81,13 @@ public class UserController extends BaseController {
 			user.setUsername(username);
 			user.setIs_valid(ValidConst.VALID);
 			user.setStatus(UserStatusConst.PASS);
-			List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER, null);
-			Const con = list.get(0);
+			Const con = null;
+			if (roleId != null) {
+				con = constService.getById(roleId);
+			} else {
+				List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER, null);
+				con = list.get(0);
+			}
 			user.setCon(con);
 			
 			user.setCreated_by(getUserId());
@@ -154,8 +160,8 @@ public class UserController extends BaseController {
 	@RequestMapping(value = "/detail")
 	@ResponseBody
 	public Map<String, Object> getById(int id) {
-		User user = userService.getById(id);
-		return getMap(user);
+		UserVO vo = userService.getDetailById(id);
+		return getMap(vo);
 	}
 	
 	@RequestMapping(value = "/updateInfo", method = RequestMethod.POST)
@@ -168,6 +174,15 @@ public class UserController extends BaseController {
 		// 重新登录
 		user = userService.getById(user.getId());
 		setAttribute("user", user);
+		
+		return getMap(result);
+	}
+	
+	// 修改角色
+	@RequestMapping(value = "/updateRole", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> updateRole(int id, int roleId) {
+		Map<String, Object> result = userService.updateRole(id, roleId, getUserId());
 		
 		return getMap(result);
 	}

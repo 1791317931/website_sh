@@ -1,5 +1,6 @@
 package com.cn.service.impl;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,22 +11,39 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
 import com.cn.dao.UserDao;
+import com.cn.entity.Const;
 import com.cn.entity.User;
+import com.cn.enums.FileConst;
 import com.cn.enums.UserStatusConst;
 import com.cn.enums.ValidConst;
+import com.cn.service.AttachmentObjService;
+import com.cn.service.ConstService;
 import com.cn.service.UserService;
 import com.cn.util.MD5Util;
 import com.cn.vo.Page;
+import com.cn.vo.UserVO;
 
 @Service(value = "userService")
 public class UserServiceImpl implements UserService {
 	
 	@Resource(name = "userDao")
 	private UserDao userDao;
+	
+	@Resource(name = "constService")
+	private ConstService constService;
+	
+	@Resource(name = "attachmentObjService")
+	private AttachmentObjService attachmentObjService;
 
 	@Override
 	public User getById(int id) {
 		return userDao.get(id);
+	}
+	
+	public UserVO getDetailById(int id) {
+		User user = userDao.get(id);
+		List<String> imgUrls = attachmentObjService.getUrlsByObjIdAndCode(id, FileConst.USER, null);
+		return transformTo(user, imgUrls);
 	}
 	
 	@Override
@@ -94,6 +112,34 @@ public class UserServiceImpl implements UserService {
 		
 		return result;
 	}
+	
+	/**
+	 * 修改角色的用户必须是有效的
+	 */
+	@Override
+	public Map<String, Object> updateRole(int id, int roleId, int updated_by) {
+		User oldUser = userDao.get(id);
+		Map<String, Object> result = new HashMap<String, Object>();
+		boolean success = true;
+		String msg = "";
+		
+		if ("N".equals(oldUser.getStatus())) {
+			success = false;
+			msg = "该用户已经失效，不能修改角色";
+		} else {
+			Date now = new Date();
+			oldUser.setUpdate_date(now);
+			oldUser.setUpdated_by(updated_by);
+			Const role = constService.getById(roleId);
+			oldUser.setCon(role);
+			userDao.save(oldUser);
+		}
+		
+		result.put("success", success);
+		result.put("msg", msg);
+		
+		return result;
+	}
 
 	@Override
 	public Map<String, Object> updateUserStatus(int id, String valid, String status) {
@@ -142,6 +188,27 @@ public class UserServiceImpl implements UserService {
 	public boolean validPassword(int id, String password) {
 		password = MD5Util.EncoderPwdByMd5AndApacheBase64(password);
 		return userDao.countByIdAndPassword(id, password, "P") > 0;
+	}
+	
+	public static UserVO transformTo(User user, List<String> imgUrls) {
+		UserVO vo = new UserVO();
+		vo.setId(user.getId());
+		vo.setAge(user.getAge());
+		vo.setCreate_date(user.getCreate_date());
+		vo.setCreated_by(user.getCreated_by());
+		if (imgUrls != null && imgUrls.size() > 0) {
+			vo.setImgUrl(imgUrls.get(0));
+		}
+		vo.setIs_valid(user.getIs_valid());
+		vo.setPhone(user.getPhone());
+		vo.setReal_name(user.getReal_name());
+		vo.setSex(user.getSex());
+		vo.setStatus(user.getStatus());
+		vo.setUpdate_date(user.getUpdate_date());
+		vo.setUpdated_by(user.getUpdated_by());
+		vo.setUsername(user.getUsername());
+		
+		return vo;
 	}
 	
 }

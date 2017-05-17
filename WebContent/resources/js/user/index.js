@@ -22,9 +22,15 @@ $(function() {
 		$('#realname').val(data.real_name || '');
 		$('#tel').val(data.phone);
 		$('#age').val(data.age || '');
-		var sex = data.sex;
+		var sex = data.sex,
+		imgUrl = data.imgUrl;
 		if (sex) {
 			$('.sex[value="' + sex + '"]').click();
+		}
+		if (imgUrl) {
+			$('.user-img').attr('src', base_img + imgUrl);
+		} else {
+			$('.user-img').attr('src', ImageObj.user);
 		}
 	}
 	

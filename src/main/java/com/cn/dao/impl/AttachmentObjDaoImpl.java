@@ -59,7 +59,7 @@ public class AttachmentObjDaoImpl extends BaseDaoImpl<AttachmentObj> implements
 					+ " where wao.obj_id = ?"
 					+ " and wc.code = ?";
 		if (orderBy != null) {
-			sql += " order by " + orderBy + "  asc";
+			sql += " order by " + orderBy + " asc";
 		} else {
 			sql += " order by wa.update_date desc";
 		}

@@ -124,6 +124,20 @@
 		</div>
 	</div>
 </div>
+<div class="z-modal hide" id="role-modal">
+	<div class="z-modal-body role-modal">
+		<div class="form-group">
+			<label>用户角色:</label>
+			<div class="form-control">
+				<select id="role-select"></select>
+			</div>
+		</div>
+		<div class="form-group mt30 text-center">
+			<button class="btn btn-primary btn-2" id="change-role-sure">确定</button>
+			<button class="btn btn-danger btn-2 ml20" id="change-role-cancel">取消</button>
+		</div>
+	</div>
+</div>
 <div class="z-modal hide" id="password-modal">
 	<div class="z-modal-body password-modal">
 		<div class="form-group">

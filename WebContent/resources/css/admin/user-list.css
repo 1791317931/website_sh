@@ -3,12 +3,12 @@
 }
 
 .user-modal {
-	width: 400px;
-	height: 270px;
-	padding: 30px;
+	width: 420px;
+    height: 290px;
+    padding: 30px;
 }
 
-.valid-modal, .status-modal {
+.valid-modal, .status-modal, .role-modal {
 	width: 300px;
     height: 150px;
     padding: 30px;

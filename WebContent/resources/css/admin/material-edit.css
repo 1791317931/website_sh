@@ -32,12 +32,6 @@
 	padding: 50px 20px 20px;
 }
 
-.must {
-	position: absolute;
-	right: 0;
-	color: red;
-}
-
 .property-list {min-height: 100px;}
 
 .img-container {

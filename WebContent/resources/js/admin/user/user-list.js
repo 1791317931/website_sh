@@ -20,6 +20,8 @@ $(function() {
 	$addPhone = $('#add-phone'),
 	$addPassword = $('#add-password'),
 	$addRole = $('#add-role'),
+	$roleModal = $('#role-modal'),
+	$roleSelect = $('#role-select'),
 	$passwordModal = $('#password-modal'),
 	$updatePassword = $('#update-password');
 	
@@ -47,6 +49,7 @@ $(function() {
 						$statusSelect.html(html);
 					} else {
 						$addRole.html(html);
+						$roleSelect.html(html);
 					}
 				}
 			});
@@ -71,11 +74,11 @@ $(function() {
 			columns : [{
 				id : 'username',
 				title : '用户名',
-				width : '20%'
+				width : '15%'
 			}, {
 				id : 'phone',
 				title : '手机号',
-				width : '10%'
+				width : '12%'
 			}, {
 				title : '角色',
 				width : '10%',
@@ -85,7 +88,7 @@ $(function() {
 			}, {
 				id : 'is_valid',
 				title : '状态',
-				width : '10%',
+				width : '8%',
 				render : function(row, value) {
 					return statusObj[value];
 				}
@@ -99,10 +102,10 @@ $(function() {
 			}, {
 				id : 'update_date',
 				title : '最后修改时间',
-				width : '20%'
+				width : '17%'
 			}, {
 				title : '操作',
-				width : '20%',
+				width : '28%',
 				render : function(row, value) {
 					var valid = row.is_valid,
 					status = row.status,
@@ -111,6 +114,7 @@ $(function() {
 					// 如果已经审核通过，就只能修改是否有效
 					if (['P'].indexOf(status) != -1) {
 						html += '<span class="for-edit change-valid" data-valid="' + row.is_valid + '">修改状态</span>'
+							+ '<span class="for-edit change-role ml20" data-role="' + row.con.id + '">修改角色</span>'
 							+ '<span class="for-edit change-password ml20">修改密码</span>';
 					} else {
 						html += '<span class="for-edit change-status" data-status="' + row.status + '">审核</span>';
@@ -161,6 +165,7 @@ $(function() {
 					username : username,
 					phone : phone,
 					password : password,
+					roleId : $addRole.val(),
 					// 用户添加成功后，不登录
 					login : false
 				},
@@ -225,19 +230,33 @@ $(function() {
 			var $this = $(this),
 			id = $this.closest('div').attr('data-id'),
 			status = $this.attr('data-status');
+			
 			$statusModal.attr('data-id', id);
 			$statusSelect.val(status);
 			$statusModal.trigger('show');
 		});
 		
+		$userList.on('click', '.change-role', function() {
+			var $this = $(this),
+			roleId = $this.attr('data-role'),
+			id = $this.closest('div').attr('data-id');
+			
+			$roleSelect.val(roleId);
+			$roleModal.attr('data-id', id);
+			$roleModal.trigger('show');
+		});
+		
 		$userList.on('click', '.change-password', function() {
 			var $this = $(this),
 			id = $this.closest('div').attr('data-id');
+			
 			$passwordModal.attr('data-id', id);
 			$passwordModal.trigger('show');
 		});
 		
 		$validModal.ToggleModal();
+		
+		$roleModal.ToggleModal();
 		
 		$statusModal.ToggleModal();
 		
@@ -260,6 +279,29 @@ $(function() {
 						$userList.trigger('reload');
 					} else {
 						ZUtil.error(data.msg || '服务器异常');
+					}
+				}
+			});
+		});
+		
+		$('#change-role-sure').bind('click', function() {
+			var roleId = $roleSelect.val(),
+			id = $roleModal.attr('data-id');
+			
+			$.ajax({
+				url : base_url + 'user/updateRole',
+				data : {
+					id : id,
+					roleId : roleId
+				},
+				type : 'post',
+				success : function(result) {
+					if (!result.data.success) {
+						ZUtil.error(result.data.msg);
+					} else {
+						ZUtil.success('数据修改成功');
+						$roleModal.trigger('hide');
+						$userList.trigger('reload');
 					}
 				}
 			});
@@ -291,6 +333,10 @@ $(function() {
 		
 		$('#change-valid-cancel').bind('click', function() {
 			$validModal.trigger('hide');
+		});
+		
+		$('#change-role-cancel').bind('click', function() {
+			$roleModal.trigger('hide');
 		});
 		
 		$('#change-status-cancel').bind('click', function() {

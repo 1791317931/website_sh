@@ -366,7 +366,7 @@ select:hover {border: 1px solid #00BCD4;}
 	float: left;
     font-size: 16px;
     color: #888;
-    padding: 5px 5px 10px 10px;
+    padding: 5px 5px 15px 10px;
     position: relative;
     line-height: 30px;
 }
@@ -375,11 +375,13 @@ select:hover {border: 1px solid #00BCD4;}
 	text-align: right;
     box-sizing: border-box;
 	display: inline-block;
+	color: #111;
 }
 .must {
 	position: absolute;
 	right: 0;
 	color: red;
+	line-height: 32px;
 }
 /* 一个汉字16px，冒号也算一个汉字 */
 .form-group > .label-2 {width: 42px;}
@@ -559,7 +561,9 @@ input[readonly] {
 	cursor: pointer;
 }
 .page-bar .page-body .page-head-cell {
-	font-weight: 700;
+	/* font-weight: 700; */
+	background-color: rgba(0, 0, 255, 0.42);
+	color: #fff;
 }
 .page-bar .page-button:first-child {margin-left: 0;}
 .page-bar .pagination-description {
