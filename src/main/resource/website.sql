@@ -79,8 +79,8 @@ create table w_user (
 	type_id varchar(10) not null default 'user' comment '用户类型',
 	create_date datetime not null default now() comment '创建时间',
 	update_date datetime not null default now() comment '最后修改时间',
-	created_by int not null comment '创建人id',
-	updated_by int not null comment '最后修改人'
+	created_by int comment '创建人id',
+	updated_by int comment '最后修改人'
 ) ENGINE = INNODB comment '用户表';
 
 insert into w_user(created_by, updated_by, username, status, password, phone, type_id, is_valid) 

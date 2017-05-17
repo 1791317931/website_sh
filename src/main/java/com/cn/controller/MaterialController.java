@@ -65,7 +65,7 @@ public class MaterialController extends BaseController {
 		return getMap(page);
 	}
 	
-	@RequestMapping(value = "/delete")
+	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> deleteById(int id) {
 		materialService.deleteById(id);

@@ -55,14 +55,14 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
   
-  <!-- <filter>
-  	<filter-name>loginFilter</filter-name>
-  	<filter-class>com.cn.filter.LoginFilter</filter-class>
+  <filter>
+  	<filter-name>sessionFilter</filter-name>
+  	<filter-class>com.cn.fitler.SessionFilter</filter-class>
   </filter>
   
   <filter-mapping>
-  	<filter-name>loginFilter</filter-name>
-  	<url-pattern>/admin/index</url-pattern>
-  </filter-mapping> -->
+  	<filter-name>sessionFilter</filter-name>
+  	<url-pattern>*</url-pattern>
+  </filter-mapping>
   
 </web-app>

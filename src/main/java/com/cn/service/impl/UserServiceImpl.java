@@ -68,6 +68,12 @@ public class UserServiceImpl implements UserService {
 		
 		userDao.save(user);
 		
+		if (user.getCreated_by() == null) {
+			user.setCreated_by(user.getId());
+			user.setUpdated_by(user.getId());
+			userDao.save(user);
+		}
+		
 		return result;
 	}
 	

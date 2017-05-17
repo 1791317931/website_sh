@@ -31,10 +31,10 @@ $(function() {
 					
 					html = '<div class="table comment-item">'
 							+ '<div class="table-cell table-cell-l vt">'
-								+ '<p class="tf cr" title="' + username + '">' + username + '</p>'
 								+ '<div class="text-center mt5">'
 									+ '<img class="user-img" src="' + headUrl + '" />'
 								+ '</div>'
+								+ '<p class="tf" title="' + username + '">' + username + '</p>'
 							+ '</div>'
 							+ '<div class="table-cell vt text-left p5">'
 								+ '<p class="text-break mh100">' + (comment.note || '').replace('<', '&lt;').replace('>', '&gt;') + '</p>'
@@ -121,11 +121,6 @@ $(function() {
 	
 	(function() {
 		$('#add-shopcar').bind('click', function() {
-			if (!id) {
-				$('.to-login').click();
-				return false;
-			}
-			
 			$.ajax({
 				url : base_url + 'shopcar/add',
 				data : {

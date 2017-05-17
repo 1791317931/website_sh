@@ -129,7 +129,7 @@ $(function() {
 	})();
 	
 	(function() {
-		function regist() {
+		function addUser() {
 			var username = $addUsername.val(),
 			phone = $addPhone.val(),
 			password = $addPassword.val(),
@@ -159,15 +159,13 @@ $(function() {
 			}
 			
 			$.ajax({
-				url : base_url + 'user/regist',
+				url : base_url + 'user/addUser',
 				type : 'post',
 				data : {
 					username : username,
 					phone : phone,
 					password : password,
-					roleId : $addRole.val(),
-					// 用户添加成功后，不登录
-					login : false
+					roleId : $addRole.val()
 				},
 				success : function(result) {
 					var data = result.data || {};
@@ -193,7 +191,7 @@ $(function() {
 		});
 		
 		$('#add-user-sure').bind('click', function() {
-			regist();
+			addUser();
 		});
 		
 		$('#add-user-cancel').bind('click', function() {

@@ -61,17 +61,15 @@ public class UserController extends BaseController {
 	 * @param username
 	 * @param phone
 	 * @param password
-	 * @param login		注册成功后是否登录
 	 * @return
 	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	@ResponseBody
 	public Map<String, Object> regist(HttpServletRequest request, Integer roleId,
-			String username, String phone, String password,
-			@RequestParam(defaultValue = "true") boolean login) {
+			String username, String phone, String password) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		if (userService.countByUsernameOrPhone(ValidConst.VALID, username, phone) > 0) {
-			String msg = "用户名或密码重复";
+			String msg = "用户名或手机号重复";
 			result.put("code", 0);
 			result.put("msg", msg);
 		} else {
@@ -81,27 +79,59 @@ public class UserController extends BaseController {
 			user.setUsername(username);
 			user.setIs_valid(ValidConst.VALID);
 			user.setStatus(UserStatusConst.PASS);
-			Const con = null;
-			if (roleId != null) {
-				con = constService.getById(roleId);
-			} else {
-				List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER, null);
-				con = list.get(0);
-			}
+			List<Const> list = constService.getByTypeAndCode("user_type", UserConst.USER, null);
+			Const con = list.get(0);
 			user.setCon(con);
 			
-			user.setCreated_by(getUserId());
-			user.setUpdated_by(getUserId());
 			Date now = new Date();
 			user.setCreate_date(now);
 			user.setUpdate_date(now);
 			
 			userService.saveOrUpdate(user);
 			
-			if (login) {
-				HttpSession session = request.getSession();
-				session.setAttribute("user", user);
-			}
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user);
+			result.put("code", 1);
+		}
+		
+		return getMap(result);
+	}
+	
+	/**
+	 * 添加用户
+	 * @param request
+	 * @param username
+	 * @param phone
+	 * @param password
+	 * @return
+	 */
+	@RequestMapping(value = "/addUser", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String, Object> addUser(HttpServletRequest request, Integer roleId,
+			String username, String phone, String password) {
+		Map<String, Object> result = new HashMap<String, Object>();
+		if (userService.countByUsernameOrPhone(ValidConst.VALID, username, phone) > 0) {
+			String msg = "用户名或手机号重复";
+			result.put("code", 0);
+			result.put("msg", msg);
+		} else {
+			User user = new User();
+			user.setPhone(phone);
+			user.setPassword(MD5Util.EncoderPwdByMd5AndApacheBase64(password));
+			user.setUsername(username);
+			user.setIs_valid(ValidConst.VALID);
+			user.setStatus(UserStatusConst.PASS);
+			Const con = constService.getById(roleId);
+			user.setCon(con);
+			
+			Date now = new Date();
+			user.setCreate_date(now);
+			user.setUpdate_date(now);
+			user.setCreated_by(getUserId());
+			user.setUpdated_by(getUserId());
+			
+			userService.saveOrUpdate(user);
+			
 			result.put("code", 1);
 		}
 		

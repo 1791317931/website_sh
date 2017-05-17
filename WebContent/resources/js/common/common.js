@@ -40,3 +40,16 @@ function loadList(param) {
 var ImageObj = {
 	user : base_url + 'resources/imgs/default_user.jpg'
 };
+
+$.ajaxSetup({
+	dataFilter : function(data) {
+		if (data == 401) {
+			// 自动弹出登录框
+			$('#to-login').trigger('show');
+			ZUtil.error('请登录后再操作');
+			throw new Error('请登录后再操作');
+		} else {
+			return data;
+		}
+	}
+});

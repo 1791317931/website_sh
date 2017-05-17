@@ -39,6 +39,7 @@ public class BaseController {
 		Map<String, Object> map = new HashMap<String, Object>();
 		
 		map.put("success", true);
+		map.put("code", 1);
 		map.put("data", obj);
 		
 		return map;
