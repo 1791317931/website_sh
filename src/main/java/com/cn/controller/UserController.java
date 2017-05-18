@@ -65,7 +65,7 @@ public class UserController extends BaseController {
 	 */
 	@RequestMapping(value = "/regist", method = RequestMethod.POST)
 	@ResponseBody
-	public Map<String, Object> regist(HttpServletRequest request, Integer roleId,
+	public Map<String, Object> regist(HttpServletRequest request,
 			String username, String phone, String password) {
 		Map<String, Object> result = new HashMap<String, Object>();
 		if (userService.countByUsernameOrPhone(ValidConst.VALID, username, phone) > 0) {
