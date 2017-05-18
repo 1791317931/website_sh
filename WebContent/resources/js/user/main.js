@@ -95,7 +95,7 @@ $(function() {
 			for (var i = 0, length = typeObjs.length; i < length; i++) {
 				var obj = typeObjs[i],
 				id = obj.id,
-				name = obj.value,
+				name = obj.description,
 				html = '<div class="mb30">'
 						+ '<h4 class="mb10 title">' + name + '</h4>'
 						+ '<div class="product-category empty clearfix" data-empty="暂无商品"></div>'

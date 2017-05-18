@@ -46,7 +46,8 @@ $(function() {
 	$scroll = $attachmentList.Scroll({
 		url : base_url + 'attachment/page',
 		data : {
-			type : 'file'
+			type : 'file',
+			pageSize : 8,
 		},
 		success : function(data) {
 			var page = data.data,
