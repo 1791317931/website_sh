@@ -98,75 +98,81 @@
 			</div>
 		</div>
 	</div>
-	<div class="nav-head">
-		<div class="pull-right nav-container">
-			<span><a href="<%=basePath%>main/index">首页</a></span>
-			<span><span class="welcome-container">${user.username}</span>，您好</span>
-			<span><a href="<%=basePath%>user/logout">退出</a></span>
-		</div>
-	</div>
-	<div class="main-body">
-		<div class="common-body clearfix table">
-			<div class="menu-container table-cell vt container-box">
-				<ul class="menu">
-					<li>
-						<p>基础数据</p>
-						<ul class="sub-menu">
-							<li>
-								<p data-url="const/role">角色管理</p>
-							</li>
-							<li>
-								<p data-url="user/admin/index">用户管理</p>
-							</li>
-							<li>
-								<p data-url="property/admin/index">属性管理</p>
-							</li>
-							<li>
-								<p data-url="category/admin/index">属性分类管理</p>
-							</li>
-							<li>
-								<p data-url="const/product/category">商品分类管理</p>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<p>资源管理</p>
-						<ul class="sub-menu">
-							<li>
-								<p data-url="attachment/index">图片管理</p>
-							</li>
-							<li>
-								<p data-url="product/admin/index">商品列表</p>
-							</li>
-							<li>
-								<p data-url="product/admin/toEdit">商品编辑</p>
-							</li>
-							<li>
-								<p data-url="material/admin/index">材料管理</p>
-							</li>
-							<li>
-								<p data-url="material/admin/toEdit">材料编辑</p>
-							</li>
-						</ul>
-					</li>
-					<li>
-						<p>首页配置</p>
-						<ul class="sub-menu">
-							<li>
-								<p data-url="attachment/logo/index">LOGO配置</p>
-							</li>
-							<li>
-								<p data-url="attachment/banner/index">Banner配置</p>
-							</li>
-							<li>
-								<p data-url="product/admin/productCategory">商品配置</p>
-							</li>
-						</ul>
-					</li>
-				</ul>
+	<div class="table container">
+		<div class="table-row nav-head">
+			<div class="cell">
+				<div class="pull-right nav-container">
+					<span><a href="<%=basePath%>main/index">首页</a></span>
+					<span><span class="welcome-container">${user.username}，您好</span></span>
+					<span><a href="<%=basePath%>user/logout">退出</a></span>
+				</div>
 			</div>
-			<div class="content-container table-cell vt container-box">
-				<div class="content-body" id="content-body"></div>
+		</div>
+		<div class="table-row">
+			<div class="cell">
+				<div class="table hp100">
+					<div class="menu-container table-cell vt">
+						<ul class="menu">
+							<li>
+								<p>基础数据</p>
+								<ul class="sub-menu">
+									<li>
+										<p data-url="const/role">角色管理</p>
+									</li>
+									<li>
+										<p data-url="user/admin/index">用户管理</p>
+									</li>
+									<li>
+										<p data-url="property/admin/index">属性管理</p>
+									</li>
+									<li>
+										<p data-url="category/admin/index">属性分类管理</p>
+									</li>
+									<li>
+										<p data-url="const/product/category">商品分类管理</p>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<p>资源管理</p>
+								<ul class="sub-menu">
+									<li>
+										<p data-url="attachment/index">图片管理</p>
+									</li>
+									<li>
+										<p data-url="product/admin/index">商品列表</p>
+									</li>
+									<li>
+										<p data-url="product/admin/toEdit">商品编辑</p>
+									</li>
+									<li>
+										<p data-url="material/admin/index">材料管理</p>
+									</li>
+									<li>
+										<p data-url="material/admin/toEdit">材料编辑</p>
+									</li>
+								</ul>
+							</li>
+							<li>
+								<p>首页配置</p>
+								<ul class="sub-menu">
+									<li>
+										<p data-url="attachment/logo/index">LOGO配置</p>
+									</li>
+									<li>
+										<p data-url="attachment/banner/index">Banner配置</p>
+									</li>
+									<li>
+										<p data-url="product/admin/productCategory">商品配置</p>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
+					<div class="content-container table-cell vt tl">
+						<div class="content-body" id="content-body"></div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

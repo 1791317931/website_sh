@@ -94,12 +94,18 @@ $(function() {
 			html = '';
 			for (var i = 0, length = propertyObjs.length; i < length; i++) {
 				var property = propertyObjs[i];
-				html += '<div class="form-group col-6">'
-							+ '<label class="label-4">' + property.name + ':</label>'
-							+ '<div class="form-control">'
-								+ '<span>' + property.value + '</span>'
+				if (i % 2 == 0) {
+					html += '<div class="clearfix mt15">'
+				}
+				html += '<div class="table pull-left col-6">'
+							+ '<div class="cell vt">' + property.name + '：</div>'
+							+ '<div class="cell vt">'
+								+ '<div>' + property.value + '</div>'
 							+ '</div>'
 						+ '</div>';
+				if (i % 2 != 0) {
+					html += '</div>'
+				}
 			}
 			$('#property-container').append(html);
 			renderImages(product.imgUrls);

@@ -29,18 +29,16 @@
 			</div>
 			<div class="table-cell vt">
 				<div class="pl10">
-					<h2 class="cr center" id="product-name"></h2>
-					<div class="property-container clearfix" id="property-container">
-						<div class="form-group col-6">
-							<label class="label-4">价格:</label>
-							<div class="form-control">
-								<span class="cr" id="product-price"></span>
+					<div class="cr center name" id="product-name"></div>
+					<div class="property-container" id="property-container">
+						<div class="clearfix">
+							<div class="table pull-left col-6">
+								<div class="cell">价格：</div>
+								<div class="cell" id="product-price"></div>
 							</div>
-						</div>
-						<div class="form-group col-6">
-							<label class="label-4">数量:</label>
-							<div class="form-control">
-								<span class="cr" id="product-count"></span>
+							<div class="table pull-left col-6">
+								<div class="cell">数量：</div>
+								<div class="cell" id="product-count"></div>
 							</div>
 						</div>
 					</div>

@@ -11,7 +11,7 @@ body {
 
 .header {
 	height: 30px;
-	background: #ddd;
+	background: #130c0e;
 }
 
 .w1200 {
@@ -46,7 +46,7 @@ body {
 }
 
 .welcome-container {
-	color: #0072ff;
+	color: red;
 }
 
 .logo {
@@ -73,7 +73,7 @@ body {
 
 .footer {
 	height: 100px;
-	background: #ddd;
+	background: #130c0e;
 }
 
 /* product-item */

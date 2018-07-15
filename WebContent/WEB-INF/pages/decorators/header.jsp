@@ -47,7 +47,7 @@
 				<span><a class="to-shopCar" href="<%=basePath%>shopcar/index">进入购物车</a></span>
 				<span><a class="to-login" href="javascript:">登录</a></span>
 				<span><a class="to-regist" href="javascript:">注册</a></span>
-				<span><a class="welcome-container" href="<%=basePath%>user/index">${user.username}</a>，您好</span>
+				<span><a class="welcome-container" href="<%=basePath%>user/index">${user.username}，您好</a></span>
 				<span><a class="to-logout" href="<%=basePath%>user/logout">退出</a></span>
 			</div>
 		</div>
@@ -57,7 +57,7 @@
 			<img class="logo" />
 		</a>
 		<button class="pull-right btn search-product">搜索</button>
-		<div class="pull-right form-group col-3 mt24">
+		<div class="pull-right form-group col-4 mt24">
 			<div class="form-control">
 				<input class="product-name-search" type="text" id="product-name-search" placeholder="请输入商品名称" />
 			</div>

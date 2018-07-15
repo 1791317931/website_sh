@@ -49,6 +49,7 @@ insert into w_const(type, code, value, description, created_by, updated_by) valu
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', 3, 'logo', 'LOGO图片', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', 4, 'banner', 'Banner图片', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', 5, 'material_attachment', '材料附件', 1, 1);
+insert into w_const(type, code, value, description, created_by, updated_by) values('file', 6, 'user', '用户头像', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('property', 1, 'product', '商品属性', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('property', 2, 'material', '商品材料属性', 1, 1);
 insert into w_const(type, code, value, description, created_by, updated_by) values('file', 6, 'user', '用户头像', 1, 1);

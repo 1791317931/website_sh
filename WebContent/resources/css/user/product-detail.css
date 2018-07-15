@@ -115,7 +115,15 @@
 .property-container {
 	padding: 10px;
 	color: #888;
-	font-weight: 600;
+}
+
+.name {
+	font-size: 20px;
+}
+
+.property-container .table .cell:first-child {
+	width: 72px;
+	text-align: right;
 }
 
 .similar-product .product-item:nth-child(5n + 1) {

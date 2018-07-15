@@ -33,8 +33,7 @@
 }
 
 .item-desc .active {
-	color: #0035ff;
-	font-weight: 600;
+	color: red;
 }
 
 .logo-modal {

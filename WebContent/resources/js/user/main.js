@@ -26,7 +26,7 @@ $(function() {
 				for (var i = 0; i < length; i++) {
 					var item = list[i];
 					if (item.objId == 0) {
-						html += '<div class="slid-item pull-left">'
+						html += '<div class="slid-item pull-left" data-id="' + item.id + '">'
 								+ '<img src="' + base_img + item.path + '" />'
 							+ '</div>';
 						footerHtml += '<span></span>';

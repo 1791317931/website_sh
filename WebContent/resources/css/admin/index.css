@@ -1,4 +1,4 @@
-/* --------------------regist modal、login modal---------------------- */
+/* --------------------regist modal login modal---------------------- */
 .regist-modal {
 	width: 500px;
     height: 350px;
@@ -14,7 +14,11 @@
 .btn-half {
 	padding: 8px 18%;
 }
-/* --------------------regist modal、login modal---------------------- */
+/* --------------------regist modal login modal---------------------- */
+.container {
+	min-width: 1345px;
+	height: 100%;
+}
 
 .nav-head {
 	height: 30px;
@@ -39,21 +43,16 @@
 	color: #0072ff;
 }
 
-.wp100 {width: 100%;}
-
-.main-body {
-	min-width: 1345px;
-}
-
 .common-body {
 	table-layout: auto !important;
 }
 
 .menu-container {
 	width: 198px;
-	min-height: 450px;
+	height: 100%;
 	border: 1px solid #ccc;
 	background: #37a7f2;
+	text-align: left;
 }
 
 .menu > li {
@@ -62,7 +61,7 @@
 
 .menu p {
 	line-height: 26px;
-	padding-left: 15px;
+	padding-left: 20px;
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     cursor: pointer;
@@ -79,12 +78,11 @@
 }
 
 .sub-menu p {
-	padding-left: 30px;
+	padding-left: 36px;
 }
 
 .sub-menu p.active, .sub-menu p:hover {
 	color: #111;
-	font-weight: 600;
 }
 
 .content-container {

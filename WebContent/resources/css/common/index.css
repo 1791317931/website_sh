@@ -12,14 +12,13 @@ body {
 }
 
 a:hover {
-	color: red;
 	text-decoration: none;
 }
 
 a {
 	text-decoration: none;
 	font-size: 15px;
-	color: #777777;
+	color: #eee;
 }
 
 .standard {
@@ -119,7 +118,7 @@ a {
 .pl-20 {padding-left: -20px;}
 .pl-25 {padding-left: -25px;}
 .pl-30 {padding-left: -30px;}
-/* 垂直方向 */
+/* 垂直方向  */
 .pv5 {padding: 5px 0;}
 .pv10 {padding: 10px 0;}
 .pv15 {padding: 15px 0;}
@@ -176,6 +175,9 @@ a {
 /* width */
 .wp100 {width: 100%;}
 
+/* height */
+.hp100 {height: 100%;}
+
 /* float */
 .pull-left {float: left !important;}
 .pull-right {float: right !important;}
@@ -215,12 +217,12 @@ textarea {
 /* ul */
 li {list-style: none;}
 
-/* btn 默认4个文字 */
+/* btn 默认4个文字*/
 .btn {
 	font-size: 16px;
     color: white;
-    background-color: #ABBAC3;
-    border: 1px solid #ABBAC3;
+    background-color: #5f3c23;
+    border: 1px solid #5f3c23;
     border-radius: 1px;
     display: inline-block;
     padding: 8px 10px;
@@ -389,7 +391,7 @@ select:hover {border: 1px solid #00BCD4;}
 .form-group > .label-4 {width: 76px;}
 .form-group > .label-5 {width: 90px;}
 .form-group > .label-6 {width: 104px;}
-/* 基本位移量:2px，每个汉字16px */
+/* 基本位移量2px，每个汉字16px */
 .form-group > .label-2 + .form-control {left: 60px;}
 .form-group > .label-3 + .form-control {left: 76px;}
 .form-group > .label-4 + .form-control {left: 92px;}
@@ -450,7 +452,7 @@ input[readonly] {
 	vertical-align: middle;
 	height: 100%;
 }
-/* 默认:emtpy时，高度100px */
+/* 默认:empty时，高度100px */
 .empty:empty {
 	display: table;
 	width: 100%;
@@ -492,6 +494,7 @@ input[readonly] {
     transform: translateX(-50%) translateY(-50%);
     overflow: auto;
     box-shadow: 0 0 3px 1px #888;
+    border-radius: 3px;
 }
 
 /* direction */
